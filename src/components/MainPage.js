@@ -44,10 +44,12 @@ const style = {
 };
 
 export default function MainPage() {
+    const [Loginopen, LoginsetOpen] = React.useState(false);
+    const LoginhandleOpen = () => LoginsetOpen(true);
+    const LoginhandleClose = () => LoginsetOpen(false);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
         return (
             <div>
                 <div style={Wrapper}>
@@ -70,14 +72,14 @@ export default function MainPage() {
                                 <a href='/' className="l">Press</a>
                             </div>
                         </IconButton>
-                        <IconButton onClick={handleOpen}>
+                        <IconButton onClick={LoginhandleOpen}>
                             <div style={Login}>
                                 <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'white' }}>Log in</a>
                             </div>
                         </IconButton>
         <StyledModal aria-labelledby="unstyled-modal-title"
             aria-describedby="unstyled-modal-description"
-            open={open} onClose={handleClose} BackdropComponent={Backdrop}>
+            open={Loginopen} onClose={LoginhandleClose} BackdropComponent={Backdrop}>
         <Box sx={style}>
                     <div style={{ alignItems: 'center', margin:'20px 120px' }}>
                         <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
@@ -92,11 +94,34 @@ export default function MainPage() {
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
         </Box>
       </StyledModal>
-                    <IconButton>
+      <IconButton onClick={handleOpen}>
+                            <div style={SignupButton} >
+                            <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
+                            </div>
+                        </IconButton>
+        <StyledModal aria-labelledby="unstyled-modal-title"
+            aria-describedby="unstyled-modal-description"
+            open={open} onClose={handleClose} BackdropComponent={Backdrop}>
+        <Box sx={style}>
+                    <div style={{ alignItems: 'center', margin:'20px 120px' }}>
+                        <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
+                    </div>
+            <h3 id="unstyled-modal-title" >Welcome to Pinterest</h3>
+            <div style={{  margin:'-10px 65px 40px' }}>Find new ideas to try</div>
+            <input name="email" placeholder="Email" type="text" style={Text} className="form-control" />
+            <input name="password" placeholder="Create a Password" type="password" style={Text} className="form-control" />
+            <input name="age" placeholder="Age" type="text" style={Text} className="form-control" />
+            <Button type="submit"  style={{display: 'flex', height:' 44px', width: '100%',
+                borderRadius: '18px',  justifyContent: 'center',
+                alignItems: 'center',backgroundColor:'#E60023',  margin:'15px 5px'}}>Continue</Button>
+          <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
+        </Box>
+      </StyledModal>
+                 {/*}   <IconButton>
                         <div style={SignupButton}>
                             <a href='/' style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
                         </div>
-                    </IconButton>
+        </IconButton> */}
                 </div> 
                 </div>
             </div>
