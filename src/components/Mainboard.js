@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Pin from './Pin';
 
-function Mainboard() {
-    return (
-        <div>
-            <div style={Wrapper}>
+
+export default class Mainboard extends Component {
+    render() {
+        return (
+                  <div style={Wrapper}>
                 <div style={Container}>
                     <Pin/>
                 </div>
             </div>
-        </div>
-    )
-} 
-export default Mainboard
+          
+        )
+    }
+}
+
 
 const  Wrapper = {
     display:'flex',

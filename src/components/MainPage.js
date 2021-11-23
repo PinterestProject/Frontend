@@ -42,14 +42,47 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center',   
 };
+export default class MainPage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            Loginopen: false,
+            LoginsetOpen: false,
+            open: false,  
+            setOpen: false
+        }
+        this.LoginhandleOpen = this.LoginhandleOpen.bind(this);
+        this.LoginhandleClose = this.LoginhandleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
 
-export default function MainPage() {
-    const [Loginopen, LoginsetOpen] = React.useState(false);
-    const LoginhandleOpen = () => LoginsetOpen(true);
-    const LoginhandleClose = () => LoginsetOpen(false);
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    LoginhandleOpen(){
+        this.setState({
+            LoginsetOpen: true,
+            Loginopen: true
+        })
+    }
+    LoginhandleClose(){
+        this.setState({
+            LoginsetOpen: false,
+            Loginopen: false
+        })
+    }
+    handleOpen(){
+        this.setState({
+            setOpen: true, 
+            open: true
+        })
+    }
+    handleClose(){
+        this.setState({
+            setOpen: false,
+            open: false
+        })
+    }
+    
+    render(){
         return (
             <div>
                 <div style={Wrapper}>
@@ -72,14 +105,14 @@ export default function MainPage() {
                                 <a href='/' className="l">Press</a>
                             </div>
                         </IconButton>
-                        <IconButton onClick={LoginhandleOpen}>
+                        <IconButton onClick={this.LoginhandleOpen}>
                             <div style={Login}>
                                 <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'white' }}>Log in</a>
                             </div>
                         </IconButton>
         <StyledModal aria-labelledby="unstyled-modal-title"
             aria-describedby="unstyled-modal-description"
-            open={Loginopen} onClose={LoginhandleClose} BackdropComponent={Backdrop}>
+            open={this.state.Loginopen} onClose={this.LoginhandleClose} BackdropComponent={Backdrop}>
         <Box sx={style}>
                     <div style={{ alignItems: 'center', margin:'20px 120px' }}>
                         <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
@@ -94,16 +127,16 @@ export default function MainPage() {
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
         </Box>
       </StyledModal>
-      <IconButton onClick={handleOpen}>
+      <IconButton onClick={this.handleOpen}>
                             <div style={SignupButton} >
                             <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
                             </div>
                         </IconButton>
         <StyledModal aria-labelledby="unstyled-modal-title"
             aria-describedby="unstyled-modal-description"
-            open={open} onClose={handleClose} BackdropComponent={Backdrop}>
+            open={this.state.open} onClose={this.handleClose} BackdropComponent={Backdrop}>
         <Box sx={style}>
-                    <div style={{ alignItems: 'center', margin:'20px 120px' }}>
+                    <div style={{ alignItems:'center', margin:'20px 120px'}}>
                         <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
                     </div>
             <h3 id="unstyled-modal-title" >Welcome to Pinterest</h3>
@@ -117,16 +150,11 @@ export default function MainPage() {
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
         </Box>
       </StyledModal>
-                 {/*}   <IconButton>
-                        <div style={SignupButton}>
-                            <a href='/' style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
-                        </div>
-        </IconButton> */}
                 </div> 
                 </div>
             </div>
         )
-    }
+    }}
  
 const  Wrapper = {
     display: 'flex',
