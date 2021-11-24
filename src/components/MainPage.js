@@ -3,7 +3,10 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import PersonIcon from '@mui/icons-material/Person';
+import {Col, Row, Container} from 'reactstrap';
+
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -42,6 +45,7 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center',   
 };
+
 export default class MainPage extends React.Component{
     constructor(props){
         super(props);
@@ -49,12 +53,21 @@ export default class MainPage extends React.Component{
             Loginopen: false,
             LoginsetOpen: false,
             open: false,  
-            setOpen: false
+            setOpen: false,
+            Welcomeopen: false,  
+            WelcomesetOpen: false,
+            Categorysopen: false,  
+            CategorysetOpen: false
+
         }
         this.LoginhandleOpen = this.LoginhandleOpen.bind(this);
         this.LoginhandleClose = this.LoginhandleClose.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.WelcomehandleOpen = this.WelcomehandleOpen.bind(this);
+        this.WelcomehandleClose = this.WelcomehandleClose.bind(this);
+        this.CategoryhandleOpen = this.CategoryhandleOpen.bind(this);
+        this.CategoryhandleClose = this.CategoryhandleClose.bind(this);
     }
 
     LoginhandleOpen(){
@@ -79,6 +92,34 @@ export default class MainPage extends React.Component{
         this.setState({
             setOpen: false,
             open: false
+        })
+    }
+    WelcomehandleOpen(){
+        this.setState({
+            setOpen: false,
+            open: false,
+            WelcomesetOpen: true, 
+            Welcomeopen: true
+        })
+    }
+    WelcomehandleClose(){
+        this.setState({
+            WelcomesetOpen: false,
+            Welcomeopen: false
+        })
+    }
+    CategoryhandleOpen(){
+        this.setState({
+            WelcomesetOpen: false, 
+            Welcomeopen: false,
+            CategorysetOpen: true,
+            Categoryopen: true
+        })
+    }
+    CategoryhandleClose(){
+        this.setState({
+            CategorysetOpen: false,
+            Categoryopen: false
         })
     }
     
@@ -117,19 +158,17 @@ export default class MainPage extends React.Component{
                     <div style={{ alignItems: 'center', margin:'20px 120px' }}>
                         <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
                     </div>
-            <h3 id="unstyled-modal-title" >Welcome to Pinterest</h3>
+            <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
             <input name="email" placeholder="Email" type="text" style={Text} className="form-control" />
             <input name="password" placeholder="Password" type="password" style={Text} className="form-control" />
             <a href='/' className="l">Forgotten your password?</a>
-            <Button type="submit"  style={{display: 'flex', height:' 44px', width: '100%',
-                borderRadius: '18px',  justifyContent: 'center',
-                alignItems: 'center',backgroundColor:'#E60023',  margin:'15px 5px'}}>Log in</Button>
+            <Button type="submit" style={RedButton}>Log in</Button>
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
         </Box>
       </StyledModal>
       <IconButton onClick={this.handleOpen}>
                             <div style={SignupButton} >
-                            <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
+                            <a style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
                             </div>
                         </IconButton>
         <StyledModal aria-labelledby="unstyled-modal-title"
@@ -144,10 +183,52 @@ export default class MainPage extends React.Component{
             <input name="email" placeholder="Email" type="text" style={Text} className="form-control" />
             <input name="password" placeholder="Create a Password" type="password" style={Text} className="form-control" />
             <input name="age" placeholder="Age" type="text" style={Text} className="form-control" />
-            <Button type="submit"  style={{display: 'flex', height:' 44px', width: '100%',
-                borderRadius: '18px',  justifyContent: 'center',
-                alignItems: 'center',backgroundColor:'#E60023',  margin:'15px 5px'}}>Continue</Button>
+            <Button type="submit" onClick={this.WelcomehandleOpen} style={RedButton}>Continue</Button>
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
+        </Box>
+      </StyledModal>
+      <StyledModal aria-labelledby="unstyled-modal-title"
+            aria-describedby="unstyled-modal-description"
+            open={this.state.Welcomeopen} onClose={this.WelcomehandleClose} BackdropComponent={Backdrop}>
+        <Box sx={style}>
+                    <div style={{ alignItems: 'center', margin:'20px 90px' }}>
+                        <PersonIcon style={{fontSize: '120px'}}/>
+                    </div>
+            <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
+            <h4 style={Center} >Jhon Doe</h4>
+          <p id="unstyled-modal-description" style={{margin:'10px'}}>Your answer to the next question will help us find the right ideas for you</p>
+          <Button type="submit" onClick={this.CategoryhandleOpen} style={RedButton}>Next</Button>
+        </Box>
+      </StyledModal>
+      <StyledModal aria-labelledby="unstyled-modal-title"
+            aria-describedby="unstyled-modal-description"
+            open={this.state.Categoryopen} onClose={this.CategoryhandleClose} BackdropComponent={Backdrop}>
+        <Box sx={style}>
+          <h3 id="unstyled-modal-title">Tell us what you 're interested in</h3>
+          <p id="unstyled-modal-description" style={{margin:'10px'}}>
+          <Container>
+          <div class="form-check">
+            <Row>
+                <Col style={Category}><input class="form-check-input"  type="checkbox" value="" id="defaultCheck1"></input> Holidays</Col>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></input> Art</Col>
+            </Row>
+            <Row>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck3"></input>Animals</Col>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck4"></input>Design</Col>
+            </Row>
+            <Row>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck5"></input>Beauty</Col>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck6"></input>Quotes</Col>
+            </Row>
+            <Row>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck8"></input>Event planning</Col>
+                <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck7"></input>Home décor</Col>
+            </Row>
+            </div>
+            </Container>
+          </p>      
+          <Button type="submit" style={RedButton}>Done
+          </Button>
         </Box>
       </StyledModal>
                 </div> 
@@ -203,4 +284,25 @@ const  SearchWrapper = {
 };
 const  IconWrapper = {
     marginLeft:'20px',
+};
+const  Center = { 
+    margin: 'auto',
+    width: '40%',
+    padding: '5px',
+};
+const  RedButton = { 
+    display: 'flex', 
+    height:' 44px', 
+    width: '100%',
+    borderRadius: '18px', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'#E60023', 
+    margin:'15px 5px'
+};
+const  Category = { 
+    border:"2px solid lightgray", 
+    borderRadius: '18px',
+    margin:"6px 10px",
+
 };

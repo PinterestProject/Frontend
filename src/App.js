@@ -12,8 +12,7 @@ export default class App extends Component {
     return (
       <div> 
           <MainPage/>
-          <Header/> 
-         <Mainboard/> 
+          <Header/>
       </div>
     )
   }

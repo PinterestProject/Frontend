@@ -5,7 +5,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import FaceIcon from '@mui/icons-material/Face';
+import FaceIcon from '@mui/icons-material/Face'; 
+import Mainboard from './Mainboard';
 
 
 export default class Header extends Component {
@@ -48,6 +49,7 @@ export default class Header extends Component {
                         </IconButton>
                 </div>
                 </div>
+                <Mainboard/>
             </div>
         )
     }
