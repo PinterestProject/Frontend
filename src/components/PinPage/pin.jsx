@@ -12,24 +12,26 @@ export default class Pin extends Component {
         return (
             <div>
                 <Header />
-{/*--------------------main card which hold img and details--------------------*/}
+                {/*--------------------main card which hold img and details--------------------*/}
                 <div className="pin container" >
-{/*--------------------here is the pin's image--------------------*/}
+                    {/*--------------------here is the pin's image--------------------*/}
                     <div className="pin-img">
                         <img src="https://i.pinimg.com/564x/13/2f/de/132fdea388341d874806e3b94000df34.jpg" alt="" />
                     </div>
-{/*--------------------start details from here which divided into 8 rows-------------------- */}
+                    {/*--------------------start details from here which divided into 8 rows-------------------- */}
                     <div className="pin-details ">
                         {/* --------------------first row-------------------- */}
                         {/* divided into 2sections */}
                         <div className="row1">
                             {/* 1st section */}
                             <div >
+                                {/* dots */}
                                 <button className='btn' >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
                                     </svg>
                                 </button>
+                                {/* upload */}
                                 <button className='btn'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
@@ -100,7 +102,7 @@ export default class Pin extends Component {
                                 </small>
                             </div>
                         </div>
-{/* --------------------floation button which will hold add pin function-------------------- */}
+                        {/* --------------------floation button which will hold add pin function-------------------- */}
                         <div>
                             <button className='add-btn' >
                                 <svg style={{ marginBottom: "2px" }} height="20" width="20" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path></svg>
@@ -108,7 +110,7 @@ export default class Pin extends Component {
                         </div>
                     </div>
                 </div>
-{/* --------------------extra data afer pin card-------------------- */}
+                {/* --------------------extra data afer pin card-------------------- */}
                 <div style={{ marginTop: "20px" }}>
                     <h5 style={{ fontWeight: "600", textAlign: "center" }}>More like this</h5>
                 </div>
