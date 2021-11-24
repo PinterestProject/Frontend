@@ -1,0 +1,110 @@
+.gallery {
+    column-count: 4;
+    padding-top: 50px;
+    
+}
+
+.floating{
+    background-image: linear-gradient(to bottom, transparent, rgb(241, 241, 241));
+    position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  height: 180px;
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+}
+
+/* .down{
+    border-radius: 50px;
+    border: 1px;
+    color: aliceblue;
+} */
+
+.down{
+	position:fixed;
+	border-radius:50px;
+	text-align:center;
+    transition: all ease 0.5s;
+    animation-name: example;
+    animation-duration: 1s;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+
+}
+@keyframes example {
+    0%   { transform: translateY(0px);}
+    100% { transform: translateY(20px);}
+  }
+  
+
+.gallery :hover{
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+    z-index: 1000;
+}
+
+/* .gallery div {
+    break-inside: avoid;
+} */
+
+.gallery div img {
+    width: 100%;
+   
+
+}
+
+@media (min-width: 1700px) {
+    .gallery {
+        column-count: 7;
+    }
+}
+@media (max-width: 1000px) {
+    .gallery {
+        column-count: 3;
+    }
+
+    .gallery div {
+        width: 80%;
+        margin-right: 10px;
+    }
+
+    .gallery div img {
+        width: 50%;
+    }
+}
+
+@media (max-width: 700px) {
+    .gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    .gallery {
+        column-count: 1;
+    }
+}
+/* @media (max-width: 1200px) {
+    .gallery {
+        column-count: 3;
+    }
+} */
+
+
+.banar{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    padding-top: 50px;
+}
+
+.message{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+}
