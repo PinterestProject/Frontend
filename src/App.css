@@ -35,10 +35,18 @@ form button{
 }
 input:focus{
   outline: none;
-}
-img{
+} 
+
+
+/*change nesren*/
+Card{
   width: 236px;
   display: flex;
+
+  margin:10px;
+}
+
+
   /* cursor: zoom-in; */
   border-radius: 16px;
   object-fit: cover;
@@ -48,3 +56,4 @@ img{
 span{
   font-weight: 500;
 }
+

@@ -12,6 +12,7 @@ import CreatePin from './components/PinPage/createPin';
 
 
 
+
 export default class App extends Component {
 
   render() {
