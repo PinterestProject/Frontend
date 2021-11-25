@@ -10,19 +10,12 @@ import CreatePin from './components/PinPage/createPin';
 
 
 
-
-
 export default class App extends Component {
   render() {
     return (
-      <div>
-          {/* <Pin/> */}
-          <CreatePin/>
-          {/* <MainPage/> */}
-          {/* <Test/>  */}
-          {/* <Header/> 
-         <Mainboard/>  */}
-         {/* <MainPage/> */}
+      <div> 
+          <MainPage/>
+          <Header/>
       </div>
     )
   }

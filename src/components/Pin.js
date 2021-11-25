@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function Pin() {
-    return (
-        <div>
+export default class Pin extends Component {
+    render() {
+        return (
+            <div>
             <div style={Wrapper}>
                 <div style={Container}>
                     <img src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="pin"></img>                
@@ -13,9 +14,12 @@ function Pin() {
                 </div>
             </div>
         </div>
-    )
+        )
+    }
 }
-export default Pin
+
+
+
 
 const  Wrapper = {
     display: 'inline-flex',
