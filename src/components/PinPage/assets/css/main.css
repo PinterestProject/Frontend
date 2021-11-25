@@ -1,0 +1,135 @@
+.pin{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 6px 8px 36px -20px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 6px 8px 36px -20px rgba(0,0,0,0.6);
+    -moz-box-shadow: 6px 8px 36px -20px rgba(0,0,0,0.6);
+    border-radius: 15px;
+    padding: 25px;
+
+}
+
+.save-btn{
+    background-color: #E60023;
+    color: white;
+    font-weight: 600;
+    border:none;
+    height:  44px;
+    width: 65px;
+    border-radius: 25px;
+
+}
+
+.pin-title{
+    font-weight: 600;
+}
+
+.row1{
+    /* margin-top: 30px; */
+    display: flex;
+    justify-content: space-between;
+}
+.save-profile{
+    display: flex;
+    align-items: center;
+}
+
+.pin-details{
+    padding: 20px;
+    margin-left: 30px;
+}
+
+.pin-img img {
+    width: 100%;
+    margin-right: 400px;
+}
+.row5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.row5 img {
+    width:10%;
+    border-radius: 30px;
+   
+    /* margin-right: 400px; */
+}
+
+.follow{
+    background-color: rgba(224, 224, 224, 0.568);
+    display:flex; 
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer; 
+    height: 40px;
+    min-width:  70px;  
+}
+
+.row6{
+    padding-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+.img-comment img{
+     width: 7%;
+     border-radius: 30px;
+}
+
+.img-comment input{
+     /* width: 50%; */
+     height: 45px;
+     border-radius: 30px;
+}
+
+.img-comment{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.row8{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.row8 img {
+    width: 5%;
+    border-radius: 30px;
+   
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+ 
+}
+
+.link:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.add-btn{
+    padding: 15px;
+	position:fixed;
+	border-radius:50px;
+    width: 55px;
+    border: none;
+	text-align:center;
+    box-shadow: 2px 4px 40px -15px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 40px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 40px -15px rgba(0,0,0,0.75);
+    /* right: 20px; */
+    bottom: 50px;
+    right:  50px;
+    /* overflow-x:  10px; */
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+
+
+}

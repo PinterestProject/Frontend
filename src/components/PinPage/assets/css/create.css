@@ -1,0 +1,27 @@
+.save-btn2{
+    background-color: #E60023;
+    color: white;
+    font-weight: 600;
+    border:none;
+    height:  44px;
+    width: 65px;
+    border-radius:10px;
+
+}
+
+
+.row8-created {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.row8-created img{
+    width: 12%;
+    border-radius: 30px;
+}
+
+.form-details{
+    padding: 20px;
+    /* margin-left: 30px; */
+    width: 100%;
+}
