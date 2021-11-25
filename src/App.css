@@ -35,11 +35,9 @@ form button{
 input:focus{
   outline: none;
 }
-img{
+Card{
   width: 236px;
   display: flex;
-  cursor: zoom-in;
-  border-radius: 16px;
-  object-fit: cover;
   margin:10px;
 }
+
