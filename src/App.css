@@ -11,13 +11,11 @@
     text-decoration: none !important;
     color: black !important;
     font-size: 14px !important;
-    font-weight: bold !important;
-    
+    font-weight: bold !important;   
 }
 .l:hover {
   text-decoration: none !important;
 }
-
 form{
   display: flex;
   flex: 1;
@@ -36,24 +34,6 @@ form button{
 input:focus{
   outline: none;
 } 
-
-
-/*change nesren*/
-Card{
-  width: 236px;
-  display: flex;
-
-  margin:10px;
-}
-
-
-  /* cursor: zoom-in; */
-  border-radius: 16px;
-  object-fit: cover;
-  /* margin:10px; */
-}
-
 span{
   font-weight: 500;
 }
-
