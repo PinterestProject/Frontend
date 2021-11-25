@@ -1,5 +1,6 @@
 *{
   margin:0;
+  box-sizing: border-box;
 }
 .h{
   text-decoration: none !important;
@@ -14,7 +15,7 @@
     
 }
 .l:hover {
-  text-decoration: underline !important;
+  text-decoration: none !important;
 }
 
 form{
@@ -34,10 +35,25 @@ form button{
 }
 input:focus{
   outline: none;
-}
+} 
+
+
+/*change nesren*/
 Card{
   width: 236px;
   display: flex;
+
   margin:10px;
+}
+
+
+  /* cursor: zoom-in; */
+  border-radius: 16px;
+  object-fit: cover;
+  /* margin:10px; */
+}
+
+span{
+  font-weight: 500;
 }
 
