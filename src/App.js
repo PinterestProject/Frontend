@@ -4,18 +4,21 @@ import Header from './components/Header';
 import Mainboard from './components/Mainboard';
 import MainPage from './components/MainPage';
 import React, { Component } from 'react';
-
-
+import Profile from './components/ProfileComponent/Profile';
+import Model from './components/ProfileComponent/Pop'
 
 
 
 export default class App extends Component {
+
   render() {
     return (
       <div> 
           <MainPage/>
           <Header/> 
-         <Mainboard/> 
+         {/* <Mainboard/>  */}
+         
+         <Profile />
       </div>
     )
   }

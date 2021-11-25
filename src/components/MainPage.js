@@ -3,7 +3,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
