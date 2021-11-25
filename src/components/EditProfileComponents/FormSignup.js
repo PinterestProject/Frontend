@@ -1,11 +1,11 @@
 import React from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
-import '../Form.css';
+import './Form.css';
 // import { Button,  FormGroup, Label, Input, FormText ,FloatingLabel ,Dropdown} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
-import photo from "../l.jpeg"
+import photo from "./l.jpeg"
 
 
 
