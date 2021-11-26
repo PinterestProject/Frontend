@@ -13,8 +13,6 @@ import Grid from './components/ProfileComponent/test';
 
 
 
-
-
 export default class App extends Component {
 
   render() {
