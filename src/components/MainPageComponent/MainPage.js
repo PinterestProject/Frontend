@@ -9,7 +9,6 @@ import {Col, Row, Container} from 'reactstrap';
 import { baseUrl } from '../BaseUrl';
 import axios from 'axios';
 import './MainPage.css';
-import Modal from '@mui/material/Modal';
 {/* 
 const style2 = {
     position: 'absolute',
@@ -166,6 +165,16 @@ export default class MainPage extends React.Component{
             CategorysetOpen: false,
             LoginEmail: '',
             LoginPassword: '', 
+            ErrMessage:'',
+            Login:false,
+            touched: {
+                LoginEmail: '',
+                LoginPassword: '', 
+            },
+            errors: {
+                LoginEmail: '',
+                LoginPassword: '', 
+            },
         }
         this.LoginhandleOpen = this.LoginhandleOpen.bind(this);
         this.LoginhandleClose = this.LoginhandleClose.bind(this);
@@ -177,8 +186,9 @@ export default class MainPage extends React.Component{
         this.CategoryhandleClose = this.CategoryhandleClose.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.validate = this.validate.bind(this);
     }
-
     LoginhandleOpen(){
         this.setState({
             LoginsetOpen: true,
@@ -233,26 +243,68 @@ export default class MainPage extends React.Component{
     }
     handleInputChange = event => {
       this.setState({[event.target.name]: event.target.value});
+      this.setState({ErrMessage:''})
     }
-    handleSubmit(event) {
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+    validate(LoginEmail,LoginPassword) {
+        const errors = {
+            LoginEmail: '',
+            LoginPassword: '', 
+        };
+        if (this.state.touched.LoginEmail && !LoginEmail.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+            errors.LoginEmail = 'That doesnot look like an email address.';
+        if (this.state.touched.LoginPassword && LoginPassword.length < 4)
+            errors.LoginPassword = 'Password should be more than 4 characters.';
+        else if (this.state.touched.LoginPassword && LoginPassword.length > 12)
+            errors.LoginPassword = 'Password should be less than 12 characters.'; 
+        return errors;
+    }
+    
+    async handleSubmit(event) {
         event.preventDefault();
+        const errors = this.validate(this.state.LoginEmail, this.state.LoginPassword);
+        await this.setState({errors:{LoginEmail:errors.LoginEmail,
+        LoginPassword:errors.LoginPassword}});
+        alert(this.state.errors.LoginEmail)
+        alert(this.state.errors.LoginPassword)
+        alert(this.state.Login)
+
+      if (this.state.errors.LoginEmail === '' && this.state.errors.LoginPassword === '')
+          this.setState({Login:true}); 
+      else
+          this.setState({Login:false});
         var newObject  = {
             username:this.state.LoginEmail,
             password:this.state.LoginPassword
          };
         console.log('Current State is: ' + JSON.stringify(newObject));
-       // alert('Current State is: ' + JSON.stringify(newObject));
+        alert(this.state.Login)
+         if (this.state.Login === true){
+        // alert('Current State is: ' + JSON.stringify(newObject));
         axios.post('http://127.0.0.1:8000/users/login/',newObject).then(response => {
             console.log(response)
-        //    alert('Data is: ' + JSON.stringify(response.data));
-        //    alert('Token is: ' + JSON.stringify(response.data.token));
+        //  alert('Data is: ' + JSON.stringify(response.data));
+        //  alert('Token is: ' + JSON.stringify(response.data.token));
             localStorage.setItem('Token',`Token ${response.data.token}`);
+            this.setState({ErrMessage: "Logged", Login:false})
         }).catch(error => {
             console.log(error)
+            if(error){
+                error = error.response.data;
+            //   alert('Error is: ' + error);
+            //  alert('Error is: ' + JSON.stringify(error));
+                this.setState({ErrMessage: "Provided credentials are incorrect", Login:false})
+            }
         })
-    }
+    }}
     render(){
-        const{LoginEmail, LoginPassword} = this.state
+        const{LoginEmail, LoginPassword} = this.state;
+        const errors = this.validate(this.state.LoginEmail, this.state.LoginPassword);
         return (
             <div>
                 <div style={Wrapper}>
@@ -289,11 +341,18 @@ export default class MainPage extends React.Component{
                     </div>
             <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
             <form onSubmit={this.handleSubmit} style={{display:'in-line'}}> 
-            <input name="LoginEmail" placeholder="Email" type="text" style={Text} className="form-control" 
-            value={LoginEmail} onChange={this.handleInputChange}/>
-            <input name="LoginPassword" placeholder="Password" type="password" style={Text} className="form-control" 
-            value={LoginPassword} onChange = {this.handleInputChange}/>
+            <input name="LoginEmail" placeholder="Email" type="text" id="LoginEmail" style={Text} className="form-control" 
+            value={LoginEmail} onChange={this.handleInputChange}
+            valid={errors.LoginEmail === ''} invalid={errors.LoginEmail !== ''}
+            onBlur={this.handleBlur('LoginEmail')}/>
+              <div style={ErrorMessage}>{errors.LoginEmail}</div>
+            <input name="LoginPassword" placeholder="Password" type="password" id="LoginPassword" style={Text} className="form-control" 
+            value={LoginPassword} onChange = {this.handleInputChange}
+            valid={errors.LoginPassword === ''} invalid={errors.LoginPassword !== ''}
+            onBlur={this.handleBlur('LoginPassword')}/>
+            <div style={ErrorMessage}>{errors.LoginPassword}</div>
             {/*  <ChildModal /> */}
+            <div style={ErrorMessage}>{this.state.ErrMessage}</div>
             <Button type = 'submit' style={RedButton}>Log in</Button>
             </form>
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
@@ -369,7 +428,7 @@ export default class MainPage extends React.Component{
             </div>
         )
     }}
- 
+
 const  Wrapper = {
     display: 'flex',
     alignItems: 'center',
@@ -437,5 +496,8 @@ const  Category = {
     border:"2px solid lightgray", 
     borderRadius: '18px',
     margin:"6px 10px",
-
 };
+const ErrorMessage ={
+    fontSize: '10px',
+    color: '#E60023'
+}

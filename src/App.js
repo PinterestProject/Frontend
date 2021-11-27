@@ -18,7 +18,7 @@ export default class App extends Component {
       <div>       
           <MainPage/>
           <Header/> 
-         <Profile />
+          <Profile />
           <Header/>
           <Pin/>
           <CreatePin/>

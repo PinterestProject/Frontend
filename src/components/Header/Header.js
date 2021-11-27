@@ -63,14 +63,45 @@ export default class Header extends Component {
             setOpen: false,
             Pass1:'',
             Pass2:'',
+            ErrMessage:'',
+            valid:false,
+            touched: {
+                Pass1: '',
+                Pass2: '', 
+            },
+            errors: {
+                Pass1: '',
+                Pass2: '', 
+            }
       }
         this.Logout = this.Logout.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.InputChange = this.InputChange.bind(this);
         this.ChangePassword = this.ChangePassword.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.validate = this.validate.bind(this);
   }
-  
+  handleBlur = (field) => (evt) => {
+    this.setState({
+        touched: { ...this.state.touched, [field]: true }
+    });
+}
+validate(Pass1,Pass2) {
+    const errors = {
+        Pass1: '',
+        Pass2: '', 
+    };
+    if (this.state.touched.Pass1 && Pass1.length < 4)
+        errors.Pass1 = 'Password should be more than 4 characters.';
+    else if (this.state.touched.Pass1 && Pass1.length > 12)
+        errors.Pass1 = 'Password should be less than 12 characters.';
+    if (this.state.touched.Pass2 && Pass2.length < 4)
+        errors.Pass2 = 'Password should be more than 4 characters.';
+    else if (this.state.touched.Pass2 && Pass2.length > 12)
+        errors.Pass2 = 'Password should be less than 12 characters.'; 
+    return errors;
+    }
   Logout(event){
     event.preventDefault();
     var v = ""
@@ -104,10 +135,20 @@ handleClose(){
 }
 InputChange = event => {
    this.setState({[event.target.name]: event.target.value});
- }
+   this.setState({ErrMessage:''})
+    }
 
-ChangePassword(event) {
+async ChangePassword(event) {
     event.preventDefault();
+    const errors = this.validate(this.state.Pass1, this.state.Pass2);
+    await this.setState({errors:{Pass1:errors.Pass1,Pass2:errors.Pass2}});
+        alert(this.state.errors.Pass1)
+        alert(this.state.errors.Pass2)
+        alert(this.state.valid)
+    if (this.state.errors.Pass1 === '' && this.state.errors.Pass2 === '')
+        this.setState({valid:true}); 
+    else
+        this.setState({valid:false});
     var Token = localStorage.getItem('Token')
     // alert(Token)
     var newObject2  = {
@@ -119,17 +160,26 @@ ChangePassword(event) {
      };
     console.log('Current State is: ' + JSON.stringify(newObject2));
     // alert('Current State is: ' + JSON.stringify(newObject2));
+    alert(this.state.valid)
+    if (this.state.valid === true){
     axios.post('http://127.0.0.1:8000/users/changepassword/', newObject2, {headers:Header}).then(response => {
         console.log(response)
-       // alert(JSON.stringify(response));
+        this.setState({ErrMessage: "Password is updated", valid:false})
     }).catch(error => {
         console.log(error)
-       // alert(JSON.stringify(error));
+        if(error){
+            error = error.response.data;
+            // alert('Error is: ' + error);
+           // alert('Error is: ' + JSON.stringify(error));
+           // var err = JSON.stringify(error.non_field_errors).replace('[', '').replace(']', '').replace('"', '').replace('"', '')
+            this.setState({ErrMessage: "Password is incorrect", valid:false})
+        }
     })
-}
+}}
 
     render() {
         const{Pass1, Pass2} = this.state
+        const errors = this.validate(this.state.Pass1, this.state.Pass2);
         return (
             <div>
                 <div style={Wrapper}>
@@ -170,8 +220,8 @@ ChangePassword(event) {
                                 </IconButton>
                                 </DropdownToggle>
                                 <DropdownMenu style={{margin:'-2px -160px'}}>
-                                   <DropdownItem onClick={this.handleOpen}>Change Password</DropdownItem>
-                                   <DropdownItem onClick={this.Logout} >Logout</DropdownItem>
+                                   <DropdownItem onClick={this.handleOpen} style={{backgroundColor:'white', color:'black'}} >Change Password</DropdownItem>
+                                   <DropdownItem onClick={this.Logout} style={{backgroundColor:'white',color:'black'}} >Logout</DropdownItem>
                                     {/*<DropdownItem header>Header</DropdownItem>
                                      <DropdownItem>Another Action</DropdownItem>
                                     <DropdownItem divider />
@@ -192,14 +242,20 @@ ChangePassword(event) {
               </p>
               <form onSubmit={this.ChangePassword}> 
               <input name="Pass1" placeholder="Old Password" type="text" style={Text} className="form-control"
-              value={Pass1} onChange={this.InputChange} />
+              value={Pass1} onChange={this.InputChange}
+              valid={errors.Pass1 === ''} invalid={errors.Pass1 !== ''}
+              onBlur={this.handleBlur('Pass1')} />
+                <div style={ErrorMessage}>{errors.Pass1}</div>
               <input name="Pass2" placeholder="New Password" type="password" style={Text} className="form-control"
-              value={Pass2} onChange={this.InputChange}/>
+              value={Pass2} onChange={this.InputChange}
+              alid={errors.Pass2 === ''} invalid={errors.Pass2 !== ''}
+              onBlur={this.handleBlur('Pass2')}/>
+                <div style={ErrorMessage}>{errors.Pass2}</div>
+                <div style={ErrorMessage}>{this.state.ErrMessage}</div>
               <Button type = 'submit'  style={RedButton}>Confirm</Button>
               </form>
                 </Box>
               </StyledModal>
-      
                 </div>
                 </div>
                 <Mainboard/>
@@ -265,3 +321,7 @@ const  Text = {
     borderRadius: '18px',
     margin:'5px 5px'
 };
+const ErrorMessage ={
+    fontSize: '10px',
+    color: '#E60023'
+}
