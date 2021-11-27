@@ -5,6 +5,7 @@ import "./assets/css/bootstrap.min.css"
 import Header from '../Header'
 import { TextField } from '@mui/material'
 import PlacHolder from "./assets/img/placeholder2.jpeg"
+import { Link } from 'react-router-dom'
 
 
 export default class CreatePin extends Component {
@@ -39,7 +40,7 @@ export default class CreatePin extends Component {
                 {/*--------------------main card which hold img and details--------------------*/}
                 <div className="pin container" >
                     {/*--------------------here is the pin's image--------------------*/}
-                    <div style={{ marginTop: "40px" }}>
+                    <div style={{ marginTop: "20px" }}>
 
                         <img src={this.state.imgPath} />
                     </div>
@@ -62,7 +63,7 @@ export default class CreatePin extends Component {
                         </div>
                         {/* -------------------------------------------------------------> */}
                         <div className='row4' style={{ paddingTop: "10px" }}>
-                            <TextField className="mt-3" fullWidth id="standard-fullWidth" label="Add title" variant="standard" />
+                            <TextField  className="mt-3" fullWidth id="standard-fullWidth" label="Add title" variant="standard" />
                             <TextField className="mt-3" fullWidth id="standard-fullWidth" label="Description" variant="standard" />
                             <div class="input-group mt-5">
                                 <select class="form-select" id="inputGroupSelect02">
@@ -71,7 +72,11 @@ export default class CreatePin extends Component {
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                <button className='save-btn2'>save</button>
+                                <Link className='save-btn2' to="/main-board">
+                                <button className='save-btn2'>
+                                    save
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

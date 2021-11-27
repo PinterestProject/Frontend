@@ -6,6 +6,7 @@
     height:  44px;
     width: 65px;
     border-radius:10px;
+    text-decoration: none;
 
 }
 
@@ -13,11 +14,12 @@
 .row8-created {
     display: flex;
     align-items: center;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 .row8-created img{
     width: 12%;
     border-radius: 30px;
+    margin-right: 10px;
 }
 
 .form-details{
