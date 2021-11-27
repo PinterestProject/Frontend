@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/bootstrap.min.css"
-import MainPage from '../MainPage'
+import MainPage from '../MainPageComponent/MainPage'
 
 
 export default class Test extends Component {

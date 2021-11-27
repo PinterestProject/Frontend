@@ -6,8 +6,30 @@ import ModalUnstyled from '@mui/core/ModalUnstyled';
 import Button from 'react-bootstrap/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import {Col, Row, Container} from 'reactstrap';
-
-
+import { baseUrl } from '../BaseUrl';
+import axios from 'axios';
+import './MainPage.css';
+import Modal from '@mui/material/Modal';
+{/* 
+const style2 = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width:700,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+    backgroundColor: 'white',
+    borderRadius: '16px',
+    objectFit: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',  
+  };
+*/}
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
   z-index: 1300;
@@ -33,7 +55,7 @@ const Backdrop = styled('div')`
 
 const style = {
     display: 'in-line',
-    width: '350px',
+    width: '360px',
     borderRadius: '16px',
     objectFit: 'cover',
     margin:'10px',
@@ -45,7 +67,91 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center',   
 };
+{/* 
+export class ChildModal extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            open: false,  
+            setOpen: false,
+            Pass1:'',
+            Pass2:'',
+        }
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.InputChange = this.InputChange.bind(this);
+        this.ChangePassword = this.ChangePassword.bind(this);
+    }
 
+    handleOpen(){
+        this.setState({
+            setOpen: true,
+            open: true
+        })
+    }
+    handleClose(){
+        this.setState({
+            setOpen: false,
+            open: false
+        })
+    }
+    InputChange = event => {
+        event.preventDefault();
+       this.setState({[event.target.name]: event.target.value});
+     }
+
+    ChangePassword(event) {
+        event.preventDefault();
+        var Token = localStorage.getItem('Token')
+        alert(Token)
+        var newObject2  = {
+            old_pass:this.state.Pass1,
+            new_password:this.state.Pass2
+         };
+         var Header = {
+            Authorization:Token
+         };
+        console.log('Current State is: ' + JSON.stringify(newObject2));
+        alert('Current State is: ' + JSON.stringify(newObject2));
+        axios.post('http://127.0.0.1:8000/users/changepassword/', newObject2, {headers:Header}).then(response => {
+            console.log(response)
+            alert(JSON.stringify(response));
+        }).catch(error => {
+            console.log(error)
+            alert(JSON.stringify(error));
+        })
+    }
+   
+    render() {
+        const{Pass1, Pass2} = this.state
+        return (
+            <React.Fragment>
+            <a  className="l" onClick={this.handleOpen}>Forgotten your password? </a>
+          <Modal
+            hideBackdrop
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+          >
+            <Box sx={{ ...style2, width: 280 }}>
+              <h3 id="child-modal-title" >Change Your Password</h3>
+              <p id="child-modal-description">
+              <form onSubmit={this.ChangePassword}> 
+              <input name="Pass1" placeholder="Old Password" type="text" style={Text} className="form-control"
+              value={Pass1} onChange={this.InputChange} />
+              <input name="Pass2" placeholder="New Password" type="password" style={Text} className="form-control"
+              value={Pass2} onChange={this.InputChange}/>
+              <Button type = 'submit'  style={RedButton}>Confirm</Button>
+              </form>
+              </p>
+            </Box>
+          </Modal>
+        </React.Fragment>
+        )
+    }
+}
+*/}
 export default class MainPage extends React.Component{
     constructor(props){
         super(props);
@@ -57,8 +163,9 @@ export default class MainPage extends React.Component{
             Welcomeopen: false,  
             WelcomesetOpen: false,
             Categorysopen: false,  
-            CategorysetOpen: false
-
+            CategorysetOpen: false,
+            LoginEmail: '',
+            LoginPassword: '', 
         }
         this.LoginhandleOpen = this.LoginhandleOpen.bind(this);
         this.LoginhandleClose = this.LoginhandleClose.bind(this);
@@ -68,6 +175,8 @@ export default class MainPage extends React.Component{
         this.WelcomehandleClose = this.WelcomehandleClose.bind(this);
         this.CategoryhandleOpen = this.CategoryhandleOpen.bind(this);
         this.CategoryhandleClose = this.CategoryhandleClose.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     LoginhandleOpen(){
@@ -122,8 +231,28 @@ export default class MainPage extends React.Component{
             Categoryopen: false
         })
     }
-    
+    handleInputChange = event => {
+      this.setState({[event.target.name]: event.target.value});
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        var newObject  = {
+            username:this.state.LoginEmail,
+            password:this.state.LoginPassword
+         };
+        console.log('Current State is: ' + JSON.stringify(newObject));
+       // alert('Current State is: ' + JSON.stringify(newObject));
+        axios.post('http://127.0.0.1:8000/users/login/',newObject).then(response => {
+            console.log(response)
+        //    alert('Data is: ' + JSON.stringify(response.data));
+        //    alert('Token is: ' + JSON.stringify(response.data.token));
+            localStorage.setItem('Token',`Token ${response.data.token}`);
+        }).catch(error => {
+            console.log(error)
+        })
+    }
     render(){
+        const{LoginEmail, LoginPassword} = this.state
         return (
             <div>
                 <div style={Wrapper}>
@@ -159,10 +288,14 @@ export default class MainPage extends React.Component{
                         <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
                     </div>
             <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
-            <input name="email" placeholder="Email" type="text" style={Text} className="form-control" />
-            <input name="password" placeholder="Password" type="password" style={Text} className="form-control" />
-            <a href='/' className="l">Forgotten your password?</a>
-            <Button type="submit" style={RedButton}>Log in</Button>
+            <form onSubmit={this.handleSubmit} style={{display:'in-line'}}> 
+            <input name="LoginEmail" placeholder="Email" type="text" style={Text} className="form-control" 
+            value={LoginEmail} onChange={this.handleInputChange}/>
+            <input name="LoginPassword" placeholder="Password" type="password" style={Text} className="form-control" 
+            value={LoginPassword} onChange = {this.handleInputChange}/>
+            {/*  <ChildModal /> */}
+            <Button type = 'submit' style={RedButton}>Log in</Button>
+            </form>
           <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
         </Box>
       </StyledModal>

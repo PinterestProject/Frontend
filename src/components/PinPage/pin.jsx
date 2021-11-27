@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/bootstrap.min.css"
-import Header from '../Header'
+import Header from '../Header/Header'
 import { IconButton } from '@mui/material'
 import Button from 'react-bootstrap/Button'
 
