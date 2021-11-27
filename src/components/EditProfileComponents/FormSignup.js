@@ -6,6 +6,7 @@ import './Form.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
 import photo from "./l.jpeg"
+import { Link } from 'react-router-dom';
 
 
 
@@ -109,12 +110,15 @@ const FormSignup = ({ submitForm }) => {
         
                 
                 <div className="mt-5 text-center">
+                  <Link to='/profile'>
+
                   <button
                     className="btn btn-primary profile-button"
                     type="submit"
-                  >
+                    >
                     Save Profile
                   </button>
+                    </Link>
                 </div>
               </div>
             </div>

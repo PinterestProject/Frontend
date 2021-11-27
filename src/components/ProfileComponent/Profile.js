@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import { Popover } from 'react-tiny-popover'
 import Model from './Pop'
+import { Link } from 'react-router-dom';
+import Header from '../Header';
 
 class Profile extends React.Component {
     // MouseOver(event) {
@@ -12,6 +14,7 @@ class Profile extends React.Component {
       
     render() { 
         return <div>
+                <Header/>
             <div className='container'>
                 <div className='row '>
                     <div className='col-12 m-auto text-center d-flex justify-content-center align-items-center'>
@@ -26,7 +29,7 @@ class Profile extends React.Component {
                     <Model/>
                     <IconButton className={"MyCustomButton"}>
                             <div style={Home} >
-                                <a href='/' className="ProfileIcons">Edit Profile</a>
+                                <Link to="/edit-profile" className="ProfileIcons">Edit Profile</Link>
                             </div>
                     </IconButton>
                     

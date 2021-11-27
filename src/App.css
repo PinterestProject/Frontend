@@ -46,13 +46,6 @@ Card{
   margin:10px;
 }
 
-
-  /* cursor: zoom-in; */
-  border-radius: 16px;
-  object-fit: cover;
-  /* margin:10px; */
-}
-
 span{
   font-weight: 500;
 }
