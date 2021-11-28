@@ -11,6 +11,8 @@ import CreatePin from "../PinPage/createPin";
 import Pin from "../PinPage/pin";
 import Profile from "../ProfileComponent/Profile";
 import Form from "../EditProfileComponents/Form";
+import MainPage from "../MainPageComponent/MainPage";
+import Header from '../HeaderComponent/Header';
 
 
 export default function App() {
@@ -24,8 +26,10 @@ export default function App() {
                 <Route path="/new-pin" exact component={CreatePin} />
                 <Route path="/pin-id" exact component={Pin} />
                 <Route path="/new-board" exact component={CreateBoard} />
+                <Route path="/main" exact component={MainPage} />
+                <Route path="/header" exact component={Header} />
                 <Route path="/edit-profile" exact component={Form} />
-                
+                <Route path="/edit-profile" exact component={Form} />
             </Router>
         </div>
     );

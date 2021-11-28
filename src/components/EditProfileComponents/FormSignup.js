@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
 import photo from "./l.jpeg"
 import { Link } from 'react-router-dom';
-
+import Header from '../HeaderComponent/Header';
 
 
 const FormSignup = ({ submitForm }) => {
@@ -18,6 +18,7 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <div>
+      <Header/>
       <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
         <div className="container rounded bg-white mt-5 mb-5">
           <div className="row">
@@ -112,7 +113,7 @@ const FormSignup = ({ submitForm }) => {
                 <div className="mt-5 text-center">
                   <Link to='/profile'>
 
-                  <button
+                  <button style={RedButton}
                     className="btn btn-primary profile-button"
                     type="submit"
                     >
@@ -132,3 +133,13 @@ const FormSignup = ({ submitForm }) => {
 };
 
 export default FormSignup;
+const  RedButton = { 
+  display: 'flex', 
+  height:' 44px', 
+  width: '100%',
+  borderRadius: '18px', 
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor:'#E60023', 
+  margin:'15px 5px'
+};

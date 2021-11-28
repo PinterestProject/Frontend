@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/create.css"
 import "./assets/css/bootstrap.min.css"
-import Header from '../Header'
+import Header from '../HeaderComponent/Header'
 import { TextField } from '@mui/material'
 import PlacHolder from "./assets/img/placeholder2.jpeg"
 import { Link } from 'react-router-dom'
