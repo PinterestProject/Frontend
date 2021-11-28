@@ -1,0 +1,34 @@
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+
+} from "react-router-dom";
+import CreateBoard from "../CreateBoard/create";
+import Test from "../LandingPage/test";
+import Mainboard from "../Mainboard";
+import CreatePin from "../PinPage/createPin";
+import Pin from "../PinPage/pin";
+import Profile from "../ProfileComponent/Profile";
+import Form from "../EditProfileComponents/Form";
+
+
+export default function App() {
+    return (
+
+        <div>
+            <Router>
+                <Route path="/" exact component={Test} />
+                <Route path="/main-board" exact component={Mainboard} />
+                <Route path="/profile" exact component={Profile} />
+                <Route path="/new-pin" exact component={CreatePin} />
+                <Route path="/pin-id" exact component={Pin} />
+                <Route path="/new-board" exact component={CreateBoard} />
+                <Route path="/edit-profile" exact component={Form} />
+                
+            </Router>
+        </div>
+    );
+}
+
+
