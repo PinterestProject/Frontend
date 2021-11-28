@@ -1,0 +1,16 @@
+.h{
+    text-decoration: none !important;
+    color: white !important;
+    font-weight: 500 !important;
+  }
+  .l{
+      text-decoration: none !important;
+      color: black !important;
+      font-size: 14px !important;
+      font-weight: bold !important;   
+  }
+  .l:hover {
+    text-decoration: underline !important;
+    
+  }
+  

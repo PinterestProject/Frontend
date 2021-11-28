@@ -6,6 +6,8 @@ import './Form.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
 import photo from "./l.jpeg"
+import { Link } from 'react-router-dom';
+import Header from '../HeaderComponent/Header';
 
 
 
@@ -46,7 +48,10 @@ export default class FormSignup extends Component {
 
   return (
     <div>
-      <form onSubmit={this.handleSubmit} classNameNameName="form" noValidate>
+
+      <Header/>
+      <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
+
         <div className="container rounded bg-white mt-5 mb-5">
           <div className="row">
             <div className="col-md-3 border-right">
@@ -138,12 +143,19 @@ export default class FormSignup extends Component {
         
                 
                 <div className="mt-5 text-center">
-                  <button
+
+                  <Link to='/profile'>
+
+                  <button style={RedButton}
                     className="btn btn-primary profile-button"
                     type="submit"
-                  >
+                    >
                     Save Profile
                   </button>
+                    </Link>
+
+
+
                 </div>
               </div>
             </div>
@@ -153,6 +165,21 @@ export default class FormSignup extends Component {
         </div>
       </form>
     </div>
+
   )
   }
 }
+
+
+export default FormSignup;
+const  RedButton = { 
+  display: 'flex', 
+  height:' 44px', 
+  width: '100%',
+  borderRadius: '18px', 
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor:'#E60023', 
+  margin:'15px 5px'
+};
+

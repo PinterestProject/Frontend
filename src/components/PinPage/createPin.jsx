@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/create.css"
 import "./assets/css/bootstrap.min.css"
-import Header from '../Header'
+import Header from '../HeaderComponent/Header'
 import { TextField } from '@mui/material'
 import PlacHolder from "./assets/img/placeholder2.jpeg"
+
 import { Description } from '@mui/icons-material'
 import axios from 'axios'
+
+import { Link } from 'react-router-dom'
 
 
 export default class CreatePin extends Component {
@@ -138,7 +141,7 @@ export default class CreatePin extends Component {
                 {/*--------------------main card which hold img and details--------------------*/}
                 <div className="pin container" >
                     {/*--------------------here is the pin's image--------------------*/}
-                    <div style={{ marginTop: "40px" }}>
+                    <div style={{ marginTop: "20px" }}>
 
                         <img imgPath={this.state.imgPath} />
                     </div>
@@ -161,12 +164,21 @@ export default class CreatePin extends Component {
                         </div>
                         {/* -------------------------------------------------------------> */}
                         <div className='row4' style={{ paddingTop: "10px" }}>
+
                             <TextField className="mt-3" fullWidth id="standard-fullWidth" label="Add title" variant="standard" name="title" value={title} onChange={this.changeHandler}  />
                             <TextField className="mt-3" fullWidth id="standard-fullWidth" label="Description" variant="standard" name="description" value={description} onChange={this.changeHandler} />
                             <div class="input-group mt-5">
                                 <select  onChange={(news)=>{this.setState({Board:news.target.value},()=>{console.log(news.target.value)})}}  class="form-select" id="inputGroupSelect02">
                                     {userboards.length ? userboards.map(board => <option key={board.id} value={board.id}> {board.name}</option>): null} 
                                 </select>                                  
+
+                          
+                                <Link className='save-btn2' to="/main-board">
+                                <button className='save-btn2'>
+                                    save
+                                    </button>
+                                </Link>
+
                             </div>
                             <button  className='save-btn2'>save</button>
                         </div>
