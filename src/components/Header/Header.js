@@ -142,9 +142,9 @@ async ChangePassword(event) {
     event.preventDefault();
     const errors = this.validate(this.state.Pass1, this.state.Pass2);
     await this.setState({errors:{Pass1:errors.Pass1,Pass2:errors.Pass2}});
-        alert(this.state.errors.Pass1)
-        alert(this.state.errors.Pass2)
-        alert(this.state.valid)
+       // alert(this.state.errors.Pass1)
+      //  alert(this.state.errors.Pass2)
+      //  alert(this.state.valid)
     if (this.state.errors.Pass1 === '' && this.state.errors.Pass2 === '')
         this.setState({valid:true}); 
     else
@@ -160,7 +160,7 @@ async ChangePassword(event) {
      };
     console.log('Current State is: ' + JSON.stringify(newObject2));
     // alert('Current State is: ' + JSON.stringify(newObject2));
-    alert(this.state.valid)
+    //alert(this.state.valid)
     if (this.state.valid === true){
     axios.post('http://127.0.0.1:8000/users/changepassword/', newObject2, {headers:Header}).then(response => {
         console.log(response)

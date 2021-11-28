@@ -270,9 +270,9 @@ export default class MainPage extends React.Component{
         const errors = this.validate(this.state.LoginEmail, this.state.LoginPassword);
         await this.setState({errors:{LoginEmail:errors.LoginEmail,
         LoginPassword:errors.LoginPassword}});
-        alert(this.state.errors.LoginEmail)
-        alert(this.state.errors.LoginPassword)
-        alert(this.state.Login)
+       // alert(this.state.errors.LoginEmail)
+        //alert(this.state.errors.LoginPassword)
+        //alert(this.state.Login)
 
       if (this.state.errors.LoginEmail === '' && this.state.errors.LoginPassword === '')
           this.setState({Login:true}); 
@@ -283,7 +283,7 @@ export default class MainPage extends React.Component{
             password:this.state.LoginPassword
          };
         console.log('Current State is: ' + JSON.stringify(newObject));
-        alert(this.state.Login)
+       // alert(this.state.Login)
          if (this.state.Login === true){
         // alert('Current State is: ' + JSON.stringify(newObject));
         axios.post('http://127.0.0.1:8000/users/login/',newObject).then(response => {
