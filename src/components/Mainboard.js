@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './Header';
+import Header from './HeaderComponent/Header';
 import Pin from './Pin';
 
 
@@ -7,7 +7,7 @@ export default class Mainboard extends Component {
     render() {
         return (
             <div>
-                <Header />
+               <Header />
                 <div style={Wrapper}>
                     <div style={Container}>
                         <Pin />

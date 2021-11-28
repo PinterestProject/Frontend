@@ -6,13 +6,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FaceIcon from '@mui/icons-material/Face'; 
-import Mainboard from '../Mainboard';
 import './Header.css';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import axios from 'axios';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from 'react-bootstrap/Button';
+import { Link , Redirect} from 'react-router-dom';
 
 const StyledModal = styled(ModalUnstyled)`
 position: fixed;
@@ -72,7 +72,8 @@ export default class Header extends Component {
             errors: {
                 Pass1: '',
                 Pass2: '', 
-            }
+            },
+            CanLogout:false
       }
         this.Logout = this.Logout.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
@@ -116,6 +117,10 @@ validate(Pass1,Pass2) {
         console.log(response)
        // alert(JSON.stringify(response));
         localStorage.removeItem('Token')
+        if (response.status === 200) {
+            this.setState({ CanLogout: true });}
+     
+
     }).catch(error => {
         console.log(error)
         // alert(JSON.stringify(error));
@@ -180,6 +185,9 @@ async ChangePassword(event) {
     render() {
         const{Pass1, Pass2} = this.state
         const errors = this.validate(this.state.Pass1, this.state.Pass2);
+        if (this.state.CanLogout) {
+            return <Redirect to = {{ pathname: "/" }} />;
+          }
         return (
             <div>
                 <div style={Wrapper}>
@@ -189,7 +197,7 @@ async ChangePassword(event) {
                     </IconButton>
                     </div>
                 <div style={Home}>
-                    <a  href='/' className="h">Home</a>
+                    <a  href='/main-board' className="h">Home</a>
                     </div>
                 <div style={SearchWrapper}>
                     <div style={SearchBarWrapper}>
@@ -197,7 +205,7 @@ async ChangePassword(event) {
                             <SearchIcon/>
                         </IconButton>
                         <form className='formstyle' onSubmit={this.Submit}>
-                            <input name="input" type='text'/>
+                            <input name="input" className="w" type='text'/>
                             <button type='submit'/>
                         </form>
                     </div>
@@ -210,7 +218,7 @@ async ChangePassword(event) {
                             <TextsmsIcon/>
                         </IconButton>
                         <IconButton>
-                            <FaceIcon/>
+                        <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
                         </IconButton>
                         <IconButton>
                         <UncontrolledDropdown >
@@ -258,7 +266,6 @@ async ChangePassword(event) {
               </StyledModal>
                 </div>
                 </div>
-                <Mainboard/>
             </div>
         )
     }

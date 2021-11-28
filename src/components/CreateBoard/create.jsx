@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import Header from '../Header'
+import Header from '../HeaderComponent/Header'
 import "./assets/css/bootstrap.min.css"
 import "./assets/css/main.css"
 

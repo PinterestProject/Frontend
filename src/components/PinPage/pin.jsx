@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/bootstrap.min.css"
-import Header from '../Header/Header'
+import Header from '../HeaderComponent/Header'
 import { IconButton } from '@mui/material'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
@@ -111,7 +111,7 @@ export default class Pin extends Component {
                                 <input  onFocus={()=>{this.setState({display:'block'})}} className='form-control' type="text" name="" id="" placeholder="Add a comment" />
                             </div>
                                 <div className='text-right mt-2' style={{display:this.state.display}}>
-                                    <button onClick={()=>{this.setState({display:'none'})}} className='btn btn-light rounded-circle'>cancle</button>
+                                    <button onClick={()=>{this.setState({display:'none'})}} className='btn btn-light rounded-circle'>cancel</button>
                                     <button onClick={()=>{console.log("object")}} className='btn btn-light rounded-circle'>save</button>
                                 </div>
                         </div>

@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import { Popover } from 'react-tiny-popover'
 import Model from './Pop'
 import { Link } from 'react-router-dom';
-import Header from '../Header';
+import Header from '../HeaderComponent/Header';
 
 class Profile extends React.Component {
     // MouseOver(event) {

@@ -13,7 +13,7 @@
     border: none;
     display: none;
   }
-  input:focus{
+  .w input:focus{
     outline: none;
   } 
   .l{
