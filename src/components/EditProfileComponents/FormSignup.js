@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react'
 import validate from './validateInfo';
 import useForm from './useForm';
 import './Form.css';
@@ -9,15 +9,44 @@ import photo from "./l.jpeg"
 
 
 
-const FormSignup = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submitForm,
-    validate
-  );
+// const FormSignup = ({ submitForm }) => {
+//   const { this.handleChange, handleSubmit, values, errors } = useForm(
+//     submitForm,
+//     validate
+//   );
+export default class FormSignup extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstname:'',
+      lastname:'',
+      address:'',
+      bio:'',
+
+    }
+  }
+  handleChange = (e) =>{
+   
+      this.setState({[e.target.name]: e.target.value})
+  }
+
+    handleSubmit = (e) =>{
+        // axios.patch(`http://127.0.0.1:8000/users/users/${pk}/`,formData)
+        // .then(response => {
+        //     console.log(response)
+        //     alert(JSON.stringify(response));
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        //     alert(JSON.stringify(error));
+        // })
+}
+  render() {
+    const {firstname,lastname,address,bio} = this.state
 
   return (
     <div>
-      <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
+      <form onSubmit={this.handleSubmit} classNameNameName="form" noValidate>
         <div className="container rounded bg-white mt-5 mb-5">
           <div className="row">
             <div className="col-md-3 border-right">
@@ -38,74 +67,74 @@ const FormSignup = ({ submitForm }) => {
                     <label className="labels">First name</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control Inputs"
                       name="firstname"
                       placeholder="Enter your first name"
-                      value={values.username}
-                      onChange={handleChange}
+                      value={firstname}
+                      onChange={this.handleChange}
                     />
-                    {errors.username && <p>{errors.username}</p>}
+                    {/* {errors.username && <p>{errors.username}</p>} */}
                   </div>
                   <div className="col-md-6">
                     <label className="labels">Last Name</label>
                     <input
                       type="text"
-                      className="form-control"
-                      name="last_name"
+                      className="form-control Inputs"
+                      name="lastname"
                       placeholder="Enter your last name"
-                      value={values.username}
-                      onChange={handleChange}
+                      value={lastname}
+                      onChange={this.handleChange}
                     />
-                    {errors.username && <p>{errors.username}</p>}
+                    {/* {errors.username && <p>{errors.username}</p>} */}
                   </div>
                 </div>
-
+              <div className="row mt-3">
                 <div className="col-md-12">
                   <label className="labels">Gender</label>
-                  <select id="Gender" name="Gender">
+                  <select className="Inputs" id="Gender" name="Gender">
                     <option value="australia">Female</option>
                     <option value="canada">Male</option>
                   </select>
                 </div>
                 <div className="col-md-12">
                   <label className="labels">Your Birthday</label>
-                  <input type="date" data-date-inline-picker="true" />
+                  <input className="Inputs" type="date" data-date-inline-picker="true" />
                 </div>
-                <div className="row mt-3">
+                
                   <div className="col-md-12">
                     <label className="labels">Address</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control Inputs"
                       name="address"
                       placeholder="Enter your address"
-                      // value={values.address}
-                      // onChange={handleChange}
+                      value={address}
+                      onChange={this.handleChange}
                     />
                   </div>
                   <div className="col-md-12">
                   <label className="labels">Language</label>
-                  <select id="Language" name="Language">
+                  <select className="Inputs" id="Language" name="Language">
                     <option value="Arabic">Arabic</option>
                     <option value="English">English</option>
                    < option value="French">English</option>
                   </select>
                 </div>
-                <div className="row mt-3">
+               
                   <div className="col-md-12">
                     <label className="labels">Bio</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control I"
                       name="bio"
                       placeholder="Describe your self"
-                      // value={values.address}
-                      // onChange={handleChange}
+                      value={bio}
+                      onChange={this.handleChange}
                     />
                   </div>
                   </div>
                  
-                </div>
+            
         
                 
                 <div className="mt-5 text-center">
@@ -124,7 +153,6 @@ const FormSignup = ({ submitForm }) => {
         </div>
       </form>
     </div>
-  );
-};
-
-export default FormSignup;
+  )
+  }
+}
