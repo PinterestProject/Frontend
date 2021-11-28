@@ -10,9 +10,17 @@ import Test from './components/LandingPage/test';
 import Pin from './components/PinPage/pin';
 import CreatePin from './components/PinPage/createPin';
 import Grid from './components/ProfileComponent/test';
+import SignUp from './components/SignUp';
+import axios from "axios"
 
 
+const fetchData = () => {
+  return axios.get("http://localhost:8000/api/v1/pins/")
+        .then((response) => console.log(response.data)
+        );
+      }
 
+      
 export default class App extends Component {
 
   render() {
@@ -22,7 +30,7 @@ export default class App extends Component {
           <Header/> 
          <Profile />
           <Header/>
-
+        <SignUp />
       </div>
     )
   }
