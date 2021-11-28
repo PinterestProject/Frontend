@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Pin from './Pin';
+import Pin from './home/Pin';
+
 
 
 export default class Mainboard extends Component {
@@ -8,6 +9,7 @@ export default class Mainboard extends Component {
                   <div style={Wrapper}>
                 <div style={Container}>
                     <Pin/>
+
                 </div>
             </div>
           

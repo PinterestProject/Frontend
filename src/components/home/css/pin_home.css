@@ -26,19 +26,26 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-
   width: 100%;
 
 }
 .my-masonry-grid_column {
   padding-left: 10px; /* gutter size */
   background-clip: padding-box;
+  text-decoration: none;
+color: black;
 }
+.my-masonry-grid_column :hover {
+text-decoration: none;
+color: black;
+}
+
 
 /* Style your items */
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
  margin-bottom: 10px;
   cursor: pointer;
+
 }
 
 
@@ -47,7 +54,8 @@
   border-radius: 2px;
   position: relative;
   transition: all 0.3s ease;
-  /*filter: brightness(80%);*/
+
+  z-index:150;
 }
 .my-masonry-grid_column > div > img:hover {
   filter: brightness(100%);
@@ -76,5 +84,27 @@
   }
 }
 
+.btn
+{
+z-index:100;
+}
+
+.btn:hover
+{
+z-index:200;
+cursor: pointer;
+}
 
 
+.linkProfile
+{
+color:Grey;
+text-decoration: none;
+font-size: large;
+}
+
+.linkProfile:hover
+{
+color:Grey;
+ text-decoration: underline;
+}

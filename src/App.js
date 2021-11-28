@@ -19,10 +19,12 @@ export default class App extends Component {
   render() {
     return (
       <div> 
-          <MainPage/>
-          <Header/> 
-         <Profile />
+
+
+         <MainPage/>
           <Header/>
+
+
 
       </div>
     )
