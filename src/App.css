@@ -2,40 +2,6 @@
   margin:0;
   box-sizing: border-box;
 }
-.h{
-  text-decoration: none !important;
-  color: white !important;
-  font-weight: 500 !important;
-}
-.l{
-    text-decoration: none !important;
-    color: black !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    
-}
-.l:hover {
-  text-decoration: none !important;
-}
-
-form{
-  display: flex;
-  flex: 1;
-}
-form input{
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  margin-left: 5px;
-  font-size: 16px;
-}
-form button{
-  border: none;
-  display: none;
-}
-input:focus{
-  outline: none;
-} 
 
 span{
   font-weight: 500;
