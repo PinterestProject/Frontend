@@ -6,12 +6,12 @@
   background-size: cover;
   background-repeat: no-repeat
 }
-body {
+/* body {
   background: #666261;
   background: linear-gradient(to right, white, white);
   min-height: 100vh;
   overflow-x: hidden
-}
+} */
 
 .form-control:focus {
   box-shadow: none;
@@ -54,7 +54,7 @@ body {
   border: solid 1px #BA68C8
 }
 
-input[type=text], select {
+.Inputs{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -63,9 +63,9 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-bio {
+/* bio {
   width: 100px;
   padding: 120px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-}
+} */

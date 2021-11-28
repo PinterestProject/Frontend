@@ -4,6 +4,9 @@ import Header from './components/HeaderComponent/Header';
 import Mainboard from './components/Mainboard';
 import MainPage from './components/MainPageComponent/MainPage';
 import React, { Component } from 'react';
+
+import Form from './components/EditProfileComponents/Form'
+
 import Profile from './components/ProfileComponent/Profile';
 // import Model from './components/ProfileComponent/Pop'
 // import Test from './components/LandingPage/test';
@@ -16,16 +19,20 @@ import SignUp from './components/SignUp';
 import axios from "axios"
 
 
-      
+
 export default class App extends Component {
 
   render() {
     return (
+
+   
       <div>       
           
         <MainRoute/>
         {/* <CreateBoard/> */}
 
+
+        <Form />
       </div>
     )
   }
