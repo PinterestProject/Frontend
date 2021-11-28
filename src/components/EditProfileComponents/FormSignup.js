@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
 
 
+
 const FormSignup = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
@@ -18,6 +19,7 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <div>
+
       <Header/>
       <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
         <div className="container rounded bg-white mt-5 mb-5">
@@ -111,6 +113,7 @@ const FormSignup = ({ submitForm }) => {
         
                 
                 <div className="mt-5 text-center">
+
                   <Link to='/profile'>
 
                   <button style={RedButton}
@@ -120,6 +123,9 @@ const FormSignup = ({ submitForm }) => {
                     Save Profile
                   </button>
                     </Link>
+
+
+
                 </div>
               </div>
             </div>

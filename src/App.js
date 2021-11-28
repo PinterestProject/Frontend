@@ -11,8 +11,12 @@ import Pin from './components/PinPage/pin';
 import CreatePin from './components/PinPage/createPin';
 import MainRoute from './components/Route/MainRoute';
 import CreateBoard from './components/CreateBoard/create';
+import Grid from './components/ProfileComponent/test';
+import SignUp from './components/SignUp';
+import axios from "axios"
 
 
+      
 export default class App extends Component {
 
   render() {
@@ -21,6 +25,7 @@ export default class App extends Component {
           
         <MainRoute/>
         {/* <CreateBoard/> */}
+
       </div>
     )
   }

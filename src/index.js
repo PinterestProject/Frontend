@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/collapse';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <React.StrictMode>
+            <App />
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
