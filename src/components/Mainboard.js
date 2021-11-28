@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from './HeaderComponent/Header';
-import Pin from './Pin';
+import Pin from "./home/Pin";
 
 
 export default class Mainboard extends Component {
