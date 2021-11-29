@@ -42,7 +42,7 @@
     background-color: rgb(241, 236, 236);
     /* color: azure; */
     cursor: pointer;
-
+    color:black;
     padding:20px ;
     margin: 10px ;
     box-shadow: 23px 16px 24px -6px rgba(210,207,207,0.65);

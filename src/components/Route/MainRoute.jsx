@@ -30,7 +30,6 @@ export default function App() {
                 <Route path="/main" exact component={MainPage} />
                 <Route path="/header" exact component={Header} />
                 <Route path="/edit-profile" exact component={Form} />
-                <Route path="/edit-profile" exact component={Form} />
             </Router>
         </div>
     );
