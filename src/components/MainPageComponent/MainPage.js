@@ -276,35 +276,52 @@ export default class MainPage extends React.Component{
                                 <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'white' }}>Log in</a>
                             </div>
                         </IconButton>
-        <StyledModal aria-labelledby="unstyled-modal-title"
-            aria-describedby="unstyled-modal-description"
-            open={this.state.Loginopen} onClose={this.LoginhandleClose} BackdropComponent={Backdrop}>
-        <Box sx={style}>
-                    <div style={{ alignItems: 'center', margin:'20px 120px' }}>
-                        <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
-                    </div>
-            <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
-            <form onSubmit={this.handleSubmit} style={{display:'in-line'}}> 
-            <input name="LoginEmail" placeholder="Email" type="text" id="LoginEmail" style={Text} className="form-control" 
-            value={LoginEmail} onChange={this.handleInputChange}
-            valid={errors.LoginEmail === ''} invalid={errors.LoginEmail !== ''}
-            onBlur={this.handleBlur('LoginEmail')}/>
-              <div style={ErrorMessage}>{errors.LoginEmail}</div>
-            <input name="LoginPassword" placeholder="Password" type="password" id="LoginPassword" style={Text} className="form-control" 
-            value={LoginPassword} onChange = {this.handleInputChange}
-            valid={errors.LoginPassword === ''} invalid={errors.LoginPassword !== ''}
-            onBlur={this.handleBlur('LoginPassword')}/>
-            <div style={ErrorMessage}>{errors.LoginPassword}</div>
-            {/*  <ChildModal /> */}
-            <div style={ErrorMessage}>{this.state.ErrMessage}</div>
-            <Button type = 'submit' style={RedButton}>Log in</Button>
-            </form>
-          <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
-        </Box>
-      </StyledModal>
-      <IconButton onClick={this.handleOpen}>
+                            <StyledModal aria-labelledby="unstyled-modal-title"
+                                aria-describedby="unstyled-modal-description"
+                                open={this.state.Loginopen} onClose={this.LoginhandleClose} BackdropComponent={Backdrop}>
+                                <Box sx={style}>
+                                    <div style={{ alignItems: 'center', margin:'20px 120px' }}>
+                                        <PinterestIcon style={{color:'#E60023', fontSize: '40px'}}/>
+                                    </div>
+                                    <h3 id="unstyled-modal-title">Welcome to Pinterest</h3>
+                                    <form onSubmit={this.handleSubmit} style={{display:'in-line'}}> 
+                                        <input name="LoginEmail" 
+                                                placeholder="Email" 
+                                                type="text" 
+                                                id="LoginEmail" 
+                                                style={Text} 
+                                                className="form-control" 
+                                                value={LoginEmail} 
+                                                onChange={this.handleInputChange}
+                                                valid={errors.LoginEmail === ''} 
+                                                invalid={errors.LoginEmail !== ''}
+                                                onBlur={this.handleBlur('LoginEmail')}/>
+                                        <div style={ErrorMessage}>{errors.LoginEmail}</div>
+                                        
+                                        <input name="LoginPassword" 
+                                                placeholder="Password" 
+                                                type="password" 
+                                                id="LoginPassword" 
+                                                style={Text} 
+                                                className="form-control" 
+                                                value={LoginPassword} 
+                                                onChange = {this.handleInputChange}
+                                                valid={errors.LoginPassword === ''} 
+                                                invalid={errors.LoginPassword !== ''}
+                                                onBlur={this.handleBlur('LoginPassword')}/>
+                                        <div style={ErrorMessage}>{errors.LoginPassword}</div>
+                                        {/*  <ChildModal /> */}
+                                        
+                                        <div style={ErrorMessage}>{this.state.ErrMessage}</div>
+                                        <Button type = 'submit' style={RedButton}>Log in</Button>
+                                        
+                                    </form>
+                                    <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
+                                </Box>
+                        </StyledModal>
+                        <IconButton onClick={this.handleOpen}>
                             <div style={SignupButton} >
-                            <a style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
+                                <a style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
                             </div>
                         </IconButton>
                 </div> 
