@@ -8,16 +8,9 @@ import MainRoute from './components/Route/MainRoute';
 export default class App extends Component {
 
   render() {
-    return (
-
-   
+    return (   
       <div>       
-          
         <MainRoute/>
-        {/* <CreateBoard/> */}
-
-
-        <Form />
       </div>
     )
   }

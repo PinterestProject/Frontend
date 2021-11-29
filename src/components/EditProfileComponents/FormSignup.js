@@ -10,12 +10,6 @@ import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
 
 
-
-// const FormSignup = ({ submitForm }) => {
-//   const { this.handleChange, handleSubmit, values, errors } = useForm(
-//     submitForm,
-//     validate
-//   );
 export default class FormSignup extends Component {
   constructor(props) {
     super(props)
@@ -32,24 +26,14 @@ export default class FormSignup extends Component {
       this.setState({[e.target.name]: e.target.value})
   }
 
-    handleSubmit = (e) =>{
-        // axios.patch(`http://127.0.0.1:8000/users/users/${pk}/`,formData)
-        // .then(response => {
-        //     console.log(response)
-        //     alert(JSON.stringify(response));
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        //     alert(JSON.stringify(error));
-        // })
-}
+
   render() {
     const {firstname,lastname,address,bio} = this.state
 
   return (
     <div>
       <Header/>
-      <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
+      <form  classNameNameName="form" noValidate>
 
         <div className="container rounded bg-white mt-5 mb-5">
           <div className="row">
@@ -180,8 +164,6 @@ export default class FormSignup extends Component {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
       </form>
     </div>
 
@@ -190,7 +172,6 @@ export default class FormSignup extends Component {
 }
 
 
-export default FormSignup;
 const  RedButton = { 
   display: 'flex', 
   height:' 44px', 
