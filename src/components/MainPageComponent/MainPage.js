@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import './MainPage.css';
 import { Redirect} from 'react-router-dom';
+import SignUp from '../SignUp';
+
 {/* 
 const style2 = {
     position: 'absolute',
@@ -314,16 +316,17 @@ export default class MainPage extends React.Component{
                                         
                                         <div style={ErrorMessage}>{this.state.ErrMessage}</div>
                                         <Button type = 'submit' style={RedButton}>Log in</Button>
-                                        
+
                                     </form>
                                     <p id="unstyled-modal-description">By continuing, you agree to Pinterest's Terms of Service and acknowledge that you've read our Privacy Policy</p>
                                 </Box>
                         </StyledModal>
-                        <IconButton onClick={this.handleOpen}>
+                        <SignUp />
+                        {/* <IconButton onClick={this.handleOpen}>
                             <div style={SignupButton} >
                                 <a style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
                             </div>
-                        </IconButton>
+                        </IconButton> */}
                 </div> 
                 </div>
             </div>
