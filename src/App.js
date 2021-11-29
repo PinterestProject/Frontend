@@ -32,7 +32,7 @@ export default class App extends Component {
         {/* <CreateBoard/> */}
 
 
-        <Form />
+        {/* <Form /> */}
       </div>
     )
   }

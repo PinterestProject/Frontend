@@ -17,7 +17,7 @@ export default class CreatePin extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            //imgPath: PlacHolder,
+            img: PlacHolder,
             title: '',
             description: '',
             imgPath:'',
@@ -29,24 +29,26 @@ export default class CreatePin extends Component {
     }
 
     LiveImageHandler = (e) => {
-        console.log(e.target.files[0]);
+      
         this.setState({
             imgPath : e.target.files[0]
+            
         
             
         })
-        // let imgPath = e.target.files[0]
-        // if(imgPath){
+      
+        let img = e.target.files[0]
+        if(img){
 
-        //     this.setState({
-        //         imgPath: URL.createObjectURL(imgPath)
-        //     })
-        // }
-        // else{
-        //     this.setState({
-        //         imgPath: PlacHolder
-        //     } )
-        // }
+            this.setState({
+                img: URL.createObjectURL(img)
+            })
+        }
+        else{
+            this.setState({
+                img: PlacHolder
+            } )
+        }
      }
     // handleChange(event){
     //     this.setState({boards: event.target.value })
@@ -57,7 +59,10 @@ export default class CreatePin extends Component {
     }
     submitHandler = (e) =>{
         if (this.state.imgPath) {
-         
+            var Token = localStorage.getItem('Token')
+            var Header={
+                Authorization:Token
+            }
             let data = new FormData();
             data.append("attachment", this.state.imgPath);
             data.set("title", this.state.title);
@@ -67,7 +72,7 @@ export default class CreatePin extends Component {
             //     data.append('boards', item);
             //  });
             // alert(this.state.boards[0])
-            axios.post('http://127.0.0.1:8000/pins/api/v1/pins/',data)
+            axios.post('http://127.0.0.1:8000/pins/api/v1/pins/',data,{headers:Header})
                 .then(response => {
                     alert("hii")
                     console.log(response)
@@ -114,12 +119,12 @@ export default class CreatePin extends Component {
     }
 
     componentDidMount() {
-        var Token = localStorage.get('Token')
+        var Token = localStorage.getItem('Token')
         var Header={
             Authorization:Token
         }
 		axios
-			.get(`http://127.0.0.1:8000//boards/api/v1/boards/`, Header)
+			.get(`http://127.0.0.1:8000/boards/api/v1/boards/`, Header)
 			.then(response => {
 				alert(response.data.name)
 				this.setState({ userboards: response.data })
@@ -180,12 +185,12 @@ export default class CreatePin extends Component {
                                 </Link>
 
                             </div>
-                            <button  className='save-btn2'>save</button>
+                            <button  className='save-btn2' >save</button>
                         </div>
                     </div>
-                    <button
+                    <button type="submit"
                     className="btn btn-primary profile-button"
-                    type="submit"
+                    
                   >
                     Save Profile
                   </button>
