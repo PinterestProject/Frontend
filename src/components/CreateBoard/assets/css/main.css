@@ -1,0 +1,25 @@
+.borad-container{
+    box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.47);
+    -webkit-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.47);
+    border-radius: 30px;
+    /* text-align: center; */
+    padding: 50px;
+    width: 75%;
+    margin-top: 20px;
+    
+}
+
+.board-name{
+    border-radius: 10px;
+    border-color: rgb(211, 211, 211);
+    border-width: 1px;
+    display: block;
+}
+
+.board-actions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import "./assets/css/main.css"
 import "./assets/css/bootstrap.min.css"
-import Header from '../Header'
+import Header from '../HeaderComponent/Header'
 import { IconButton } from '@mui/material'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 
 export default class Pin extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             display:"none"
+        }
+    }
+    
     render() {
 
         return (
@@ -84,10 +93,27 @@ export default class Pin extends Component {
                             <small className='text-muted'>
                                 Share feedback, ask a question or give a high five
                             </small>
+                            {/* old comments if exist */}
+                            <div className='img-comment'>
+                                <img className='old-comment-img' src="https://i.pinimg.com/75x75_RS/49/eb/44/49eb44386b9d9e89dd772eaf546f73cd.jpg" alt="" />
+                                <div>
+                                    <div>
+                                        <span className='comment-by'>Hassan Mahmoud</span>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque modi suscipit temporibus facilis? Molestiae nulla ullam perspiciatis voluptatum commodi magni quia aliquam deserunt, doloremque porro est! Quae, magnam voluptas.
+                                    </div>
+                                    <button className='btn'><svg fill='grey' class="gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-label="like icon" role="img"><path d="m22.178 13.583-9.131 8.992a1.502 1.502 0 0 1-2.094 0l-9.131-8.992a6.192 6.192 0 0 1 0-8.773c2.439-2.413 6.395-2.413 8.834 0L12 6.154l1.344-1.344c2.439-2.413 6.395-2.413 8.834 0a6.192 6.192 0 0 1 0 8.773"></path></svg> <small>20</small></button>
+                                    <button className='btn'><svg  fill='grey' class="Hn_ gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0C5.85 0 .75 4.94.75 11.08c0 2.7.9 5.24 2.7 7.19L2.1 23.51c-.15.3.3.6.6.45l5.25-2.55c1.35.45 2.7.75 4.05.75 6.15 0 11.25-4.94 11.25-11.08S18.15 0 12 0"></path></svg> <small>20</small></button>
+                                </div>
+                            </div>
+                            {/* new comment */}
                             <div className='img-comment'>
                                 <img src="https://i.pinimg.com/75x75_RS/49/eb/44/49eb44386b9d9e89dd772eaf546f73cd.jpg" alt="" />
-                                <input className='form-control' type="text" name="" id="" placeholder="Add a comment" />
+                                <input  onFocus={()=>{this.setState({display:'block'})}} className='form-control' type="text" name="" id="" placeholder="Add a comment" />
                             </div>
+                                <div className='text-right mt-2' style={{display:this.state.display}}>
+                                    <button onClick={()=>{this.setState({display:'none'})}} className='btn btn-light rounded-circle'>cancel</button>
+                                    <button onClick={()=>{console.log("object")}} className='btn btn-light rounded-circle'>save</button>
+                                </div>
                         </div>
                         {/* --------------------8th row-------------------- */}
                         <div className='row8'>
@@ -104,9 +130,11 @@ export default class Pin extends Component {
                         </div>
                         {/* --------------------floation button which will hold add pin function-------------------- */}
                         <div>
-                            <button className='add-btn' >
-                                <svg style={{ marginBottom: "2px" }} height="20" width="20" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path></svg>
-                            </button>
+                            <Link className='add-btn' to="/new-pin">
+                                <button className='add-btn' >
+                                    <svg style={{ marginBottom: "2px" }} height="20" width="20" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path></svg>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
