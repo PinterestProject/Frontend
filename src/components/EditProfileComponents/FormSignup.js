@@ -4,7 +4,7 @@ import useForm from './useForm';
 import './Form.css';
 // import { Button,  FormGroup, Label, Input, FormText ,FloatingLabel ,Dropdown} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
+// import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
 import photo from "./l.jpeg"
 import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
@@ -48,7 +48,6 @@ export default class FormSignup extends Component {
 
   return (
     <div>
-
       <Header/>
       <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
 
@@ -118,6 +117,30 @@ export default class FormSignup extends Component {
                     />
                   </div>
                   <div className="col-md-12">
+
+                    <label className="labels">Language</label>
+                    <select id="Language" name="Language">
+                      <option value="Arabic">Arabic</option>
+                      <option value="English">English</option>
+                    < option value="French">English</option>
+                    </select>
+                  </div>
+
+                  <div className="row mt-3">
+                      <div className="col-md-12">
+                        <label className="labels">Bio</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="bio"
+                          placeholder="Describe your self"
+                          // value={values.address}
+                          // onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                </div>
+
                   <label className="labels">Language</label>
                   <select className="Inputs" id="Language" name="Language">
                     <option value="Arabic">Arabic</option>
@@ -142,6 +165,7 @@ export default class FormSignup extends Component {
             
         
                 
+
                 <div className="mt-5 text-center">
 
                   <Link to='/profile'>
@@ -153,14 +177,9 @@ export default class FormSignup extends Component {
                     Save Profile
                   </button>
                     </Link>
-
-
-
                 </div>
               </div>
             </div>
-           
-           
           </div>
         </div>
       </form>
