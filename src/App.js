@@ -4,16 +4,20 @@ import React, { Component } from 'react';
 import MainRoute from './components/Route/MainRoute';
 
 
-      
+
 export default class App extends Component {
 
   render() {
     return (
+
+   
       <div>       
           
         <MainRoute/>
         {/* <CreateBoard/> */}
 
+
+        <Form />
       </div>
     )
   }
