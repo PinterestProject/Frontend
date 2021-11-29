@@ -13,6 +13,7 @@ import Profile from "../ProfileComponent/Profile";
 import Form from "../EditProfileComponents/Form";
 import MainPage from "../MainPageComponent/MainPage";
 import Header from '../HeaderComponent/Header';
+import SignUp from '../SignUp';
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
         <div>
             <Router>
                 <Route path="/" exact component={Test} />
+                <Route path="/signup" exact component={SignUp} />
                 <Route path="/main-board" exact component={Mainboard} />
                 <Route path="/profile" exact component={Profile} />
                 <Route path="/new-pin" exact component={CreatePin} />
