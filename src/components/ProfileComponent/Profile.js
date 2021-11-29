@@ -40,13 +40,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -56,13 +62,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12 rounded p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -72,13 +84,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -88,13 +106,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -104,13 +128,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -120,13 +150,19 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
@@ -136,29 +172,42 @@ class Profile extends React.Component {
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>
                         <h5 >Name</h5>
                         <span >0</span>
                     </div>
+
                     <div  className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
                         <div className='parent'>
                             <div className=' pin1'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin2'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             <div className=' pin3'>
-                                <img className='img-fluid' style={boardImg}  src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                                <img className='img-fluid' 
+                                    style={boardImg}  
+                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
                             </div>
                             {/* <div className='PinImgs pin4'></div> */}
                         </div>

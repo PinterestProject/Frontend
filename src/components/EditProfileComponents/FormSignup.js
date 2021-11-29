@@ -4,7 +4,7 @@ import useForm from './useForm';
 import './Form.css';
 // import { Button,  FormGroup, Label, Input, FormText ,FloatingLabel ,Dropdown} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
+// import {Dropdown,Form ,Button,Coln,input,Menu,Item}from 'react-bootstrap';
 import photo from "./l.jpeg"
 import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
@@ -19,7 +19,6 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <div>
-
       <Header/>
       <form onSubmit={handleSubmit} classNameNameName="form" noValidate>
         <div className="container rounded bg-white mt-5 mb-5">
@@ -88,30 +87,29 @@ const FormSignup = ({ submitForm }) => {
                     />
                   </div>
                   <div className="col-md-12">
-                  <label className="labels">Language</label>
-                  <select id="Language" name="Language">
-                    <option value="Arabic">Arabic</option>
-                    <option value="English">English</option>
-                   < option value="French">English</option>
-                  </select>
-                </div>
-                <div className="row mt-3">
-                  <div className="col-md-12">
-                    <label className="labels">Bio</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="bio"
-                      placeholder="Describe your self"
-                      // value={values.address}
-                      // onChange={handleChange}
-                    />
+                    <label className="labels">Language</label>
+                    <select id="Language" name="Language">
+                      <option value="Arabic">Arabic</option>
+                      <option value="English">English</option>
+                    < option value="French">English</option>
+                    </select>
                   </div>
-                  </div>
-                 
+
+                  <div className="row mt-3">
+                      <div className="col-md-12">
+                        <label className="labels">Bio</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="bio"
+                          placeholder="Describe your self"
+                          // value={values.address}
+                          // onChange={handleChange}
+                        />
+                      </div>
+                    </div>
                 </div>
-        
-                
+
                 <div className="mt-5 text-center">
 
                   <Link to='/profile'>
@@ -123,14 +121,9 @@ const FormSignup = ({ submitForm }) => {
                     Save Profile
                   </button>
                     </Link>
-
-
-
                 </div>
               </div>
             </div>
-           
-           
           </div>
         </div>
       </form>

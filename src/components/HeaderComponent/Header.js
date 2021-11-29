@@ -198,7 +198,8 @@ async ChangePassword(event) {
                     </div>
                 <div style={Home}>
                     <a  href='/main-board' className="h">Home</a>
-                    </div>
+                </div>
+
                 <div style={SearchWrapper}>
                     <div style={SearchBarWrapper}>
                         <IconButton>
@@ -209,7 +210,7 @@ async ChangePassword(event) {
                             <button type='submit'/>
                         </form>
                     </div>
-                    </div>
+                </div>
                 <div style={IconWrapper}>
                         <IconButton>
                             <NotificationsIcon/>
@@ -218,14 +219,14 @@ async ChangePassword(event) {
                             <TextsmsIcon/>
                         </IconButton>
                         <IconButton>
-                        <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
+                            <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
                         </IconButton>
                         <IconButton>
-                        <UncontrolledDropdown >
+                            <UncontrolledDropdown >
                                 <DropdownToggle style={{backgroundColor:'transparent', border:'none', all:'none'}}>
-                                <IconButton>
-                                <KeyboardArrowDownIcon/>
-                                </IconButton>
+                                    <IconButton>
+                                        <KeyboardArrowDownIcon/>
+                                    </IconButton>
                                 </DropdownToggle>
                                 <DropdownMenu style={{margin:'-2px -160px'}}>
                                    <DropdownItem onClick={this.handleOpen} style={{backgroundColor:'white', color:'black'}} >Change Password</DropdownItem>
@@ -235,38 +236,52 @@ async ChangePassword(event) {
                                     <DropdownItem divider />
                                     <DropdownItem>Another Action</DropdownItem> */} 
                                 </DropdownMenu>
-                                </UncontrolledDropdown>
+                            </UncontrolledDropdown>
                         </IconButton>
                         <StyledModal
-                aria-labelledby="unstyled-modal-title"
-                aria-describedby="unstyled-modal-description"
-                open={this.state.open}
-                onClose={this.handleClose}
-                BackdropComponent={Backdrop}
-              >
-                <Box sx={style}>
-                  <h2 id="unstyled-modal-title">Change Password</h2>
-                  <p id="unstyled-modal-description"> 
-              </p>
-              <form onSubmit={this.ChangePassword}> 
-              <input name="Pass1" placeholder="Old Password" type="text" style={Text} className="form-control"
-              value={Pass1} onChange={this.InputChange}
-              valid={errors.Pass1 === ''} invalid={errors.Pass1 !== ''}
-              onBlur={this.handleBlur('Pass1')} />
-                <div style={ErrorMessage}>{errors.Pass1}</div>
-              <input name="Pass2" placeholder="New Password" type="password" style={Text} className="form-control"
-              value={Pass2} onChange={this.InputChange}
-              alid={errors.Pass2 === ''} invalid={errors.Pass2 !== ''}
-              onBlur={this.handleBlur('Pass2')}/>
-                <div style={ErrorMessage}>{errors.Pass2}</div>
-                <div style={ErrorMessage}>{this.state.ErrMessage}</div>
-              <Button type = 'submit'  style={RedButton}>Confirm</Button>
-              </form>
-                </Box>
-              </StyledModal>
-                </div>
+                            aria-labelledby="unstyled-modal-title"
+                            aria-describedby="unstyled-modal-description"
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            BackdropComponent={Backdrop}
+                        >
+                        <Box sx={style}>
+                            <h2 id="unstyled-modal-title">Change Password</h2>
+                            <p id="unstyled-modal-description"></p>
+                            <form onSubmit={this.ChangePassword}> 
+                            <input name="Pass1" 
+                                    placeholder="Old Password" 
+                                    type="text" 
+                                    style={Text} 
+                                    className="form-control"
+                                    value={Pass1} 
+                                    onChange={this.InputChange}
+                                    valid={errors.Pass1 === ''} 
+                                    invalid={errors.Pass1 !== ''}
+                                    onBlur={this.handleBlur('Pass1')} />
+                                <div style={ErrorMessage}>{errors.Pass1}</div>
+
+                            <input name="Pass2" 
+                                    placeholder="New Password" 
+                                    type="password" 
+                                    style={Text} 
+                                    className="form-control"
+                                    value={Pass2} 
+                                    onChange={this.InputChange}
+                                    valid={errors.Pass2 === ''} 
+                                    invalid={errors.Pass2 !== ''}
+                                    onBlur={this.handleBlur('Pass2')}/>
+                                <div style={ErrorMessage}>{errors.Pass2}</div>
+
+                                <div style={ErrorMessage}>{this.state.ErrMessage}</div>
+                                <Button type = 'submit'  style={RedButton}>Confirm</Button>
+
+                            </form>
+                        </Box>
+                    </StyledModal>
                 </div>
             </div>
+        </div>
         )
     }
 }

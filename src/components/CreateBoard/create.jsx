@@ -48,31 +48,31 @@ export default class CreateBoard extends Component {
         return (
             <div>
                 <Header/>
-                <div className='borad-container container'>
-                    <h1 className='text-center'>Create board</h1>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input onChange={this.HandleBoradInputs}  class="form-control" name='board_name'  placeholder='Like "Places to Go" or "Recipes to Make"' />
-                    </div>
-                    <form onSubmit={this.HandleAddBorad}>
-                        <div className="board-actions">
-                            <div>
-                                <div class="form-check">
-                                    <input onChange={this.HandleBoradCheck} name='is_public' class="form-check-input" type="checkbox"   />
-                                    <div className="d-flex flex-column">
-                                        <label  class="form-check-label fw-bold" for="flexCheckDefault">keep this board secret</label>
-                                        <label className='text-muted'>so only you and collaborators</label>
+                    <div className='borad-container container'>
+                        <h1 className='text-center'>Create board</h1>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Name</label>
+                            <input onChange={this.HandleBoradInputs}  class="form-control" name='board_name'  placeholder='Like "Places to Go" or "Recipes to Make"' />
+                        </div>
+                        <form onSubmit={this.HandleAddBorad}>
+                            <div className="board-actions">
+                                <div>
+                                    <div class="form-check">
+                                        <input onChange={this.HandleBoradCheck} name='is_public' class="form-check-input" type="checkbox"   />
+                                        <div className="d-flex flex-column">
+                                            <label  class="form-check-label fw-bold" for="flexCheckDefault">keep this board secret</label>
+                                            <label className='text-muted'>so only you and collaborators</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className='text-right'>
+                                    <button className='btn btn-light'>
+                                        create
+                                    </button>
+                                </div>
                             </div>
-                            <div className='text-right'>
-                                <button className='btn btn-light'>
-                                    create
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
             </div>
         )
     }

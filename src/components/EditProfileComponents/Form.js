@@ -10,7 +10,7 @@ const Form = () => {
     setIsSubmitted(true);
   }
   return (
-    <>
+    <React.Fragment>
       <div >
         {/* <span className='close-btn'>×</span> */}
         {/* <div className='form-content-left'>
@@ -22,7 +22,7 @@ const Form = () => {
           <FormSuccess />
         )}
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
