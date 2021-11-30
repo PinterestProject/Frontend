@@ -5,18 +5,86 @@ import Header from '../HeaderComponent/Header'
 import { IconButton } from '@mui/material'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
 
 export default class Pin extends Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             display:"none"
+            display: "none",
+            follow: 'follow',
+            comment: '',
+            pin_id: '',
+            pin_comments: [],
+            pin_comments_users: []
         }
     }
-    
+
+
+
+    async downloadImage() {
+        let img = document.getElementById("pinImg")
+        const image = await fetch(img.src)
+        const imageBlog = await image.blob()
+        const imageURL = URL.createObjectURL(imageBlog)
+
+        const link = document.createElement('a')
+        link.href = imageURL
+        link.download = 'img'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+    }
+
+    following = (follow_id) => {
+        console.log(follow_id)
+        let send_data = {
+            followed_id: follow_id
+        }
+        axios.post("http://localhost:8000/users/follow/", send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+            console.log(resp)
+            this.setState({
+                follow: 'unfollow'
+            })
+        })
+
+        // , { headers: {"Authorization" : localStorage.getItem("Token")} }
+    }
+    handleCommentChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        }, () => { console.log(e.target.value) })
+    }
+
+    handleAddComment = (pid) => {
+        let send_data = {
+            reply_content: this.state.comment,
+            // user_id: uid,
+            pin_id: pid
+        }
+        console.log(send_data)
+        axios.post("http://localhost:8000/comments/comment/", send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+            console.log(resp)
+        })
+    }
+
+    componentDidMount = () => {
+        let pid = this.props.location.query.pin.id
+        // let send_data={pin_id:pid}
+        // console.log(pid)
+        axios.get(`http://localhost:8000/comments/comment/${pid}`).then((resp) => {
+            console.log(`111111 ${JSON.stringify(resp.data)}`)
+            this.setState({
+                pin_comments: resp.data.data,
+                pin_comments_users: resp.data.users
+            }, () => { console.log(`comments ${this.state.pin_comments} users ${this.state.pin_comments}`) })
+        })
+    }
+
     render() {
+        // console.log(this.props.location.query.pin)
+        let pin_data = this.props.location.query.pin
 
         return (
             <div>
@@ -25,7 +93,7 @@ export default class Pin extends Component {
                 <div className="pin container" >
                     {/*--------------------here is the pin's image--------------------*/}
                     <div className="pin-img">
-                        <img src="https://i.pinimg.com/564x/13/2f/de/132fdea388341d874806e3b94000df34.jpg" alt="" />
+                        <img id='pinImg' src={"http://127.0.0.1:8000" + pin_data.attachment} alt="" />
                     </div>
                     {/*--------------------start details from here which divided into 8 rows-------------------- */}
                     <div className="pin-details ">
@@ -51,7 +119,7 @@ export default class Pin extends Component {
                             {/* 2nd section */}
                             <div className='save-profile'>
                                 <small className='btn' style={{ fontWeight: "600" }}>Profile</small>
-                                <button className='save-btn'>save</button>
+                                <button onClick={this.downloadImage} className='save-btn'>Download</button>
                             </div>
                         </div>
                         {/* --------------------second row-------------------- */}
@@ -62,23 +130,23 @@ export default class Pin extends Component {
                         </div>
 
                         {/* --------------------third row-------------------- */}
-                        <div className='row3' style={{ paddingTop: "20px" }}><h1 className='pin-title'>Wooden Cable and Charger Organizer  Cable Management for | Etsy</h1></div>
+                        <div className='row3' style={{ paddingTop: "20px" }}><h1 className='pin-title'>{pin_data.title}</h1></div>
                         {/* --------------------4th row-------------------- */}
-                        <div className='row4' style={{ paddingTop: "10px" }}><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quis impedit debitis accusantium perferendis magni, commodi, nostrum labore error eos sapiente nobis distinctio neque minus dolorem fugit! Itaque, architecto laudantium!</p></div>
+                        <div className='row4' style={{ paddingTop: "10px" }}><p>{pin_data.description}</p></div>
                         {/* --------------------5th row-------------------- */}
                         {/* divided into 2sections */}
                         <div className='row5'>
                             {/* 1st sectoin */}
                             <div style={{ display: "flex", alignItems: "center" }}>
-                                <img src="https://i.pinimg.com/280x280_RS/1c/e9/f6/1ce9f657d49d40b934c51bb0dda44d60.jpg" alt="" />
+                                <img src={"http://127.0.0.1:8000" + pin_data.profile_image} alt="" />
                                 <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <span style={{ fontWeight: "600" }}>Batelier Handicraft</span>
+                                    <span style={{ fontWeight: "600" }}>{pin_data.username}</span>
                                     <small >1.3k followers</small>
                                 </div>
                             </div>
                             {/* 2nd sectoin */}
                             <div className='follow'>
-                                <a href='/' style={{ textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', color: 'black' }}>Follow</a>
+                                <a onClick={() => { this.following(pin_data.user_id) }} style={{ textDecoration: 'none', fontSize: '14px', fontWeight: 'bold', color: 'black' }} >{this.state.follow}</a>
                             </div>
                         </div>
                         {/* --------------------6th row-------------------- */}
@@ -94,26 +162,30 @@ export default class Pin extends Component {
                                 Share feedback, ask a question or give a high five
                             </small>
                             {/* old comments if exist */}
-                            <div className='img-comment'>
-                                <img className='old-comment-img' src="https://i.pinimg.com/75x75_RS/49/eb/44/49eb44386b9d9e89dd772eaf546f73cd.jpg" alt="" />
-                                <div>
+                            {this.state.pin_comments.map((comment, key) => 
+                                // { console.log(comment['reply_content']) }
+                                
+                                <div className='img-comment'>
+                                    <img className='old-comment-img' src="https://i.pinimg.com/75x75_RS/49/eb/44/49eb44386b9d9e89dd772eaf546f73cd.jpg" alt="" />
                                     <div>
-                                        <span className='comment-by'>Hassan Mahmoud</span>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam itaque modi suscipit temporibus facilis? Molestiae nulla ullam perspiciatis voluptatum commodi magni quia aliquam deserunt, doloremque porro est! Quae, magnam voluptas.
+                                        <div>
+                                            <span className='comment-by'>{this.state.pin_comments_users[key]['username']}</span>
+                                            {comment['reply_content']}
+                                        </div>
+                                        <button className='btn'><svg fill='grey' class="gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-label="like icon" role="img"><path d="m22.178 13.583-9.131 8.992a1.502 1.502 0 0 1-2.094 0l-9.131-8.992a6.192 6.192 0 0 1 0-8.773c2.439-2.413 6.395-2.413 8.834 0L12 6.154l1.344-1.344c2.439-2.413 6.395-2.413 8.834 0a6.192 6.192 0 0 1 0 8.773"></path></svg> <small>20</small></button>
+                                        <button className='btn'><svg fill='grey' class="Hn_ gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0C5.85 0 .75 4.94.75 11.08c0 2.7.9 5.24 2.7 7.19L2.1 23.51c-.15.3.3.6.6.45l5.25-2.55c1.35.45 2.7.75 4.05.75 6.15 0 11.25-4.94 11.25-11.08S18.15 0 12 0"></path></svg> <small>20</small></button>
                                     </div>
-                                    <button className='btn'><svg fill='grey' class="gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-label="like icon" role="img"><path d="m22.178 13.583-9.131 8.992a1.502 1.502 0 0 1-2.094 0l-9.131-8.992a6.192 6.192 0 0 1 0-8.773c2.439-2.413 6.395-2.413 8.834 0L12 6.154l1.344-1.344c2.439-2.413 6.395-2.413 8.834 0a6.192 6.192 0 0 1 0 8.773"></path></svg> <small>20</small></button>
-                                    <button className='btn'><svg  fill='grey' class="Hn_ gUZ B9u U9O kVc" height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img"><path d="M12 0C5.85 0 .75 4.94.75 11.08c0 2.7.9 5.24 2.7 7.19L2.1 23.51c-.15.3.3.6.6.45l5.25-2.55c1.35.45 2.7.75 4.05.75 6.15 0 11.25-4.94 11.25-11.08S18.15 0 12 0"></path></svg> <small>20</small></button>
                                 </div>
-                            </div>
+                            )}
                             {/* new comment */}
                             <div className='img-comment'>
-                                <img src="https://i.pinimg.com/75x75_RS/49/eb/44/49eb44386b9d9e89dd772eaf546f73cd.jpg" alt="" />
-                                <input  onFocus={()=>{this.setState({display:'block'})}} className='form-control' type="text" name="" id="" placeholder="Add a comment" />
+                                <img className='pin-image' src={"http://127.0.0.1:8000" + pin_data.profile_image} alt="" />
+                                <input onChange={this.handleCommentChange} name='comment' onFocus={() => { this.setState({ display: 'block' }) }} className='form-control' type="text" placeholder="Add a comment" />
                             </div>
-                                <div className='text-right mt-2' style={{display:this.state.display}}>
-                                    <button onClick={()=>{this.setState({display:'none'})}} className='btn btn-light rounded-circle'>cancel</button>
-                                    <button onClick={()=>{console.log("object")}} className='btn btn-light rounded-circle'>save</button>
-                                </div>
+                            <div className='text-right mt-2' style={{ display: this.state.display }}>
+                                <button onClick={() => { this.setState({ display: 'none' }) }} className='btn btn-light rounded-circle'>cancel</button>
+                                <button onClick={() => { this.handleAddComment(pin_data.id) }} className='btn btn-light rounded-circle'>save</button>
+                            </div>
                         </div>
                         {/* --------------------8th row-------------------- */}
                         <div className='row8'>
