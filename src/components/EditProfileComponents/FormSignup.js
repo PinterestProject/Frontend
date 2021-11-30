@@ -10,12 +10,6 @@ import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
 
 
-
-// const FormSignup = ({ submitForm }) => {
-//   const { this.handleChange, handleSubmit, values, errors } = useForm(
-//     submitForm,
-//     validate
-//   );
 export default class FormSignup extends Component {
   constructor(props) {
     super(props)
@@ -176,6 +170,7 @@ export default class FormSignup extends Component {
   )
   }
 }
+
 
 const  RedButton = { 
   display: 'flex', 

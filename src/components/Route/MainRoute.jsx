@@ -15,8 +15,6 @@ import MainPage from "../MainPageComponent/MainPage";
 import Header from '../HeaderComponent/Header';
 import SignUp from '../SignUp';
 
-
-
 export default function App() {
     return (
 
