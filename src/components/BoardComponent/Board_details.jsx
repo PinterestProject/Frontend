@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Masonry from 'react-masonry-css'
-import { IconButton } from '@mui/material'
 import axios from 'axios'
 import { Link , useParams }  from 'react-router-dom'
 import Header from '../HeaderComponent/Header';

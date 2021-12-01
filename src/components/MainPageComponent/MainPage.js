@@ -324,11 +324,6 @@ export default class MainPage extends React.Component{
                                 </Box>
                         </StyledModal>
                         <SignUp />
-                        {/* <IconButton onClick={this.handleOpen}>
-                            <div style={SignupButton} >
-                                <a style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'black' }}>Sign up</a>
-                            </div>
-                        </IconButton> */}
                 </div> 
                 </div>
             </div>
@@ -360,16 +355,7 @@ const  Login = {
     height: '35px',
     minWidth: '60px',      
 };
-const  SignupButton = {
-    backgroundColor: 'lightgrey',
-    display:'flex', 
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '24px',
-    cursor: 'pointer', 
-    height: '35px',
-    minWidth: '60px',        
-};
+
 const  Text = { 
     display: 'flex',
     height:' 44px',
