@@ -6,7 +6,7 @@ import Masonry from 'react-masonry-css'
 import { IconButton } from '@mui/material'
 import axios from 'axios'
 import { Link , useParams }  from 'react-router-dom'
-
+import Header from '../HeaderComponent/Header';
 import './board_details.css';
 
 class BoardDetalis extends React.Component {
@@ -33,23 +33,12 @@ class BoardDetalis extends React.Component {
         axios.get(`http://127.0.0.1:8000/pins/api/v1/boards/${id}/pins/`,
          { headers: { "Authorization": localStorage.getItem("Token") } })
           .then(response => {
-            console.log(response.data)
+            console.log(response)
             this.setState({ pins: response.data })
             console.log(this.pins)
     
           })
         }
-          //   axios.get("http://127.0.0.1:8000/boards/api/v1/boards/", { headers: {"Authorization" : localStorage.getItem("Token")} }).then((res)=>{
-          //     console.log(res);
-          //     const boardData = res.data;
-          //     // const userName = response.data[0].username;
-          //     // const userImg = "http://127.0.0.1:8000/"+response.data[0].profile_image;
-          //     // console.log(boardData);
-          //     // console.log(userName);
-          //     // console.log(userImg);
-          //     this.setState({ boardsDetail: boardData , ready: true})
-
-          // })
         }
 
       DeleteBoard(){
@@ -69,8 +58,8 @@ class BoardDetalis extends React.Component {
     
       render() {
         return (
-    
           <div>
+            <Header />
             <Link to='/new-pin'>
               <Button variant="light" style={{ width: '80px', height: '80px', borderRadius: '50%', fontSize: 'xx-large', position: 'fixed', bottom: '130px', right: '10px', fontWeight: 'bold' }} >+</Button>
             </Link>
