@@ -82,12 +82,21 @@ export default class Header extends Component {
         this.ChangePassword = this.ChangePassword.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.validate = this.validate.bind(this);
+        this.Search = this.Search.bind(this);
+        this.myFunction = this.myFunction.bind(this);
   }
   handleBlur = (field) => (evt) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
     });
 }
+Search(e){
+    e.preventDefault();
+    this.setState({SearchItem: e.target.value}, this.myFunction) 
+}
+myFunction = () => {
+    localStorage.setItem('Item',this.state.SearchItem);
+  }
 validate(Pass1,Pass2) {
     const errors = {
         Pass1: '',
@@ -210,8 +219,8 @@ async ChangePassword(event) {
                             <SearchIcon/>
                         </IconButton>
                         <form className='formstyle' onSubmit={this.Submit}>
-                            <input name="input" className="w" type='text'/>
-                            <button type='submit'/>
+                            <input name="SearchItem" className="w" type='text' onChange={this.Search}/>
+                            <button className="searchbutton" type='submit'/>
                         </form>
                     </div>
                 </div>
@@ -288,6 +297,7 @@ async ChangePassword(event) {
                     </div>
                 </div>
             </div>
+        </div>
         )
     }
 }

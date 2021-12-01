@@ -19,6 +19,7 @@ export default class Pin extends Component {
         1100: 5,
         700: 4,
         500: 3
+
       },
       pins: [],
     }
@@ -46,63 +47,56 @@ export default class Pin extends Component {
 
     return array;
   }
-
   render() {
     let backurl={data:15}
+    const SearchItem = localStorage.getItem('Item')
     return (
-        <div>
-          <Link to='/new-pin'>
-            <Button variant="light"
-                    style={plusButton} >+</Button>
-          </Link>
-          <Button variant="light" 
-                  style={markButton}>?</Button>
-          <Masonry
-                breakpointCols={this.state.breakpointObj}
-                className="my-masonry-grid"
-                columnClassName="my-masonry-grid_column">
+      
+      
+      <div>
+        <Link to='/new-pin'>
+        <Button variant="light" style={plusButton} >+</Button>
+        </Link>
+        <Button variant="light" style={markButton}>?</Button>
+        <Masonry
+          breakpointCols={this.state.breakpointObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
 
-            {this.shuffle(this.state.pins).map((pin) =>
-                <Card style={{ borderStyle: 'hidden' }} Key={pin.id}>
-                  
-                  <Link className="my-masonry-grid_column" 
-                        to={{pathname: "/pin-id", query: {pin}}}>
-                    <Card.Img style={{ borderRadius: '16px', cursor: 'zoom-in' }} 
-                              variant="top" 
-                              src={"http://127.0.0.1:8000" + pin.attachment} />
-                  </Link>
+        >
 
-                  <Button variant="danger" 
-                          style={saveButton} 
-                          className="btn" 
-                          size="lg">
-                            Save
-                  </Button>
-
-                  <Card.Body>
-                    <Card.Title>
-                        <h6 style={{ fontWeight: 'bold', display: 'inline' }}>{pin.title}</h6>
-                    </Card.Title>
-
-                    <Card.Text style={{ color: 'Grey' }}>
-                      <Image src={"http://127.0.0.1:8000" + pin.profile_image} 
-                            roundedCircle style={{ width: '30px', height: '30px', marginRight: '10px' }} />
-                      
-                      <Link to="/new-pin" 
-                            style={{ color: "Grey", textDecoration: "none" }}> 
-                                {pin.username} 
-                      </Link>
-
+{this.shuffle(this.state.pins).filter((pin)=>{
+                        if (SearchItem == ''){
+                            return pin
+                        }else if (pin.title.toLowerCase().includes(SearchItem.toLowerCase())){
+                            return pin
+                        }
+                    }).map((pin)=> 
+                    <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
+                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
+                    <Button variant="danger" 
+                            style={saveButton} 
+                            className="btn" 
+                            size="lg">Save</Button>
+                     <Card.Body>
+                       <Card.Title><h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
+                       </Card.Title>
+                      <Card.Text style={{color:'Grey'}}>
+                      <Image src={pin.profile_image} roundedCircle style={{width:'40px', height:'40p',marginRight:'10px'}}/>
+                      <a href=""  className="linkProfile"> {pin.username} </a>
                     </Card.Text>
                   </Card.Body>
-                </Card>
-            )}
-          </Masonry>
-        </div>
+                   </Card>
+                    )}
+
+        </Masonry>
+      </div>
+
     )
   }
 
 };
+
 
 const plusButton = {
   width: '80px',
