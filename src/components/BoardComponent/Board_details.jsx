@@ -60,10 +60,13 @@ class BoardDetalis extends React.Component {
           <div>
             <Header />
             <Link to='/new-pin'>
-              <Button variant="light" style={{ width: '80px', height: '80px', borderRadius: '50%', fontSize: 'xx-large', position: 'fixed', bottom: '130px', right: '10px', fontWeight: 'bold' }} >+</Button>
+              <Button variant="light" style={plusButton} >+</Button>
             </Link>
             <Link to='/profile'>
-              <Button onClick={this.DeleteBoard} variant="light" style={{ backgroundColor:"red", color:"#fff" ,width: '80px', height: '80px', borderRadius: '50%', fontSize: 'xx-large', position: 'fixed', bottom: '30px', right: '10px', }}><i class="fas fa-trash"></i></Button>
+              <Button onClick={this.DeleteBoard} variant="light" 
+                      style={trashButton}>
+                  <i class="fas fa-trash"></i>
+              </Button>
             </Link>
             <div className='container'>
                 <div className='row '>
@@ -89,14 +92,21 @@ class BoardDetalis extends React.Component {
                   
                 <Card style={{ borderStyle: 'hidden' }} Key={pin.id}>
                   <Link className="my-masonry-grid_column" to="/pin-id" >
-                    <Card.Img style={{ borderRadius: '16px', cursor: 'zoom-in' }} variant="top" src={"http://127.0.0.1:8000" + pin.attachment} />
+                    <Card.Img style={{ borderRadius: '16px', cursor: 'zoom-in' }} 
+                              variant="top" 
+                              src={"http://127.0.0.1:8000" + pin.attachment} />
                   </Link>
-                  <Button variant="danger" style={{ borderRadius: '16px', float: 'right', position: 'absolute', right: "3px", top: '5px', fontWeight: 'bold' }} className="btn" size="lg">Save</Button>
+                  <Button variant="danger" 
+                          style={saveButton} 
+                          className="btn" 
+                          size="lg">Save</Button>
                   <Card.Body>
                     <Card.Title><h6 style={{ fontWeight: 'bold', display: 'inline' }}>{pin.title}</h6>
                     </Card.Title>
                     <Card.Text style={{ color: 'Grey' }}>
-                      <Image src={"http://127.0.0.1:8000" + pin.profile_image} roundedCircle style={{ width: '30px', height: '30px', marginRight: '10px' }} />
+                      <Image src={"http://127.0.0.1:8000" + pin.profile_image} 
+                            roundedCircle 
+                            style={{ width: '30px', height: '30px', marginRight: '10px' }} />
                       <Link to="/new-pin" style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
                     </Card.Text>
                   </Card.Body>
@@ -127,6 +137,34 @@ class BoardDetalis extends React.Component {
       margin: '10px'
     };
     
-    
+    const plusButton = {
+      width: '80px',
+      height: '80px',
+      borderRadius: '50%', 
+      fontSize: 'xx-large', 
+      position: 'fixed', 
+      bottom: '130px', 
+      right: '10px', 
+      fontWeight: 'bold',
+    };
 
- 
+    const trashButton={
+      backgroundColor:"red", 
+      color:"#fff" ,
+      width: '80px', 
+      height: '80px', 
+      borderRadius: '50%', 
+      fontSize: 'xx-large', 
+      position: 'fixed', 
+      bottom: '30px', 
+      right: '10px',
+    }
+
+    const saveButton={
+      borderRadius: '16px', 
+      float: 'right', 
+      position: 'absolute', 
+      right: "3px", 
+      top: '5px', 
+      fontWeight: 'bold' 
+    }
