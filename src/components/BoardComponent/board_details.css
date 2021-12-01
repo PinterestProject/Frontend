@@ -1,0 +1,110 @@
+/*.gallery {
+
+  max-width: 60rem,
+  display: grid,
+  grid-template-columns: repeat(3, 1fr),
+  grid-template-rows: masonry,
+
+}*/
+
+/*@import url("https://fonts.googleapis.com/css2?family=Advent+Pro:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Advent+Pro:wght@600&display=swap");
+* {
+  font-family: "Advent Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body {
+  overflow: hidden;
+}*/
+
+
+
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+
+}
+.my-masonry-grid_column {
+  padding-left: 10px; /* gutter size */
+  background-clip: padding-box;
+  text-decoration: none;
+color: black;
+}
+.my-masonry-grid_column :hover {
+text-decoration: none;
+color: black;
+}
+
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+ margin-bottom: 10px;
+  cursor: pointer;
+
+}
+
+
+.my-masonry-grid_column >  img  {
+  width: 100%;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+
+  z-index:150;
+}
+.my-masonry-grid_column >  img:hover {
+  filter: brightness(100%);
+  transform: scale(1.02);
+  z-index: 50;
+  box-shadow: 0px 0px 5px 2px rgb(48, 47, 47);
+  filter: brightness(80%)
+}
+.center-masonry {
+  background: rgb(233, 232, 232);
+}
+
+
+
+
+@media (max-width: 700px) {
+  .my-masonry-grid {
+    margin-left: 25px; /* gutter size offset */
+  }
+  .my-masonry-grid_column {
+    padding-left: 15px; /* gutter size offset */
+  }
+  .my-masonry-grid_column > img {
+    margin-bottom: 15px;
+    width: 200px; /* spac;e between items */
+  }
+}
+
+.btn
+{
+z-index:100;
+}
+
+.btn:hover
+{
+z-index:200;
+cursor: pointer;
+}
+
+
+.linkProfile
+{
+color:Grey;
+text-decoration: none;
+font-size: large;
+}
+
+.linkProfile:hover
+{
+color:Grey;
+ text-decoration: underline;
+}

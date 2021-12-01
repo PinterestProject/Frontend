@@ -3,6 +3,10 @@
     margin-bottom: 20px;
     /* cursor: pointer; */
     transition: all 0.5s ;
+
+}
+.board Link{
+    text-decoration: none;
 }
 
 /* .board img:hover{
