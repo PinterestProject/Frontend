@@ -5,10 +5,8 @@ import "./assets/css/bootstrap.min.css"
 import Header from '../HeaderComponent/Header'
 import { TextField } from '@mui/material'
 import PlacHolder from "./assets/img/placeholder2.jpeg"
-
 import { Description } from '@mui/icons-material'
 import axios from 'axios'
-
 import { Link } from 'react-router-dom'
 
 

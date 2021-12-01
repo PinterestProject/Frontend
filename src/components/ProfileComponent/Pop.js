@@ -8,18 +8,18 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
     EmailShareButton,
     FacebookShareButton,
-    LinkedinShareButton,
+    // LinkedinShareButton,
     TwitterShareButton,
     WhatsappShareButton,
-    WorkplaceShareButton
+    // WorkplaceShareButton
   } from "react-share";
   import {
     EmailIcon,
     FacebookIcon,
-    LinkedinIcon,
+    // LinkedinIcon,
     TwitterIcon,
     WhatsappIcon,
-    WorkplaceIcon
+    // WorkplaceIcon
   } from "react-share";
 export default function Model() {
 
@@ -144,12 +144,12 @@ const  Text = {
     borderRadius: '18px',
     margin:'5px 5px'
 };
-const  SearchWrapper = {
-    flex: 1 //takes all the space it can gets
-};
-const  IconWrapper = {
-    marginLeft:'20px',
-};
+// const  SearchWrapper = {
+//     flex: 1 //takes all the space it can gets
+// };
+// const  IconWrapper = {
+//     marginLeft:'20px',
+// };
 
 
 const StyledModal = styled(ModalUnstyled)`
