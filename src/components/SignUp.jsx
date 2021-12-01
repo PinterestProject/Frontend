@@ -10,7 +10,6 @@ import { Col, Row, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
-
 export default class SignUp extends React.Component {
     constructor(props) {
         super(props);
@@ -146,6 +145,7 @@ export default class SignUp extends React.Component {
             errors.password_conf = 'Password should be more than 4 characters.';
         else if (this.state.touched.password_conf && password_conf.length > 12)
             errors.password_conf = 'Password should be less than 12 characters.';
+
 
         return errors;
     }
@@ -411,7 +411,6 @@ export default class SignUp extends React.Component {
 //     height: '40px',
 //     padding: '12px 4px 4px 16px',
 //   };
-
 
 const SignupButton = {
 

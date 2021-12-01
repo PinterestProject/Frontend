@@ -51,6 +51,7 @@ class Profile extends React.Component {
                                     <span style={{ display: 'block' }}>{details.bio}</span>
                                 </div>
                             ))}
+
                     </div>
                     <div className='col-12 text-center mb-5'>
                         <Model />
@@ -59,7 +60,6 @@ class Profile extends React.Component {
                                 <Link to="/edit-profile" className="ProfileIcons">Edit Profile</Link>
                             </div>
                         </IconButton>
-
                     </div>
                     {this.state.boardsDetail.map((details)=>(
                             

@@ -16,7 +16,6 @@ export default class CreateBoard extends Component {
             board_name: '',
             is_public: false,
             redirect_flag:false
-
         }
     }
 
@@ -56,11 +55,10 @@ export default class CreateBoard extends Component {
     
 
     render() {
-        if (!this.state.redirect_flag){
+        if (!this.state.redirect_flag){  
         return (
             <div>
               
-
                 <Header/>
                     <div className='borad-container container'>
                         <h1 className='text-center'>Create board</h1>

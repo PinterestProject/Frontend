@@ -55,8 +55,10 @@ export default class Pin extends Component {
   }
 
   render() {
+    let backurl={data:15}
     return (
-
+      
+      
       <div>
         <Link to='/new-pin'>
         <Button variant="light" style={{ width: '80px', height: '80px', borderRadius: '50%', fontSize: 'xx-large', position: 'fixed', bottom: '130px', right: '10px', fontWeight: 'bold' }} >+</Button>
@@ -72,7 +74,7 @@ export default class Pin extends Component {
           {this.shuffle(this.state.pins).map((pin) =>
 
             <Card style={{ borderStyle: 'hidden' }} Key={pin.id}>
-              <Link className="my-masonry-grid_column" to="/pin-id" >
+              <Link className="my-masonry-grid_column" to={{pathname: "/pin-id", query: {pin}}}>
                 <Card.Img style={{ borderRadius: '16px', cursor: 'zoom-in' }} variant="top" src={"http://127.0.0.1:8000" + pin.attachment} />
               </Link>
               <Button variant="danger" style={{ borderRadius: '16px', float: 'right', position: 'absolute', right: "3px", top: '5px', fontWeight: 'bold' }} className="btn" size="lg">Save</Button>
@@ -102,10 +104,8 @@ const Wrapper = {
 const Container = {
   display: 'flex',
   cursor: 'pointer',
-
   alignItems: 'center',
   boxSizing: 'border-box',
   margin: '10px'
-
 };
 
