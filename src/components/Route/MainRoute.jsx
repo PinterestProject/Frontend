@@ -14,10 +14,8 @@ import Form from "../EditProfileComponents/Form";
 import MainPage from "../MainPageComponent/MainPage";
 import Header from '../HeaderComponent/Header';
 import SignUp from '../SignUp';
-<<<<<<< HEAD
 import BoardDetalis from '../BoardComponent/Board_details';
-=======
->>>>>>> f1cda46f890aebf17b476036f25032eb2d3ebba2
+
 
 export default function App() {
     return (
