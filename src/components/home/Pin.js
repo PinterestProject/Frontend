@@ -53,6 +53,7 @@ export default class Pin extends Component {
 
     return array;
   }
+
   render() {
     let backurl={data:15}
     return (
@@ -96,8 +97,6 @@ export default class Pin extends Component {
 
 };
 
-
-
 const Wrapper = {
   display: 'inline-flex',
   padding: '8px'
@@ -105,7 +104,6 @@ const Wrapper = {
 const Container = {
   display: 'flex',
   cursor: 'pointer',
-
   alignItems: 'center',
   boxSizing: 'border-box',
   margin: '10px'

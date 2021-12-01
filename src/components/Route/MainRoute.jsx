@@ -14,6 +14,8 @@ import Form from "../EditProfileComponents/Form";
 import MainPage from "../MainPageComponent/MainPage";
 import Header from '../HeaderComponent/Header';
 import SignUp from '../SignUp';
+import BoardDetalis from '../BoardComponent/Board_details';
+
 
 export default function App() {
     return (
@@ -29,6 +31,7 @@ export default function App() {
                 <Route path="/new-board" exact component={CreateBoard} />
                 <Route path="/main" exact component={MainPage} />
                 <Route path="/header" exact component={Header} />
+                <Route path="/board-details/:id" exact component={BoardDetalis} />
                 <Route path="/edit-profile" exact component={Form} />
             </Router>
         </div>

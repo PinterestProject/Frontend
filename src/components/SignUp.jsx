@@ -133,6 +133,7 @@ export default class SignUp extends React.Component {
             errors.last_name = 'You must wirte your Last name.';
 
         if (this.state.touched.username && username.length == '')
+
             errors.username = 'You must wirte your account name.';
 
         if (this.state.touched.password && password.length < 4)
@@ -220,6 +221,7 @@ export default class SignUp extends React.Component {
                 })
         }
     }
+
 
 
     render() {
@@ -411,6 +413,7 @@ export default class SignUp extends React.Component {
 //   };
 
 const SignupButton = {
+
     backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
@@ -469,6 +472,7 @@ const Backdrop = styled('div')`
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-tap-highlight-color: transparent;
 `;
+
 
 const style = {
     display: 'in-line',

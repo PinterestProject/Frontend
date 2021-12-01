@@ -233,7 +233,9 @@ export default class MainPage extends React.Component{
         axios.post('http://127.0.0.1:8000/users/login/',newObject).then(response => {
             console.log(response)
             localStorage.setItem('Token',`Token ${response.data.token}`);
-            this.setState({ErrMessage: "Logged", Login:false})
+
+            // this.setState({ErrMessage: "Logged", Login:false})
+
             if (response.status === 200) {
                 this.setState({ CanLogin: true });}
          

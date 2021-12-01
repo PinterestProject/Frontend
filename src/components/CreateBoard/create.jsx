@@ -40,6 +40,7 @@ export default class CreateBoard extends Component {
             name:this.state.board_name,
             is_public:!this.state.is_public
         }
+
         axios.post("http://127.0.0.1:8000/boards/api/v1/boards/",send_data, { headers: {"Authorization" : localStorage.getItem("Token")} }).then((response)=>{
             console.log(response)
             
@@ -47,7 +48,6 @@ export default class CreateBoard extends Component {
                 redirect_flag:true
             })
             // {this.state.redirect_flag ? <Redirect to="/dashboard" /> : <MainPage />}
-            
         })
         console.log(send_data)
         
@@ -55,9 +55,7 @@ export default class CreateBoard extends Component {
     
 
     render() {
-        if (!this.state.redirect_flag){
-
-       
+        if (!this.state.redirect_flag){  
         return (
             <div>
               

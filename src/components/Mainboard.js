@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BoardDetalis from './BoardComponent/Board_details';
 import Header from './HeaderComponent/Header';
 import Pin from "./home/Pin";
 
@@ -11,6 +12,7 @@ export default class Mainboard extends Component {
                 <div style={Wrapper}>
                     <div style={Container}>
                         <Pin />
+                        <BoardDetalis />
                     </div>
                 </div>
             </div>

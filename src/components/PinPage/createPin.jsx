@@ -122,7 +122,6 @@ export default class CreatePin extends Component {
                                     <select onChange={(news) => { this.setState({ Board: news.target.value }, () => { console.log(news.target.value) }) }} class="form-select" id="inputGroupSelect02">
                                         {userboards.length ? userboards.map(board => <option key={board.id} value={board.id}> {board.name}</option>) : null}
                                     </select>
-
                                 </div>
                             </div>
                         </div>

@@ -1,37 +1,57 @@
 import React from 'react';
+import axios from 'axios';
 import './profile.css'
-import { styled } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Popover } from 'react-tiny-popover'
 import Model from './Pop'
 import { Link } from 'react-router-dom';
 import Header from '../HeaderComponent/Header';
 
 class Profile extends React.Component {
-    // MouseOver(event) {
-    //     event.target.style.background = 'red';
-    //   }
+    constructor(props) {
+        super(props);
+        this.state = {
+            boardsDetail: {},
+            ready: false
+                    }
+         };
 
+    componentDidMount() {
+    
+        axios.get("http://127.0.0.1:8000/boards/api/v1/boards/", 
+        { headers: {"Authorization" : localStorage.getItem("Token")} })
+        .then((response)=>{
+            console.log(response);
+            const boardData = response.data;
+            this.setState({ boardsDetail: boardData , ready: true})
+
+            })
+        }
     render() {
+        if(!this.state.ready)
+         return null;
         return <div>
             <Header />
+
             <div className='container'>
                 <div className='row '>
-                    {/* <Link to='/new-board'> */}
                         <Link to='/new-board' className='AddButton'>
-                            <i class="fas fa-plus">
-
-                            </i>
+                            <i class="fas fa-plus"></i>
                         </Link>
-                    {/* </Link> */}
                     <div className='col-12 m-auto text-center d-flex justify-content-center align-items-center'>
-                        <div className='mt-5' >
-                            <img style={{ borderRadius: '50%', marginBottom: '20px' }} src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17d51ade03c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17d51ade03c%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.4296875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
-                            <h2 style={{ fontWeight: '700' }}>Khalil Gazairly</h2>
-                            <span >@Khalil Gazairly</span>
-                            <span style={{ display: 'block' }}>0 Followers</span>
-                        </div>
+                            {this.state.boardsDetail.slice(0,1).map((details)=>(
+                                <div className='mt-5' >
+                                    <img style={{ borderRadius: '50%', 
+                                                marginBottom: '20px', 
+                                                width:'200px', 
+                                                height:'200px' }} 
+                                            src={"http://127.0.0.1:8000"+details.profile_image} 
+                                            />
+                                    <h2 style={{ fontWeight: '700' }}>{details.username}</h2>
+                                    <span >@{details.username}</span>
+                                    <span style={{ display: 'block' }}>{details.bio}</span>
+                                </div>
+                            ))}
+
                     </div>
                     <div className='col-12 text-center mb-5'>
                         <Model />
@@ -41,195 +61,37 @@ class Profile extends React.Component {
                             </div>
                         </IconButton>
                     </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12 rounded p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 style={{ paddingLeft: '15px' }}>Name</h5>
-                        <span style={{ paddingLeft: '15px' }}>0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
+                    {this.state.boardsDetail.map((details)=>(
+                            
+                          <Link to={'/board-details/'+details.id} 
+                            className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board ' 
+                            style={{textDecoration: 'none', color:'#000'}} >
+                          <div className='parent' >
+                              <div className=' pin1'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                              </div>
+                              <div className=' pin2'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                              </div>
+                              <div className=' pin3'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
+                              </div>
+                              
+                          </div>
+                          <h6 >{details.name}</h6>
+                          <span >{details.pins.length+" Pins"}</span>
+                      </Link>  
+                     
+                    ))}
 
-                    <div className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board '  >
-                        <div className='parent'>
-                            <div className=' pin1'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin2'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            <div className=' pin3'>
-                                <img className='img-fluid'
-                                    style={boardImg}
-                                    src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                            </div>
-                            {/* <div className='PinImgs pin4'></div> */}
-                        </div>
-                        <h5 >Name</h5>
-                        <span >0</span>
-                    </div>
                 </div>
             </div>
-            {/* <Popover
-                isOpen={isPopoverOpen}
-                positions={['top', 'bottom', 'left', 'right']} // preferred positions by priority
-                content={<div>Hi! I'm popover content.</div>}
-                >
-                <div onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-                    Click me!
-                </div>
-                </Popover> */}
-
         </div>;
     }
 }
@@ -237,11 +99,6 @@ class Profile extends React.Component {
 export default Profile;
 
 
-
-
-// const board = {
-//     cursor : 'pointer',
-//     }
 const boardImg = {
     cursor: 'pointer !important'
 }
