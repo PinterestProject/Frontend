@@ -86,8 +86,8 @@ export default class Header extends Component {
         this.myFunction = this.myFunction.bind(this);
   }
   handleBlur = (field) => (evt) => {
-    this.setState({
-        touched: { ...this.state.touched, [field]: true }
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
     });
 }
 Search(e){
@@ -122,19 +122,19 @@ validate(Pass1,Pass2) {
      };
     console.log('Current State is: ' + JSON.stringify(newObject));
     //alert('Current State is: ' + JSON.stringify(newObject));
-    axios.post('http://127.0.0.1:8000/users/logout/', v , {headers:newObject}).then(response => {
-        console.log(response)
-       // alert(JSON.stringify(response));
-        localStorage.removeItem('Token')
-        if (response.status === 200) {
-            this.setState({ CanLogout: true });}
-     
-
-    }).catch(error => {
-        console.log(error)
-        // alert(JSON.stringify(error));
-    })
-}
+    axios.post('http://127.0.0.1:8000/users/logout/', v , 
+            {headers:newObject})
+            .then(response => {
+                console.log(response)
+            // alert(JSON.stringify(response));
+                localStorage.removeItem('Token')
+                if (response.status === 200) {
+                    this.setState({ CanLogout: true });}
+            }).catch(error => {
+                console.log(error)
+                // alert(JSON.stringify(error));
+            })
+    }
 handleOpen(){
     this.setState({
         setOpen: true,
@@ -176,19 +176,23 @@ async ChangePassword(event) {
     // alert('Current State is: ' + JSON.stringify(newObject2));
     //alert(this.state.valid)
     if (this.state.valid === true){
-    axios.post('http://127.0.0.1:8000/users/changepassword/', newObject2, {headers:Header}).then(response => {
-        console.log(response)
-        this.setState({ErrMessage: "Password is updated", valid:false})
-    }).catch(error => {
-        console.log(error)
-        if(error){
-            error = error.response.data;
-            // alert('Error is: ' + error);
-           // alert('Error is: ' + JSON.stringify(error));
-           // var err = JSON.stringify(error.non_field_errors).replace('[', '').replace(']', '').replace('"', '').replace('"', '')
-            this.setState({ErrMessage: "Password is incorrect", valid:false})
-        }
-    })
+    axios.post('http://127.0.0.1:8000/users/changepassword/',
+                 newObject2,
+                 {headers:Header})
+                 .then(response => {
+                        console.log(response)
+                        this.setState({ErrMessage: "Password is updated", valid:false})
+            }).catch(error => {
+                console.log(error)
+                if(error){
+                    error = error.response.data;
+                    // alert('Error is: ' + error);
+                // alert('Error is: ' + JSON.stringify(error));
+                // var err = JSON.stringify(error.non_field_errors).replace('[', '').replace(']', '')
+                // .replace('"', '').replace('"', '')
+                    this.setState({ErrMessage: "Password is incorrect", valid:false})
+                }
+            })
 }}
 
     render() {
@@ -200,10 +204,10 @@ async ChangePassword(event) {
         return (
             <div>
                 <div style={Wrapper}>
-                <div style={LogoWrapper}>
-                    <IconButton>
-                        <PinterestIcon style={{color:'#E60023', fontSize: '30px'}}/>
-                    </IconButton>
+                    <div style={LogoWrapper}>
+                        <IconButton>
+                            <PinterestIcon style={{color:'#E60023', fontSize: '30px'}}/>
+                        </IconButton>
                     </div>
                 <div style={Home}>
                     <a  href='/main-board' className="h">Home</a>
@@ -238,8 +242,10 @@ async ChangePassword(event) {
                                     </IconButton>
                                 </DropdownToggle>
                                 <DropdownMenu style={{margin:'-2px -160px'}}>
-                                   <DropdownItem onClick={this.handleOpen} style={{backgroundColor:'white', color:'black'}} >Change Password</DropdownItem>
-                                   <DropdownItem onClick={this.Logout} style={{backgroundColor:'white',color:'black'}} >Logout</DropdownItem>
+                                   <DropdownItem onClick={this.handleOpen} 
+                                                style={{backgroundColor:'white', color:'black'}} >Change Password</DropdownItem>
+                                   <DropdownItem onClick={this.Logout} 
+                                                style={{backgroundColor:'white',color:'black'}} >Logout</DropdownItem>
                                     {/*<DropdownItem header>Header</DropdownItem>
                                      <DropdownItem>Another Action</DropdownItem>
                                     <DropdownItem divider />
@@ -285,9 +291,10 @@ async ChangePassword(event) {
                                 <div style={ErrorMessage}>{this.state.ErrMessage}</div>
                                 <Button type = 'submit'  style={RedButton}>Confirm</Button>
 
-                            </form>
-                        </Box>
-                    </StyledModal>
+                                </form>
+                            </Box>
+                        </StyledModal>
+                    </div>
                 </div>
             </div>
         </div>

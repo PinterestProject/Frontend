@@ -2,11 +2,8 @@
   margin:0;
   box-sizing: border-box;
 }
+
 span{
   font-weight: 500;
 }
-.h{
-  text-decoration: none !important;
-  color: white !important;
-  font-weight: 500 !important;
-}
+

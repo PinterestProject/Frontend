@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import { Redirect, Route } from 'react-router'
 import Header from '../HeaderComponent/Header'
+import Mainboard from '../Mainboard'
+import MainPage from '../MainPageComponent/MainPage'
 import "./assets/css/bootstrap.min.css"
 import "./assets/css/main.css"
 
@@ -11,7 +14,8 @@ export default class CreateBoard extends Component {
 
         this.state = {
             board_name: '',
-            is_public: false
+            is_public: false,
+            redirect_flag:false
         }
     }
 
@@ -36,8 +40,14 @@ export default class CreateBoard extends Component {
             name:this.state.board_name,
             is_public:!this.state.is_public
         }
-        axios.post("http://127.0.0.1:8000/boards/api/v1/boards/",send_data).then((response)=>{
+
+        axios.post("http://127.0.0.1:8000/boards/api/v1/boards/",send_data, { headers: {"Authorization" : localStorage.getItem("Token")} }).then((response)=>{
             console.log(response)
+            
+            this.setState({
+                redirect_flag:true
+            })
+            // {this.state.redirect_flag ? <Redirect to="/dashboard" /> : <MainPage />}
         })
         console.log(send_data)
         
@@ -45,35 +55,48 @@ export default class CreateBoard extends Component {
     
 
     render() {
+        if (!this.state.redirect_flag){  
         return (
             <div>
+              
                 <Header/>
-                <div className='borad-container container'>
-                    <h1 className='text-center'>Create board</h1>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input onChange={this.HandleBoradInputs}  class="form-control" name='board_name'  placeholder='Like "Places to Go" or "Recipes to Make"' />
-                    </div>
-                    <form onSubmit={this.HandleAddBorad}>
-                        <div className="board-actions">
-                            <div>
-                                <div class="form-check">
-                                    <input onChange={this.HandleBoradCheck} name='is_public' class="form-check-input" type="checkbox"   />
-                                    <div className="d-flex flex-column">
-                                        <label  class="form-check-label fw-bold" for="flexCheckDefault">keep this board secret</label>
-                                        <label className='text-muted'>so only you and collaborators</label>
+                    <div className='borad-container container'>
+                        <h1 className='text-center'>Create board</h1>
+                        <div className="mb-3">
+                            <label for="exampleFormControlInput1" className="form-label">Name</label>
+                            <input onChange={this.HandleBoradInputs}  
+                                    className="form-control" 
+                                    name='board_name'  
+                                    placeholder='Like "Places to Go" or "Recipes to Make"' />
+                        </div>
+                        <form onSubmit={this.HandleAddBorad}>
+                            <div className="board-actions">
+                                <div>
+                                    <div className="form-check">
+                                        <input onChange={this.HandleBoradCheck} 
+                                                name='is_public' 
+                                                className="form-check-input" 
+                                                type="checkbox"   />
+                                        <div className="d-flex flex-column">
+                                            <label  className="form-check-label fw-bold" 
+                                                    for="flexCheckDefault">keep this board secret</label>
+                                            <label className='text-muted'>so only you and collaborators</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div className='text-right'>
+                                    <button className='btn btn-light'>
+                                        create
+                                    </button>
+                                </div>
                             </div>
-                            <div className='text-right'>
-                                <button className='btn btn-light'>
-                                    create
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
             </div>
         )
+    }
+    else{
+       return <Mainboard/>
+    }
     }
 }
