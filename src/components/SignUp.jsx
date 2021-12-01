@@ -10,6 +10,7 @@ import { Col, Row, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
+
 export default class SignUp extends React.Component {
     constructor(props) {
         super(props);
@@ -133,6 +134,7 @@ export default class SignUp extends React.Component {
             errors.last_name = 'You must wirte your Last name.';
 
         if (this.state.touched.username && username.length == '')
+
             errors.username = 'You must wirte your account name.';
 
         if (this.state.touched.password && password.length < 4)
@@ -144,7 +146,6 @@ export default class SignUp extends React.Component {
             errors.password_conf = 'Password should be more than 4 characters.';
         else if (this.state.touched.password_conf && password_conf.length > 12)
             errors.password_conf = 'Password should be less than 12 characters.';
-
 
         return errors;
     }
@@ -220,6 +221,7 @@ export default class SignUp extends React.Component {
                 })
         }
     }
+
 
 
     render() {
@@ -410,7 +412,9 @@ export default class SignUp extends React.Component {
 //     padding: '12px 4px 4px 16px',
 //   };
 
+
 const SignupButton = {
+
     backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
@@ -469,6 +473,7 @@ const Backdrop = styled('div')`
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-tap-highlight-color: transparent;
 `;
+
 
 const style = {
     display: 'in-line',

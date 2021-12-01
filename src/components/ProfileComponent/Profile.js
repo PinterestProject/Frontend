@@ -31,6 +31,7 @@ class Profile extends React.Component {
          return null;
         return <div>
             <Header />
+
             <div className='container'>
                 <div className='row '>
                         <Link to='/new-board' className='AddButton'>
@@ -58,6 +59,7 @@ class Profile extends React.Component {
                                 <Link to="/edit-profile" className="ProfileIcons">Edit Profile</Link>
                             </div>
                         </IconButton>
+
                     </div>
                     {this.state.boardsDetail.map((details)=>(
                             

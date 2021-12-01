@@ -95,8 +95,6 @@ export default class Pin extends Component {
 
 };
 
-
-
 const Wrapper = {
   display: 'inline-flex',
   padding: '8px'
@@ -108,5 +106,6 @@ const Container = {
   alignItems: 'center',
   boxSizing: 'border-box',
   margin: '10px'
+
 };
 

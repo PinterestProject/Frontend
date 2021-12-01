@@ -58,6 +58,7 @@ color: black;
   z-index:150;
 }
 .my-masonry-grid_column >  img:hover {
+
   filter: brightness(100%);
   transform: scale(1.02);
   z-index: 50;

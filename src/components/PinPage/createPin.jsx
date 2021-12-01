@@ -25,6 +25,7 @@ export default class CreatePin extends Component {
             attachment: null,
             userboards: [],
             Board: [],
+
         }
     }
 
@@ -51,6 +52,7 @@ export default class CreatePin extends Component {
     changeHandler = (e) => {
 
         this.setState({ [e.target.name]: e.target.value },()=>{console.log(e.target.value)})
+
     }
     submitHandler = (e) => {
         e.preventDefault()
@@ -124,7 +126,9 @@ export default class CreatePin extends Component {
                                     </select>
 
                                 </div>
+
                             </div>
+                            <button  className='save-btn2'>save</button>
                         </div>
                         <button className="btn btn-danger profile-button" type="submit">
                             Save Profile
@@ -135,3 +139,8 @@ export default class CreatePin extends Component {
         )
     }
 }
+
+// {userboards.length ? userboards.map(board => <option  key={board.id} value={board.name}>{board.name}</option>): null} 
+{/* <select   class="form-select" id="inputGroupSelect02">
+{userboards.length ? userboards.map(board => <option onChange={this.handleChange} key={board.id} value={board.id}>{board.name}</option>): null}
+</select>  */}
