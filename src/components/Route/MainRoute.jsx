@@ -10,11 +10,13 @@ import Mainboard from "../Mainboard";
 import CreatePin from "../PinPage/createPin";
 import Pin from "../PinPage/pin";
 import Profile from "../ProfileComponent/Profile";
+import UserDetails from "../ProfileComponent/userDetails";
 import Form from "../EditProfileComponents/Form";
 import MainPage from "../MainPageComponent/MainPage";
 import Header from '../HeaderComponent/Header';
 import SignUp from '../SignUp';
 import BoardDetalis from '../BoardComponent/Board_details';
+import AllUsers from '../ProfileComponent/allUsers';
 
 
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
                 <Route path="/signup" exact component={SignUp} />
                 <Route path="/main-board" exact component={Mainboard} />
                 <Route path="/profile" exact component={Profile} />
+                <Route path="/user/:id" exact component={UserDetails} />
+                <Route path="/users" exact component={AllUsers} />
                 <Route path="/new-pin" exact component={CreatePin} />
                 <Route path="/pin-id" exact component={Pin} />
                 <Route path="/new-board" exact component={CreateBoard} />
