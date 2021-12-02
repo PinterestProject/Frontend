@@ -33,7 +33,8 @@
   padding-left: 10px; /* gutter size */
   background-clip: padding-box;
   text-decoration: none;
-color: black;
+  color: black;
+  /* width: 26%; */
 }
 .my-masonry-grid_column :hover {
 text-decoration: none;

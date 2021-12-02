@@ -229,7 +229,7 @@ async ChangePassword(event) {
                             <NotificationsIcon/>
                         </IconButton>
                         <IconButton>
-                            <TextsmsIcon/>
+                            <Link style={{color:'gray'}} to="/users"><i className="fas fa-users"></i></Link>
                         </IconButton>
                         <IconButton>
                             <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
