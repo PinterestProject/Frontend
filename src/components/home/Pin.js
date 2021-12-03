@@ -66,14 +66,16 @@ export default class Pin extends Component {
         >
 
 {this.shuffle(this.state.pins).filter((pin)=>{
-                        if (SearchItem == ''){
+                        if (SearchItem == ''|| !(SearchItem)){
                             return pin
                         }else if (pin.title.toLowerCase().includes(SearchItem.toLowerCase())){
                             return pin
                         }
                     }).map((pin)=> 
                     <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
-                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
+                      <Link className="my-masonry-grid_column" to={{pathname: "/pin-id", query: {pin}}}>
+                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {"http://127.0.0.1:8000"+pin.attachment}/>
+                    </Link>
                     <Button variant="danger" 
                             style={saveButton} 
                             className="btn" 
@@ -82,8 +84,8 @@ export default class Pin extends Component {
                        <Card.Title><h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
                        </Card.Title>
                       <Card.Text style={{color:'Grey'}}>
-                      <Image src={pin.profile_image} roundedCircle style={{width:'40px', height:'40p',marginRight:'10px'}}/>
-                      <a href=""  className="linkProfile"> {pin.username} </a>
+                      <Image src={"http://127.0.0.1:8000"+pin.profile_image} roundedCircle style={{width:'40px', height:'40px',marginRight:'10px'}}/>
+                      <Link to="/new-pin" style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
                     </Card.Text>
                   </Card.Body>
                    </Card>
