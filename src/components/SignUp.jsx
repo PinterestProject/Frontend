@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import { getTableHeadUtilityClass } from '@mui/material';
+import { Redirect, Route } from 'react-router'
 
 export default class SignUp extends React.Component {
     
@@ -52,7 +53,10 @@ export default class SignUp extends React.Component {
                 password: '',
                 password_conf: '',
             },
-            CanSignup: false
+            CanSignup: false,
+            redirect_flag: false
+
+
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -281,14 +285,24 @@ export default class SignUp extends React.Component {
                     categories: this.state.categories
                 }
                 axios.patch(`http://localhost:8000/users/users/${this.state.newUser_id}/`,
-                send_data, { headers: { "Authorization": localStorage.getItem("Token") } })
+                send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then(()=>{
+
+                    this.setState({redirect_flag:true},()=>console.log(this.state.redirect_flag))
+
+                })
             
             
             })
-              })
+              }) 
+              
 
     }
     render() {
+        const redirect_flag  = this.state.redirect_flag
+        
+        if (redirect_flag) {
+            return <Redirect to = {{ pathname: "/main-board" }} /> 
+        }
         const { email, first_name, last_name, username, password, password_conf } = this.state;
         const errors = this.validate(this.state.email,
             this.state.first_name,
@@ -574,11 +588,13 @@ export default class SignUp extends React.Component {
                            </Form>
                         </Container>
                     </p>
+                   
                         <Button type="submit" style={RedButton} onClick={(this.handleCategoriesSubmit)}>Done
                         </Button>
-                     
-                    
-                    
+                   
+                      
+                        
+                   
                 </Box>
             </StyledModal>
 

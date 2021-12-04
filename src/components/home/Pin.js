@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 
 export default class Pin extends Component {
+  listPins=[]
   constructor(props) {
     super(props);
     this.state = {
@@ -22,17 +23,64 @@ export default class Pin extends Component {
 
       },
       pins: [],
+      categories_flag: false
     }
   };
 
-  componentDidMount() {
-    axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
-      { headers: { "Authorization": localStorage.getItem("Token") } })
-      .then(response => {
-          console.log(response.data)
-          this.setState({ pins: response.data })
-          console.log(this.pins)
+  componentWillMount() {
+      //check if user has categories
+
+      axios.get("http://localhost:8000/users/user-details/", 
+      { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+        console.log(resp.data.data)
+        let userData = resp.data.data
+        let cate = userData.categories
+        console.log("cate::"+cate)
+        console.log("type"+ typeof cate)
+        console.log(cate[0])
+        if (cate.length === 0 ){
+           this.setState({categories_flag:false},()=> console.log("flag = false"))
+          
+        } else{
+          this.setState({categories_flag:true},()=> console.log("flag = true"))
+        }
+
+
+        if (this.state.categories_flag){
+          //user has categories
+        
+          let fp = cate.toString()
+          console.log("data"+fp)
+          let data ={
+            categories:fp
+          }
+         
+          axios.post('http://localhost:8000/pins/api/v1/categories/pins/',data)
+          .then((response)=>{
+
+            this.listPins = response.data
+
+            this.setState({pins:this.listPins},()=>console.log("pins : "+this.state.pins))
+
+          })
+         
+
+       
+        } 
+        else{
+          axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
+          { headers: { "Authorization": localStorage.getItem("Token") } })
+          .then(response => {
+              console.log(response.data)
+              this.setState({ pins: response.data })
+              console.log(this.pins)
+             })
+        }
       })
+
+    
+
+    
 
   }
   shuffle = (array) => {
