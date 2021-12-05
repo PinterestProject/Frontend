@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 
 export default class Pin extends Component {
+  listPins=[]
   constructor(props) {
     super(props);
     this.state = {
@@ -22,17 +23,64 @@ export default class Pin extends Component {
 
       },
       pins: [],
+      categories_flag: false
     }
   };
 
-  componentDidMount() {
-    axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
-      { headers: { "Authorization": localStorage.getItem("Token") } })
-      .then(response => {
-          console.log(response.data)
-          this.setState({ pins: response.data })
-          console.log(this.pins)
+  componentWillMount() {
+      //check if user has categories
+
+      axios.get("http://localhost:8000/users/user-details/", 
+      { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+        console.log(resp.data.data)
+        let userData = resp.data.data
+        let cate = userData.categories
+        console.log("cate::"+cate)
+        console.log("type"+ typeof cate)
+        console.log(cate[0])
+        if (cate.length === 0 ){
+           this.setState({categories_flag:false},()=> console.log("flag = false"))
+          
+        } else{
+          this.setState({categories_flag:true},()=> console.log("flag = true"))
+        }
+
+
+        if (this.state.categories_flag){
+          //user has categories
+        
+          let fp = cate.toString()
+          console.log("data"+fp)
+          let data ={
+            categories:fp
+          }
+         
+          axios.post('http://localhost:8000/pins/api/v1/categories/pins/',data)
+          .then((response)=>{
+
+            this.listPins = response.data
+
+            this.setState({pins:this.listPins},()=>console.log("pins : "+this.state.pins))
+
+          })
+         
+
+       
+        } 
+        else{
+          axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
+          { headers: { "Authorization": localStorage.getItem("Token") } })
+          .then(response => {
+              console.log(response.data)
+              this.setState({ pins: response.data })
+              console.log(this.pins)
+             })
+        }
       })
+
+    
+
+    
 
   }
   shuffle = (array) => {
@@ -66,14 +114,16 @@ export default class Pin extends Component {
         >
 
 {this.shuffle(this.state.pins).filter((pin)=>{
-                        if (SearchItem == ''){
+                        if (SearchItem == ''|| !(SearchItem)){
                             return pin
                         }else if (pin.title.toLowerCase().includes(SearchItem.toLowerCase())){
                             return pin
                         }
                     }).map((pin)=> 
                     <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
-                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
+                      <Link className="my-masonry-grid_column" to={{pathname: "/pin-id", query: {pin}}}>
+                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {"http://127.0.0.1:8000"+pin.attachment}/>
+                    </Link>
                     <Button variant="danger" 
                             style={saveButton} 
                             className="btn" 
@@ -82,8 +132,8 @@ export default class Pin extends Component {
                        <Card.Title><h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
                        </Card.Title>
                       <Card.Text style={{color:'Grey'}}>
-                      <Image src={pin.profile_image} roundedCircle style={{width:'40px', height:'40p',marginRight:'10px'}}/>
-                      <a href=""  className="linkProfile"> {pin.username} </a>
+                      <Image src={"http://127.0.0.1:8000"+pin.profile_image} roundedCircle style={{width:'40px', height:'40px',marginRight:'10px'}}/>
+                      <Link to="/new-pin" style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
                     </Card.Text>
                   </Card.Body>
                    </Card>
@@ -125,4 +175,3 @@ const saveButton = {
   right: "3px", top: '5px', 
   fontWeight: 'bold'
 }
-
