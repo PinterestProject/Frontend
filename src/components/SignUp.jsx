@@ -8,9 +8,15 @@ import axios from "axios"
 import PersonIcon from '@mui/icons-material/Person';
 import { Col, Row, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import { getTableHeadUtilityClass } from '@mui/material';
+import { Redirect, Route } from 'react-router'
 
 export default class SignUp extends React.Component {
+    
+    list_new=[]
+   
     constructor(props) {
         super(props);
         this.state = {
@@ -19,13 +25,14 @@ export default class SignUp extends React.Component {
             setOpen: false,
             Welcomeopen: false,
             WelcomesetOpen: false,
-
+            categories:[],
             email: '',
             first_name: '',
             last_name: '',
             username: '',
             password: '',
             password_conf: '',
+            newUser_id : '',
 
             ErrMessage: '',
             signupFlag: false,
@@ -46,7 +53,13 @@ export default class SignUp extends React.Component {
                 password: '',
                 password_conf: '',
             },
-            CanSignup: false
+            CanSignup: false,
+            redirect_flag: false,
+
+            //caategories
+            holiday_id:'',
+            design_id:''
+
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -62,6 +75,28 @@ export default class SignUp extends React.Component {
         this.CategoryhandleOpen = this.CategoryhandleOpen.bind(this);
         this.CategoryhandleClose = this.CategoryhandleClose.bind(this);
     }
+
+
+   // componentWillMount() { 
+
+     //   let data = {
+       //     name : "Holiday1",
+         //  description : "summer"
+        //}
+
+        //axios.post('http://127.0.0.1:8000/categories/create', data ).then((res)=>{
+
+          // this.setState({holiday_id:res.data.id}) 
+        //})
+
+
+
+    //}
+      
+    
+
+
+
     handleOpen() {
         this.setState({
             setOpen: true,
@@ -120,7 +155,10 @@ export default class SignUp extends React.Component {
             username: '',
             password: '',
             password_conf: '',
-        };
+        }; 
+
+
+   
 
         if (this.state.touched.email && !email.match(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
@@ -133,7 +171,6 @@ export default class SignUp extends React.Component {
             errors.last_name = 'You must wirte your Last name.';
 
         if (this.state.touched.username && username.length == '')
-
             errors.username = 'You must wirte your account name.';
 
         if (this.state.touched.password && password.length < 4)
@@ -151,7 +188,6 @@ export default class SignUp extends React.Component {
     }
 
 
-
     async handleSubmit(event) {
         event.preventDefault();
         const errors = this.validate(
@@ -163,22 +199,22 @@ export default class SignUp extends React.Component {
             this.state.password_conf,
         );
 
-        await this.setState({
+          await this.setState({
             errors: {
                 email: errors.email,
-                email: errors.first_name,
-                email: errors.last_name,
-                email: errors.username,
-                email: errors.password,
-                password: errors.password_conf
+                first_name: errors.first_name,
+                last_name: errors.last_name,
+                username: errors.username,
+                password: errors.password,
+                password_conf: errors.password_conf
             }
         });
         // alert(JSON.stringify(this.state.errors));
-        if (this.state.errors.email === '' && this.state.errors.password === '')
-            this.setState({ signupFlag: true });
+        if (this.state.errors.email && this.state.errors.password && this.state.errors.first_name && this.state.errors.password_conf && this.state.errors.last_name && this.state.errors.username)
+            this.setState({ signupFlag: false });
 
         else
-            this.setState({ signupFlag: false });
+            this.setState({ signupFlag: true });
         console.log('flag before send', this.state.signupFlag);
 
         var userInfObj = {
@@ -187,7 +223,8 @@ export default class SignUp extends React.Component {
             last_name: this.state.last_name,
             username: this.state.username,
             password: this.state.password,
-            password_conf: this.state.password_conf
+            password_conf: this.state.password_conf,
+            categories : {}
         };
         console.log('Current State is: ' + JSON.stringify(userInfObj));
         console.log('Current State is: ' + userInfObj);
@@ -212,6 +249,9 @@ export default class SignUp extends React.Component {
                         WelcomesetOpen: true,
                         Welcomeopen: true
                     })
+                 //get id of this user 
+                 
+
                 }).catch(error => {
                     console.log(error)
                     if (error) {
@@ -220,11 +260,66 @@ export default class SignUp extends React.Component {
                     }
                 })
         }
+
+
+       
+
+
+
+
+
+
     }
+  
+    handleCheckboxChecked = event =>{
+        console.log(event.target.value) 
+        console.log(event.target.checked)
+        if (event.target.checked )
+           this.list_new.push(event.target.value)
+           console.log("list : "+this.list_new) 
+        if (!(event.target.checked))
+           this.list_new.splice(this.list_new.indexOf(event.target.value),1)
+           console.log("list after remove : "+this.list_new) 
+    
+    console.log("final list : "+this.list_new)  
+    } 
 
 
+    handleCategoriesSubmit = event =>{
+        
+       this.setState({categories:this.list_new},
+        ()=>{console.log(this.state.categories)}) 
 
+         axios.get("http://localhost:8000/users/user-details/", 
+              { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+                console.log(resp.data.data.id)
+                let userData = resp.data.data
+                this.setState({
+                    newUser_id: resp.data.data['id'],
+                },()=>{console.log("uaser id : "+ this.state.newUser_id)
+
+                let send_data = {
+                    categories: this.state.categories
+                }
+                axios.patch(`http://localhost:8000/users/users/${this.state.newUser_id}/`,
+                send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then(()=>{
+
+                    this.setState({redirect_flag:true},()=>console.log(this.state.redirect_flag))
+
+                })
+            
+            
+            })
+              }) 
+              
+
+    }
     render() {
+        const redirect_flag  = this.state.redirect_flag
+        
+        if (redirect_flag) {
+            return <Redirect to = {{ pathname: "/main-board" }} /> 
+        }
         const { email, first_name, last_name, username, password, password_conf } = this.state;
         const errors = this.validate(this.state.email,
             this.state.first_name,
@@ -372,30 +467,151 @@ export default class SignUp extends React.Component {
                     <h3 id="unstyled-modal-title">Tell us what you 're interested in</h3>
                     <p id="unstyled-modal-description" style={{ margin: '10px' }}>
                         <Container>
-                            <div class="form-check">
-                                <Row>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input> Holidays</Col>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck2"></input> Art</Col>
-                                </Row>
-                                <Row>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck3"></input>Animals</Col>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck4"></input>Design</Col>
-                                </Row>
-                                <Row>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck5"></input>Beauty</Col>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck6"></input>Quotes</Col>
-                                </Row>
-                                <Row>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck8"></input>Event planning</Col>
-                                    <Col style={Category}><input class="form-check-input" type="checkbox" value="" id="defaultCheck7"></input>Home décor</Col>
-                                </Row>
-                            </div>
+                        <Form>
+                                <Row style={{borderStyle: 'hidden'}} >
+                                    <Col>
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                   
+                                    
+                                    <Form.Check type="checkbox"  id="defaultCheck1" onChange={(this.handleCheckboxChecked)}  value='4' />
+                                   <Card.Img src="https://i.pinimg.com/564x/3f/bc/8a/3fbc8a79cce1f6e419918b2d5228a345.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px', filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Holiday</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  </Col>
+                                  <Col>
+                                   
+                                  <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                  
+                                  <Form.Check type="checkbox"  id="defaultCheck2" onChange={(this.handleCheckboxChecked)}  value='5'/>
+                                    
+                                   <Card.Img src="https://i.pinimg.com/736x/91/49/b6/9149b6152aa72265369198e94ccef096.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Art</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  
+                                  </Col>
+                                </Row>  
+
+                                      
+                                <Row style={{borderStyle: 'hidden'}} >
+                                    <Col>
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                    <Form.Check type="checkbox" id="defaultCheck3" onChange={(this.handleCheckboxChecked)}  value='6'/>  
+                                   
+                                    
+                                   <Card.Img src="https://i.pinimg.com/736x/a6/4e/fd/a64efdf5a4be30ba38fd0190f4a51339.jpg" alt="Card image" style={{width:'100px',height:'100px' ,borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Animals</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  </Col>
+                                  <Col>
+                                  
+                                   
+                                  <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                  
+                                  <Form.Check type="checkbox"  id="defaultCheck4" onChange={(this.handleCheckboxChecked)}  value='7'/>
+                                   <Card.Img src="https://i.pinimg.com/564x/1d/f1/27/1df127a58b70a9403d80d6c569e1201a.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Design</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  </Col>
+                                </Row> 
+
+
+
+
+                              
+                                <Row style={{borderStyle: 'hidden'}} >
+                                    <Col>
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                    
+                                    
+                                    <Form.Check type="checkbox"  id="defaultCheck5" onChange={(this.handleCheckboxChecked)}  value='8'/>
+                                   <Card.Img src="https://i.pinimg.com/564x/a9/87/49/a9874905dbc9e8db298aad5b34483679.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Beauty</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  </Col>
+                                  <Col>
+                                     
+                                  <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                  <Form.Check type="checkbox" id="defaultCheck6" onChange={(this.handleCheckboxChecked)}  value='9'/>
+                                 
+                                   <Card.Img src="https://i.pinimg.com/736x/6b/66/9d/6b669da26dcc8c6e388e52365b76f75e.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Quotes</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  
+                                  
+                                  
+                                  </Col>
+                                </Row> 
+
+                               
+
+                                <Row style={{borderStyle: 'hidden'}} >
+                                    <Col>
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                   
+                                    <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='10'/>
+                                   <Card.Img src="https://i.pinimg.com/736x/f6/f6/ca/f6f6ca6bb50be348b0f8fdb87ea3b89b.jpg" alt="Card image" style={{width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Event Planning</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  </Col>
+                                  <Col>
+                                  <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                    
+                                 
+                                  <Form.Check type="checkbox" id="defaultCheck8" onChange={(this.handleCheckboxChecked)}  value='11'/>
+                                   <Card.Img src="https://i.pinimg.com/564x/51/6e/60/516e60bb9c0f64f094e8cd848f6e07b9.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    
+                                   <Card.ImgOverlay>
+                                    
+                                        <Card.Title style={{fontSize:'15px'}}>Home décor</Card.Title>
+                                        </Card.ImgOverlay>
+                                  </Card>
+                                  
+                                  </Col>
+                                </Row> 
+
+
+                               
+                               
+                       
+                               
+                           </Form>
                         </Container>
                     </p>
-                    <Link to='/main-board'>
-                        <Button type="submit" style={RedButton}>Done
+                   
+                        <Button type="submit" style={RedButton} onClick={(this.handleCategoriesSubmit)}>Done
                         </Button>
-                    </Link>
+                   
+                      
+                        
+                   
                 </Box>
             </StyledModal>
 
@@ -413,7 +629,6 @@ export default class SignUp extends React.Component {
 //   };
 
 const SignupButton = {
-
     backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
@@ -472,7 +687,6 @@ const Backdrop = styled('div')`
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-tap-highlight-color: transparent;
 `;
-
 
 const style = {
     display: 'in-line',
