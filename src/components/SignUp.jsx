@@ -54,8 +54,11 @@ export default class SignUp extends React.Component {
                 password_conf: '',
             },
             CanSignup: false,
-            redirect_flag: false
+            redirect_flag: false,
 
+            //caategories
+            holiday_id:'',
+            design_id:''
 
         }
 
@@ -74,7 +77,21 @@ export default class SignUp extends React.Component {
     }
 
 
+   // componentWillMount() { 
 
+     //   let data = {
+       //     name : "Holiday1",
+         //  description : "summer"
+        //}
+
+        //axios.post('http://127.0.0.1:8000/categories/create', data ).then((res)=>{
+
+          // this.setState({holiday_id:res.data.id}) 
+        //})
+
+
+
+    //}
       
     
 
