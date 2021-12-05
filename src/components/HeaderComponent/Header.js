@@ -128,6 +128,7 @@ validate(Pass1,Pass2) {
                 console.log(response)
             // alert(JSON.stringify(response));
                 localStorage.removeItem('Token')
+                localStorage.removeItem('Item')
                 if (response.status === 200) {
                     this.setState({ CanLogout: true });}
             }).catch(error => {
@@ -150,8 +151,13 @@ handleClose(){
 InputChange = event => {
    this.setState({[event.target.name]: event.target.value});
    this.setState({ErrMessage:''})
-    }
+    } 
 
+    handleHome(){
+     
+     localStorage.removeItem('Item')
+
+    }
 async ChangePassword(event) {
     event.preventDefault();
     const errors = this.validate(this.state.Pass1, this.state.Pass2);
@@ -210,7 +216,7 @@ async ChangePassword(event) {
                         </IconButton>
                     </div>
                 <div style={Home}>
-                    <a  href='/main-board' className="h">Home</a>
+                    <a  href='/main-board' className="h" onClick = {this.handleHome} >Home</a>
                 </div>
 
                 <div style={SearchWrapper}>
@@ -229,7 +235,7 @@ async ChangePassword(event) {
                             <NotificationsIcon/>
                         </IconButton>
                         <IconButton>
-                            <Link style={{color:'gray'}} to="/users"><i className="fas fa-users"></i></Link>
+                            <TextsmsIcon/>
                         </IconButton>
                         <IconButton>
                             <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
@@ -297,7 +303,7 @@ async ChangePassword(event) {
                     </div>
                 </div>
             </div>
-        </div>
+        
         )
     }
 }
