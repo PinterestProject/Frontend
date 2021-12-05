@@ -77,9 +77,16 @@ export default class Pin extends Component {
                             <h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
                         </Card.Title>
                         <Card.Text style={{color:'Grey'}}>
-                          <Image src={pin.profile_image} roundedCircle 
-                                style={{width:'40px', height:'40p',marginRight:'10px'}}/>
-                          <a href=""  className="linkProfile"> {pin.username} </a>
+                          { pin.profile_image ? (
+
+                            <Image src={pin.profile_image} roundedCircle 
+                            style={{width:'40px', height:'40p',marginRight:'10px'}}/>
+                            ):
+                            (
+                              <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} roundedCircle 
+                              style={{width:'40px', height:'40p',marginRight:'10px'}}/> 
+                              )}
+                              <Link to={`/user/${pin.user_id}`}  className="linkProfile"> {pin.username} </Link>
                       </Card.Text>
                     </Card.Body>
                    </Card>

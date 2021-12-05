@@ -12,7 +12,7 @@ class Profile extends React.Component {
         this.state = {
             boardsDetail: [],
             boards:[],
-            pins: [],
+            // pins: [],
             height: 0,
             width: 0,
             };
@@ -26,44 +26,100 @@ class Profile extends React.Component {
         axios.get("http://localhost:8000/users/user-details/", 
         { headers: {"Authorization" : localStorage.getItem("Token")} })
         .then((response)=>{
-            console.log(response);
-            // const boardsDetail = response.data.data;
-            // console.log(boardsDetail);
             this.setState({ boardsDetail: response.data.data })
         })
 
-        axios.get("http://localhost:8000/pins/api/v1/user/pins/", 
+
+        axios.get("http://127.0.0.1:8000/pins/api/v1/user/boards/pins/", 
         { headers: {"Authorization" : localStorage.getItem("Token")} })
         .then((response)=>{
-            console.log('pins: ',response.data);
-            // const boardsDetail = response.data.data;
-            // console.log(boardsDetail);
-            this.setState({ pins: response.data })
-        })
+            const boardss = Object.values(response.data);
+              let details = [];
+                details.push(boardss)
+        let data = details[0];
+            this.setState({ boards: data })
 
-        axios.get("http://127.0.0.1:8000/boards/api/v1/boards/", 
-        { headers: {"Authorization" : localStorage.getItem("Token")} })
-        .then((response)=>{
-            console.log('boards: ',response.data);
-            const boards = response.data;
-            this.setState({ boards: boards })
-
-            })
+            })  
     }
+    returnImage = (image)=>{
+        if (image ){
+            return `http://localhost:8000${image}`
+        }
+        return "https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+
+    }
+
     update = () => {
         this.setState({
           height: window.innerHeight,
           width: window.innerWidth
         });
       };
+      renderPins(pins){
+        if(pins.length >= 3){
+            return (
+                <div className='parent' >
+                              <div className=' pin1'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src={this.returnImage(pins[0].attachment)}
+                                    //   src={`http://localhost:8000${pin[0].attachment}`}
+                                    //   src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                    />
+                              </div>
+                              <div className=' pin2'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src={this.returnImage(pins[1].attachment)}
+                                    //   src={`http://localhost:8000${pin.attachment}`}
+                                    //   src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                      />
+                              </div>
+                              <div className=' pin3'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                      src={this.returnImage(pins[2].attachment)}
+                                    //   src={`http://localhost:8000${pin.attachment}`}
+                                      //   src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                        />                              </div>
+                              
+                          </div>
+            )
+        }else
+        {
+            return(
+                <div className='parent' >
+                              <div className=' pin1'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                    //   src={this.returnImage(details.pins[0].attachment)}
+                                    //   src={`http://localhost:8000${pin[0].attachment}`}
+                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                    />
+                              </div>
+                              <div className=' pin2'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                    //   src={this.returnImage(details.pins[1].attachment)}
+                                    //   src={`http://localhost:8000${pin.attachment}`}
+                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                      />
+                              </div>
+                              <div className=' pin3'>
+                                  <img className='img-fluid'
+                                      style={boardImg}
+                                    //   src={this.returnImage(array[2].attachment)}
+                                    //   src={`http://localhost:8000${pin.attachment}`}
+                                        src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" 
+                                        />                              </div>
+                              
+                          </div>
+            )
+        }
+      }
     render() {
-        // console.log(this.state.boardsDetail);
         const personData = this.state.boardsDetail;
         const  windowWidth  = this.state.width; 
-        
-        // console.log(personData);
-        // if(!this.state.ready)
-        //  return null;
         return <div>
             <Header />
 
@@ -73,7 +129,7 @@ class Profile extends React.Component {
                             <i class="fas fa-plus"></i>
                         </Link>
                     <div className='col-12 m-auto text-center d-flex justify-content-center align-items-center'>
-                            {/* {this.state.boards.map((details)=>( */}
+                       
                                 <div className='mt-2' >
                                 {personData.cover_image ? (
                                     <div style={{ width: '800px',
@@ -103,7 +159,7 @@ class Profile extends React.Component {
                                                 top:'25%',
                                                 left:`${(windowWidth/2)-210}px`,
                                             }} 
-                                            src={'http://localhost:8000'+personData.profile_image} 
+                                            src={`http://localhost:8000${personData.profile_image}`} 
                                             />
                                 ):
                                 (
@@ -122,7 +178,7 @@ class Profile extends React.Component {
                                     <span >@{personData.username}</span>
                                     <span style={{ display: 'block' }}>{personData.bio}</span>
                                 </div>
-                            {/* ))} */}
+                     
 
                     </div>
                     <div className='col-12 text-center mb-5'>
@@ -134,34 +190,16 @@ class Profile extends React.Component {
                         </IconButton>
                     </div>
                     
-                    {this.state.boards.map((details)=>(
-                            
-                          <Link to={'/board-details/'+details.id} 
+                    {this.state.boards.map((details, key)=>{
+                return <Link key={key} to={'/board-details/'+details.id} 
                             className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board ' 
                             style={{textDecoration: 'none', color:'#000'}} >
-                          <div className='parent' >
-                              <div className=' pin1'>
-                                  <img className='img-fluid'
-                                      style={boardImg}
-                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                              </div>
-                              <div className=' pin2'>
-                                  <img className='img-fluid'
-                                      style={boardImg}
-                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                              </div>
-                              <div className=' pin3'>
-                                  <img className='img-fluid'
-                                      style={boardImg}
-                                      src="https://images.unsplash.com/photo-1637439011095-8bd0bebc7223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-                              </div>
-                              
-                          </div>
+                                {this.renderPins(details.pins)}
                           <h6 >{details.name}</h6>
-                          {/* <span >{details.pins.length+" Pins"}</span> */}
+                          <span >{details.pins.length+" Pins"}</span>
                       </Link>  
                      
-                    ))}
+                    })}
 
                 </div>
             </div>

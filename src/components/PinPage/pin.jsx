@@ -227,7 +227,7 @@ export default class Pin extends Component {
                                         </div>
                                         <button className='btn'>
                                             <svg fill='grey' 
-                                                class="gUZ B9u U9O kVc" 
+                                                className="gUZ B9u U9O kVc" 
                                                 height="16" width="16" 
                                                 viewBox="0 0 24 24" 
                                                 aria-label="like icon" 
@@ -238,7 +238,7 @@ export default class Pin extends Component {
                                         </button>
                                         <button className='btn'>
                                             <svg fill='grey' 
-                                                class="Hn_ gUZ B9u U9O kVc" 
+                                                className="Hn_ gUZ B9u U9O kVc" 
                                                 height="16" width="16" 
                                                 viewBox="0 0 24 24" 
                                                 aria-hidden="true" 

@@ -109,13 +109,13 @@ class BoardDetalis extends React.Component {
                       <Image src={`http://127.0.0.1:8000${pin.profile_image}`} 
                             roundedCircle 
                             style={{ width: '30px', height: '30px', marginRight: '10px' }} />
-                            ):
-                            (
-                              <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} 
-                            roundedCircle 
-                            style={{ width: '30px', height: '30px', marginRight: '10px' }} />
-                            )}
-                            <Link to="/new-pin" style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
+                      ):
+                      (
+                        <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} 
+                      roundedCircle 
+                      style={{ width: '30px', height: '30px', marginRight: '10px' }} />
+                      )}
+                            <Link to={`/user/${pin.user_id}`} style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
                       </Card.Text>
                   </Card.Body>
                 </Card>
