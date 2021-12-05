@@ -115,3 +115,12 @@
     font-size: 60px;
     font-weight: 600;
 }
+
+.about
+{
+    height: 93vh;
+    background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+    /* background-image: url('/about2.jpg'); */
+}

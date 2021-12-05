@@ -297,7 +297,6 @@ async ChangePassword(event) {
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 }

@@ -38,7 +38,7 @@ export default class Pin extends Component {
   shuffle = (array) => {
     let currentIndex = array.length, randomIndex;
 
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
       [array[currentIndex], array[randomIndex]] = [
@@ -48,53 +48,47 @@ export default class Pin extends Component {
     return array;
   }
   render() {
-    let backurl={data:15}
+    
     const SearchItem = localStorage.getItem('Item')
     return (
-      
-      
-      <div>
-        <Link to='/new-pin'>
-        <Button variant="light" style={plusButton} >+</Button>
-        </Link>
-        <Button variant="light" style={markButton}>?</Button>
-        <Masonry
-          breakpointCols={this.state.breakpointObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
-
-        >
-
-{this.shuffle(this.state.pins).filter((pin)=>{
-                        if (SearchItem == ''){
+            <div>
+              <Link to='/new-pin'>
+                  <Button variant="light" style={plusButton} >+</Button>
+              </Link>
+              <Link to='/about' className="l" >
+                  <Button variant="light" style={markButton}>?</Button>
+              </Link>
+              <Masonry breakpointCols={this.state.breakpointObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column" >
+      {this.shuffle(this.state.pins).filter((pin)=>{
+                        if (SearchItem == '' || !SearchItem){
                             return pin
                         }else if (pin.title.toLowerCase().includes(SearchItem.toLowerCase())){
                             return pin
                         }
                     }).map((pin)=> 
                     <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
-                    <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
-                    <Button variant="danger" 
-                            style={saveButton} 
-                            className="btn" 
-                            size="lg">Save</Button>
-                     <Card.Body>
-                       <Card.Title><h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
-                       </Card.Title>
-                      <Card.Text style={{color:'Grey'}}>
-                      <Image src={pin.profile_image} roundedCircle style={{width:'40px', height:'40p',marginRight:'10px'}}/>
-                      <a href=""  className="linkProfile"> {pin.username} </a>
-                    </Card.Text>
-                  </Card.Body>
+                      <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
+                      <Button variant="danger" 
+                              style={saveButton} 
+                              className="btn" 
+                              size="lg">Save</Button>
+                      <Card.Body>
+                        <Card.Title>
+                            <h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
+                        </Card.Title>
+                        <Card.Text style={{color:'Grey'}}>
+                          <Image src={pin.profile_image} roundedCircle 
+                                style={{width:'40px', height:'40p',marginRight:'10px'}}/>
+                          <a href=""  className="linkProfile"> {pin.username} </a>
+                      </Card.Text>
+                    </Card.Body>
                    </Card>
-                    )}
-
+                  )}
         </Masonry>
       </div>
 
     )
   }
-
 };
 
 

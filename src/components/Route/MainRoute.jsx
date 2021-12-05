@@ -1,44 +1,58 @@
 import React from "react";
 import {
     BrowserRouter as Router,
-    Route,
+    Route, Redirect, Switch
 
 } from "react-router-dom";
-import CreateBoard from "../CreateBoard/create";
+
+import MainPage from "../MainPageComponent/MainPage";
+import Header from '../HeaderComponent/Header';
 import Test from "../LandingPage/test";
 import Mainboard from "../Mainboard";
+import SignUp from '../SignUp';
+// Moved createboard from createboard to Board component and remove createboard component by khalil
+import CreateBoard from "../BoardComponent/create";
+import BoardDetalis from '../BoardComponent/Board_details';
+
 import CreatePin from "../PinPage/createPin";
 import Pin from "../PinPage/pin";
 import Profile from "../ProfileComponent/Profile";
-import UserDetails from "../ProfileComponent/userDetails";
 import Form from "../EditProfileComponents/Form";
-import MainPage from "../MainPageComponent/MainPage";
-import Header from '../HeaderComponent/Header';
-import SignUp from '../SignUp';
-import BoardDetalis from '../BoardComponent/Board_details';
 import AllUsers from '../ProfileComponent/allUsers';
+import UserDetails from "../ProfileComponent/userDetails";
 
+
+import About from '../LandingPage/About';
+import Notfound from '../home/notFound';
 
 export default function App() {
     return (
 
-        <div>
-            <Router>
+        <Router>
+            <Switch>
                 <Route path="/" exact component={Test} />
-                <Route path="/signup" exact component={SignUp} />
+                <Route path="/notfound" component={Notfound} />
+                
+                <Route path="/about"  component={About} />
+                <Route path="/main"  component={MainPage} />
+                <Route path="/signup"  component={SignUp} />
                 <Route path="/main-board" exact component={Mainboard} />
-                <Route path="/profile" exact component={Profile} />
-                <Route path="/user/:id" exact component={UserDetails} />
-                <Route path="/users" exact component={AllUsers} />
-                <Route path="/new-pin" exact component={CreatePin} />
-                <Route path="/pin-id" exact component={Pin} />
-                <Route path="/new-board" exact component={CreateBoard} />
-                <Route path="/main" exact component={MainPage} />
-                <Route path="/header" exact component={Header} />
-                <Route path="/board-details/:id" exact component={BoardDetalis} />
-                <Route path="/edit-profile" exact component={Form} />
-            </Router>
-        </div>
+
+                <Route path="/profile"  component={Profile} />
+                <Route path="/edit-profile"  component={Form} />
+                <Route path="/user/:id"  component={UserDetails} />
+                <Route path="/users"  component={AllUsers} />
+
+                <Route path="/new-pin"  component={CreatePin} />
+                <Route path="/pin-id/:id"  component={Pin} />
+
+                <Route path="/new-board"  component={CreateBoard} />
+                <Route path="/board-details/:id"  component={BoardDetalis} />
+                
+                <Route path="/header"  component={Header} />
+                <Redirect to="/notfound" />
+            </Switch>
+        </Router>
     );
 }
 

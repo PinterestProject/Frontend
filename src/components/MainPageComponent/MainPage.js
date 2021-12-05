@@ -6,7 +6,7 @@ import ModalUnstyled from '@mui/core/ModalUnstyled';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import './MainPage.css';
-import { Redirect} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import SignUp from '../SignUp';
 
 {/* 
@@ -262,10 +262,11 @@ export default class MainPage extends React.Component{
                 <div style={IconWrapper}>
                         <IconButton >
                             <div style={Home} >
-                                <a href='/' className="l">About</a>
+                                <Link to='/about' className="l" >About</Link>
                             </div>
                         </IconButton>
-                        <IconButton>
+                        {/* Commented By Khalil */}
+                        {/* <IconButton>
                             <div style={Home}>
                                 <a href='/' className="l">Business</a>
                             </div>
@@ -274,7 +275,7 @@ export default class MainPage extends React.Component{
                             <div style={Home}>
                                 <a href='/' className="l">Press</a>
                             </div>
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton onClick={this.LoginhandleOpen}>
                             <div style={Login}>
                                 <a  style={{textDecoration: 'none', fontSize: '14px',fontWeight: 'bold', color: 'white' }}>Log in</a>

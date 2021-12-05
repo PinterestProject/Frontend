@@ -41,7 +41,8 @@ export default class CreateBoard extends Component {
             is_public:!this.state.is_public
         }
 
-        axios.post("http://127.0.0.1:8000/boards/api/v1/boards/",send_data, { headers: {"Authorization" : localStorage.getItem("Token")} }).then((response)=>{
+        axios.post("http://127.0.0.1:8000/boards/api/v1/boards/",send_data, 
+            { headers: {"Authorization" : localStorage.getItem("Token")} }).then((response)=>{
             console.log(response)
             
             this.setState({

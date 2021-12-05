@@ -126,13 +126,13 @@ export default class SignUp extends React.Component {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
             errors.email = 'That doesnot look like an email address.';
 
-        if (this.state.touched.first_name && first_name.length == '')
+        if (this.state.touched.first_name && first_name.length === '')
             errors.first_name = 'You must wirte your First name.';
 
-        if (this.state.touched.last_name && last_name.length == '')
+        if (this.state.touched.last_name && last_name.length === '')
             errors.last_name = 'You must wirte your Last name.';
 
-        if (this.state.touched.username && username.length == '')
+        if (this.state.touched.username && username.length === '')
 
             errors.username = 'You must wirte your account name.';
 

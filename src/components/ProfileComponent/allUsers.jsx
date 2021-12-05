@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Header from '../HeaderComponent/Header';
-import { Link , useParams }  from 'react-router-dom';
+import { Link }  from 'react-router-dom';
 
 class AllUsers extends React.Component {
 
@@ -38,11 +38,11 @@ class AllUsers extends React.Component {
                             {details.profile_image ? (
                                         <img src={details.profile_image} 
                                             className="img-fluid rounded-start card-img-top" 
-                                            alt="..."></img>
+                                            alt="img"></img>
                                     ):(
                                         <img src='https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png' 
                                             className="img-fluid rounded-start card-img-top" 
-                                            alt="..."></img>
+                                            alt="img"></img>
                                     )}
                                 {/* <img src={details.profile_image} class="card-img-top" alt="..."></img> */}
                                 <div className="card-body">
