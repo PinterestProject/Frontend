@@ -127,6 +127,7 @@ validate(Pass1,Pass2) {
                 console.log(response)
             // alert(JSON.stringify(response));
                 localStorage.removeItem('Token')
+                localStorage.removeItem('Item')
                 if (response.status === 200) {
                     this.setState({ CanLogout: true });}
             }).catch(error => {
@@ -157,6 +158,8 @@ InputChange = event => {
    
        }
 
+
+    }
 async ChangePassword(event) {
     event.preventDefault();
     const errors = this.validate(this.state.Pass1, this.state.Pass2);
@@ -234,7 +237,7 @@ async ChangePassword(event) {
                             <NotificationsIcon/>
                         </IconButton>
                         <IconButton>
-                            <Link style={{color:'gray'}} to="/users"><i className="fas fa-users"></i></Link>
+                            <TextsmsIcon/>
                         </IconButton>
                         <IconButton>
                             <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
@@ -302,6 +305,7 @@ async ChangePassword(event) {
                     </div>
                 </div>
             </div>
+
         )
     }
 }
