@@ -433,7 +433,7 @@ export default class SignUp extends React.Component {
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
                                         <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                        <Form.Check type="checkbox"  id="defaultCheck1" onChange={(this.handleCheckboxChecked)}  value='4' />
+                                        <Form.Check type="checkbox"  id="defaultCheck1" onChange={(this.handleCheckboxChecked)}  value='1' />
                                         <Card.Img src="https://i.pinimg.com/564x/3f/bc/8a/3fbc8a79cce1f6e419918b2d5228a345.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px', filter: 'brightness(70%)'}} />
                                         <Card.ImgOverlay>
                                                 <Card.Title style={{fontSize:'15px'}}>Holiday</Card.Title>
@@ -442,7 +442,7 @@ export default class SignUp extends React.Component {
                                   </Col>
                                   <Col>
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                    <Form.Check type="checkbox"  id="defaultCheck2" onChange={(this.handleCheckboxChecked)}  value='5'/>
+                                    <Form.Check type="checkbox"  id="defaultCheck2" onChange={(this.handleCheckboxChecked)}  value='2'/>
                                     <Card.Img src="https://i.pinimg.com/736x/91/49/b6/9149b6152aa72265369198e94ccef096.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                     <Card.ImgOverlay>
                                             <Card.Title style={{fontSize:'15px'}}>Art</Card.Title>
@@ -454,7 +454,7 @@ export default class SignUp extends React.Component {
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
                                         <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                            <Form.Check type="checkbox" id="defaultCheck3" onChange={(this.handleCheckboxChecked)}  value='6'/>  
+                                            <Form.Check type="checkbox" id="defaultCheck3" onChange={(this.handleCheckboxChecked)}  value='3'/>  
                                             <Card.Img src="https://i.pinimg.com/736x/a6/4e/fd/a64efdf5a4be30ba38fd0190f4a51339.jpg" alt="Card image" style={{width:'100px',height:'100px' ,borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                             <Card.ImgOverlay>
                                                     <Card.Title style={{fontSize:'15px'}}>Animals</Card.Title>
@@ -463,7 +463,7 @@ export default class SignUp extends React.Component {
                                   </Col>
                                   <Col>                                  
                                     <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                    <Form.Check type="checkbox"  id="defaultCheck4" onChange={(this.handleCheckboxChecked)}  value='7'/>
+                                    <Form.Check type="checkbox"  id="defaultCheck4" onChange={(this.handleCheckboxChecked)}  value='4'/>
                                             <Card.Img src="https://i.pinimg.com/564x/1d/f1/27/1df127a58b70a9403d80d6c569e1201a.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                             <Card.ImgOverlay>
                                                 <Card.Title style={{fontSize:'15px'}}>Design</Card.Title>
@@ -475,7 +475,7 @@ export default class SignUp extends React.Component {
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
                                     <Card  className=" text-white" style={{borderStyle:'hidden'}}>                                    
-                                    <Form.Check type="checkbox"  id="defaultCheck5" onChange={(this.handleCheckboxChecked)}  value='8'/>
+                                    <Form.Check type="checkbox"  id="defaultCheck5" onChange={(this.handleCheckboxChecked)}  value='5'/>
                                         <Card.Img src="https://i.pinimg.com/564x/a9/87/49/a9874905dbc9e8db298aad5b34483679.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                                 <Card.ImgOverlay>
                                                         <Card.Title style={{fontSize:'15px'}}>Beauty</Card.Title>
@@ -485,7 +485,7 @@ export default class SignUp extends React.Component {
                                   <Col>
                                      
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                  <Form.Check type="checkbox" id="defaultCheck6" onChange={(this.handleCheckboxChecked)}  value='9'/>
+                                  <Form.Check type="checkbox" id="defaultCheck6" onChange={(this.handleCheckboxChecked)}  value='6'/>
                                    <Card.Img src="https://i.pinimg.com/736x/6b/66/9d/6b669da26dcc8c6e388e52365b76f75e.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                    <Card.ImgOverlay>
                                         <Card.Title style={{fontSize:'15px'}}>Quotes</Card.Title>
@@ -497,7 +497,7 @@ export default class SignUp extends React.Component {
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
                                     <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                    <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='10'/>
+                                    <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='7'/>
                                    <Card.Img src="https://i.pinimg.com/736x/f6/f6/ca/f6f6ca6bb50be348b0f8fdb87ea3b89b.jpg" alt="Card image" style={{width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                    <Card.ImgOverlay>
                                         <Card.Title style={{fontSize:'15px'}}>Event Planning</Card.Title>
@@ -508,7 +508,7 @@ export default class SignUp extends React.Component {
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
                                     
                                  
-                                  <Form.Check type="checkbox" id="defaultCheck8" onChange={(this.handleCheckboxChecked)}  value='11'/>
+                                  <Form.Check type="checkbox" id="defaultCheck8" onChange={(this.handleCheckboxChecked)}  value='8'/>
                                    <Card.Img src="https://i.pinimg.com/564x/51/6e/60/516e60bb9c0f64f094e8cd848f6e07b9.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                    <Card.ImgOverlay>
                                         <Card.Title style={{fontSize:'15px'}}>Home décor</Card.Title>

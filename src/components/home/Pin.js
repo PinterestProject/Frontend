@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 
 export default class Pin extends Component {
+  listPins=[]
   constructor(props) {
     super(props);
     this.state = {
@@ -22,31 +23,78 @@ export default class Pin extends Component {
 
       },
       pins: [],
+      categories_flag: false
     }
   };
 
-  componentDidMount() {
-    axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
-      { headers: { "Authorization": localStorage.getItem("Token") } })
-      .then(response => {
-          console.log(response.data)
-          this.setState({ pins: response.data })
-          console.log(this.pins)
-      })
+  componentWillMount() {
+    //check if user has categories
 
+    axios.get("http://localhost:8000/users/user-details/", 
+    { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+      console.log(resp.data)
+      let userData = resp.data.data
+      let cate = userData.categories
+      console.log("cate::"+cate)
+      console.log("type"+ typeof cate)
+      // console.log(cate[0])
+      if (cate.length === 0 ){
+         this.setState({categories_flag:false},()=> console.log("flag = false"))
+        
+      } else{
+        this.setState({categories_flag:true},()=> console.log("flag = true"))
+      }
+
+
+      if (this.state.categories_flag){
+        //user has categories
+      
+        let fp = cate.toString()
+        console.log("data"+fp)
+        let data ={
+          categories:fp
+        }
+       
+        axios.post('http://localhost:8000/pins/api/v1/categories/pins/',data)
+        .then((response)=>{
+
+          this.listPins = response.data
+
+          this.setState({pins:this.listPins},()=>console.log("pins : "+this.state.pins))
+
+        })
+       
+
+     
+      } 
+      else{
+        axios.get('http://127.0.0.1:8000/pins/api/v1/pins/', 
+        { headers: { "Authorization": localStorage.getItem("Token") } })
+        .then(response => {
+            console.log(response.data)
+            this.setState({ pins: response.data })
+            console.log(this.pins)
+           })
+      }
+    })
+
+  
+
+  
+
+}
+shuffle = (array) => {
+  let currentIndex = array.length, randomIndex;
+
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
   }
-  shuffle = (array) => {
-    let currentIndex = array.length, randomIndex;
 
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-  }
+  return array;
+}
   render() {
     
     const SearchItem = localStorage.getItem('Item')
@@ -67,28 +115,30 @@ export default class Pin extends Component {
                         }
                     }).map((pin)=> 
                     <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
-                      <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {pin.attachment}/>
-                      <Button variant="danger" 
-                              style={saveButton} 
-                              className="btn" 
-                              size="lg">Save</Button>
-                      <Card.Body>
-                        <Card.Title>
-                            <h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
-                        </Card.Title>
-                        <Card.Text style={{color:'Grey'}}>
-                          { pin.profile_image ? (
+                        <Link className="my-masonry-grid_column" to={{pathname: "/pin-id", query: {pin}}}>
+                          <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {"http://127.0.0.1:8000"+pin.attachment}/>
+                        </Link>                      
+                        <Button variant="danger" 
+                                  style={saveButton} 
+                                  className="btn" 
+                                  size="lg">Save</Button>
+                          <Card.Body>
+                            <Card.Title>
+                                <h6 style ={{fontWeight: 'bold', display:'inline'}}>{pin.title}</h6>
+                            </Card.Title>
+                            <Card.Text style={{color:'Grey'}}>
+                              { pin.profile_image ? (
 
-                            <Image src={pin.profile_image} roundedCircle 
-                            style={{width:'40px', height:'40p',marginRight:'10px'}}/>
-                            ):
-                            (
-                              <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} roundedCircle 
-                              style={{width:'40px', height:'40p',marginRight:'10px'}}/> 
-                              )}
-                              <Link to={`/user/${pin.user_id}`}  className="linkProfile"> {pin.username} </Link>
-                      </Card.Text>
-                    </Card.Body>
+                                <Image src={pin.profile_image} roundedCircle 
+                                style={{width:'40px', height:'40px',marginRight:'10px'}}/>
+                                ):
+                                (
+                                  <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} roundedCircle 
+                                  style={{width:'40px', height:'40p',marginRight:'10px'}}/> 
+                                  )}
+                                  <Link to={`/user/${pin.user_id}`}  className="linkProfile"> {pin.username} </Link>
+                          </Card.Text>
+                        </Card.Body>
                    </Card>
                   )}
         </Masonry>
