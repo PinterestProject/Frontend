@@ -3,7 +3,6 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FaceIcon from '@mui/icons-material/Face'; 
 import './Header.css';
@@ -151,6 +150,12 @@ InputChange = event => {
    this.setState({[event.target.name]: event.target.value});
    this.setState({ErrMessage:''})
     }
+    
+    handleHome(){
+     
+        localStorage.removeItem('Item')
+   
+       }
 
 async ChangePassword(event) {
     event.preventDefault();
@@ -210,7 +215,7 @@ async ChangePassword(event) {
                         </IconButton>
                     </div>
                 <div style={Home}>
-                    <a  href='/main-board' className="h">Home</a>
+                    <a  href='/main-board' className="h" onClick = {this.handleHome} >Home</a>
                 </div>
 
                 <div style={SearchWrapper}>

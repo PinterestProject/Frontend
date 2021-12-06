@@ -33,11 +33,11 @@ class Profile extends React.Component {
         axios.get("http://127.0.0.1:8000/pins/api/v1/user/boards/pins/", 
         { headers: {"Authorization" : localStorage.getItem("Token")} })
         .then((response)=>{
-            const boardss = Object.values(response.data);
-              let details = [];
+                const boardss = Object.values(response.data);
+                let details = [];
                 details.push(boardss)
-        let data = details[0];
-            this.setState({ boards: data })
+                let data = details[0];
+                this.setState({ boards: data })
 
             })  
     }
