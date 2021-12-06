@@ -32,11 +32,11 @@ export default class Pin extends Component {
 
     axios.get("http://localhost:8000/users/user-details/", 
     { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
-      console.log(resp.data)
+      // console.log(resp.data)
       let userData = resp.data.data
       let cate = userData.categories
-      console.log("cate::"+cate)
-      console.log("type"+ typeof cate)
+      // console.log("cate::"+cate)
+      // console.log("type"+ typeof cate)
       // console.log(cate[0])
       if (cate.length === 0 ){
          this.setState({categories_flag:false},()=> console.log("flag = false"))
@@ -115,7 +115,7 @@ shuffle = (array) => {
                         }
                     }).map((pin)=> 
                     <Card style={{  borderStyle:'hidden'}} Key={pin.id}>
-                        <Link className="my-masonry-grid_column" to={{pathname: "/pin-id", query: {pin}}}>
+                        <Link className="my-masonry-grid_column" to={"/pin-id/"+pin.id}>
                           <Card.Img style={{borderRadius:'16px',cursor: 'zoom-in'}} variant="top" src= {"http://127.0.0.1:8000"+pin.attachment}/>
                         </Link>                      
                         <Button variant="danger" 
