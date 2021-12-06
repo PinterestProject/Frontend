@@ -3,7 +3,6 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FaceIcon from '@mui/icons-material/Face'; 
 import './Header.css';
@@ -151,11 +150,14 @@ handleClose(){
 InputChange = event => {
    this.setState({[event.target.name]: event.target.value});
    this.setState({ErrMessage:''})
-    } 
-
+    }
+    
     handleHome(){
      
-     localStorage.removeItem('Item')
+        localStorage.removeItem('Item')
+   
+       }
+
 
     }
 async ChangePassword(event) {
@@ -303,7 +305,7 @@ async ChangePassword(event) {
                     </div>
                 </div>
             </div>
-        
+
         )
     }
 }

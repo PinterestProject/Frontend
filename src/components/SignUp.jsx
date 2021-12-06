@@ -14,9 +14,10 @@ import { getTableHeadUtilityClass } from '@mui/material';
 import { Redirect, Route } from 'react-router'
 
 export default class SignUp extends React.Component {
-    
+
     list_new=[]
-   
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -26,6 +27,7 @@ export default class SignUp extends React.Component {
             Welcomeopen: false,
             WelcomesetOpen: false,
             categories:[],
+
             email: '',
             first_name: '',
             last_name: '',
@@ -164,13 +166,15 @@ export default class SignUp extends React.Component {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
             errors.email = 'That doesnot look like an email address.';
 
-        if (this.state.touched.first_name && first_name.length == '')
+        if (this.state.touched.first_name && first_name.length === '')
             errors.first_name = 'You must wirte your First name.';
 
-        if (this.state.touched.last_name && last_name.length == '')
+        if (this.state.touched.last_name && last_name.length === '')
             errors.last_name = 'You must wirte your Last name.';
 
-        if (this.state.touched.username && username.length == '')
+        if (this.state.touched.username && username.length === '')
+
+
             errors.username = 'You must wirte your account name.';
 
         if (this.state.touched.password && password.length < 4)
@@ -215,7 +219,8 @@ export default class SignUp extends React.Component {
 
         else
             this.setState({ signupFlag: true });
-        console.log('flag before send', this.state.signupFlag);
+            console.log('flag before send', this.state.signupFlag);
+
 
         var userInfObj = {
             email: this.state.email,
@@ -266,7 +271,45 @@ export default class SignUp extends React.Component {
 
 
 
+    handleCheckboxChecked = event =>{
+        console.log(event.target.value) 
+        console.log(event.target.checked)
+        if (event.target.checked )
+           this.list_new.push(event.target.value)
+           console.log("list : "+this.list_new) 
+        if (!(event.target.checked))
+           this.list_new.splice(this.list_new.indexOf(event.target.value),1)
+           console.log("list after remove : "+this.list_new) 
+    
+        console.log("final list : "+this.list_new)  
+    } 
 
+
+    handleCategoriesSubmit = event =>{
+        
+       this.setState({categories:this.list_new},
+        ()=>{console.log(this.state.categories)}) 
+
+         axios.get("http://localhost:8000/users/user-details/", 
+              { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+                console.log(resp.data.data.id)
+                let userData = resp.data.data
+                this.setState({
+                    newUser_id: resp.data.data['id'],
+                },()=>{console.log("uaser id : "+ this.state.newUser_id)
+
+                let send_data = {
+                    categories: this.state.categories
+                }
+                axios.patch(`http://localhost:8000/users/users/${this.state.newUser_id}/`,
+                send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then(()=>{
+
+                    this.setState({redirect_flag:true},()=>console.log(this.state.redirect_flag))
+
+                })
+            })
+        }) 
+    }
 
 
     }
@@ -470,113 +513,76 @@ export default class SignUp extends React.Component {
                         <Form>
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
-                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                   
-                                    
-                                    <Form.Check type="checkbox"  id="defaultCheck1" onChange={(this.handleCheckboxChecked)}  value='4' />
-                                   <Card.Img src="https://i.pinimg.com/564x/3f/bc/8a/3fbc8a79cce1f6e419918b2d5228a345.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px', filter: 'brightness(70%)'}} />
-                                    
-                                   <Card.ImgOverlay>
-                                    
-                                        <Card.Title style={{fontSize:'15px'}}>Holiday</Card.Title>
-                                        </Card.ImgOverlay>
-                                  </Card>
+                                        <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                        <Form.Check type="checkbox"  id="defaultCheck1" onChange={(this.handleCheckboxChecked)}  value='1' />
+                                        <Card.Img src="https://i.pinimg.com/564x/3f/bc/8a/3fbc8a79cce1f6e419918b2d5228a345.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px', filter: 'brightness(70%)'}} />
+                                        <Card.ImgOverlay>
+                                                <Card.Title style={{fontSize:'15px'}}>Holiday</Card.Title>
+                                                </Card.ImgOverlay>
+                                        </Card>
                                   </Col>
                                   <Col>
-                                   
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                  
-                                  <Form.Check type="checkbox"  id="defaultCheck2" onChange={(this.handleCheckboxChecked)}  value='5'/>
-                                    
-                                   <Card.Img src="https://i.pinimg.com/736x/91/49/b6/9149b6152aa72265369198e94ccef096.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
-                                   <Card.ImgOverlay>
-                                    
-                                        <Card.Title style={{fontSize:'15px'}}>Art</Card.Title>
-                                        </Card.ImgOverlay>
-                                  </Card>
-                                  
+                                    <Form.Check type="checkbox"  id="defaultCheck2" onChange={(this.handleCheckboxChecked)}  value='2'/>
+                                    <Card.Img src="https://i.pinimg.com/736x/91/49/b6/9149b6152aa72265369198e94ccef096.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                    <Card.ImgOverlay>
+                                            <Card.Title style={{fontSize:'15px'}}>Art</Card.Title>
+                                            </Card.ImgOverlay>
+                                    </Card>
                                   </Col>
                                 </Row>  
 
-                                      
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
-                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                    <Form.Check type="checkbox" id="defaultCheck3" onChange={(this.handleCheckboxChecked)}  value='6'/>  
-                                   
-                                    
-                                   <Card.Img src="https://i.pinimg.com/736x/a6/4e/fd/a64efdf5a4be30ba38fd0190f4a51339.jpg" alt="Card image" style={{width:'100px',height:'100px' ,borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
-                                   <Card.ImgOverlay>
-                                    
-                                        <Card.Title style={{fontSize:'15px'}}>Animals</Card.Title>
-                                        </Card.ImgOverlay>
-                                  </Card>
+                                        <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                            <Form.Check type="checkbox" id="defaultCheck3" onChange={(this.handleCheckboxChecked)}  value='3'/>  
+                                            <Card.Img src="https://i.pinimg.com/736x/a6/4e/fd/a64efdf5a4be30ba38fd0190f4a51339.jpg" alt="Card image" style={{width:'100px',height:'100px' ,borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                            <Card.ImgOverlay>
+                                                    <Card.Title style={{fontSize:'15px'}}>Animals</Card.Title>
+                                            </Card.ImgOverlay>
+                                        </Card>
                                   </Col>
-                                  <Col>
-                                  
-                                   
-                                  <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                  
-                                  <Form.Check type="checkbox"  id="defaultCheck4" onChange={(this.handleCheckboxChecked)}  value='7'/>
-                                   <Card.Img src="https://i.pinimg.com/564x/1d/f1/27/1df127a58b70a9403d80d6c569e1201a.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
-                                   <Card.ImgOverlay>
-                                    
-                                        <Card.Title style={{fontSize:'15px'}}>Design</Card.Title>
-                                        </Card.ImgOverlay>
-                                  </Card>
+                                  <Col>                                  
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
+                                    <Form.Check type="checkbox"  id="defaultCheck4" onChange={(this.handleCheckboxChecked)}  value='4'/>
+                                            <Card.Img src="https://i.pinimg.com/564x/1d/f1/27/1df127a58b70a9403d80d6c569e1201a.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                            <Card.ImgOverlay>
+                                                <Card.Title style={{fontSize:'15px'}}>Design</Card.Title>
+                                            </Card.ImgOverlay>
+                                    </Card>
                                   </Col>
                                 </Row> 
 
-
-
-
-                              
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
-                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                    
-                                    
-                                    <Form.Check type="checkbox"  id="defaultCheck5" onChange={(this.handleCheckboxChecked)}  value='8'/>
-                                   <Card.Img src="https://i.pinimg.com/564x/a9/87/49/a9874905dbc9e8db298aad5b34483679.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
-                                   <Card.ImgOverlay>
-                                    
-                                        <Card.Title style={{fontSize:'15px'}}>Beauty</Card.Title>
-                                        </Card.ImgOverlay>
-                                  </Card>
+                                    <Card  className=" text-white" style={{borderStyle:'hidden'}}>                                    
+                                    <Form.Check type="checkbox"  id="defaultCheck5" onChange={(this.handleCheckboxChecked)}  value='5'/>
+                                        <Card.Img src="https://i.pinimg.com/564x/a9/87/49/a9874905dbc9e8db298aad5b34483679.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
+                                                <Card.ImgOverlay>
+                                                        <Card.Title style={{fontSize:'15px'}}>Beauty</Card.Title>
+                                                </Card.ImgOverlay>
+                                        </Card>
+
                                   </Col>
                                   <Col>
                                      
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                  <Form.Check type="checkbox" id="defaultCheck6" onChange={(this.handleCheckboxChecked)}  value='9'/>
-                                 
+                                  <Form.Check type="checkbox" id="defaultCheck6" onChange={(this.handleCheckboxChecked)}  value='6'/>
                                    <Card.Img src="https://i.pinimg.com/736x/6b/66/9d/6b669da26dcc8c6e388e52365b76f75e.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
                                    <Card.ImgOverlay>
-                                    
                                         <Card.Title style={{fontSize:'15px'}}>Quotes</Card.Title>
                                         </Card.ImgOverlay>
                                   </Card>
-                                  
-                                  
-                                  
-                                  </Col>
+                                </Col>
                                 </Row> 
-
-                               
-
+ 
                                 <Row style={{borderStyle: 'hidden'}} >
                                     <Col>
                                     <Card  className=" text-white" style={{borderStyle:'hidden'}}>
-                                   
-                                    <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='10'/>
+                                    <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='7'/>
                                    <Card.Img src="https://i.pinimg.com/736x/f6/f6/ca/f6f6ca6bb50be348b0f8fdb87ea3b89b.jpg" alt="Card image" style={{width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
                                    <Card.ImgOverlay>
-                                    
+
                                         <Card.Title style={{fontSize:'15px'}}>Event Planning</Card.Title>
                                         </Card.ImgOverlay>
                                   </Card>
@@ -585,36 +591,24 @@ export default class SignUp extends React.Component {
                                   <Card  className=" text-white" style={{borderStyle:'hidden'}}>
                                     
                                  
-                                  <Form.Check type="checkbox" id="defaultCheck8" onChange={(this.handleCheckboxChecked)}  value='11'/>
+                                  <Form.Check type="checkbox" id="defaultCheck8" onChange={(this.handleCheckboxChecked)}  value='8'/>
                                    <Card.Img src="https://i.pinimg.com/564x/51/6e/60/516e60bb9c0f64f094e8cd848f6e07b9.jpg" alt="Card image" style={{ width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
-                                    
                                    <Card.ImgOverlay>
-                                    
                                         <Card.Title style={{fontSize:'15px'}}>Home décor</Card.Title>
                                         </Card.ImgOverlay>
                                   </Card>
-                                  
                                   </Col>
                                 </Row> 
 
-
-                               
-                               
-                       
                                
                            </Form>
                         </Container>
                     </p>
-                   
-                        <Button type="submit" style={RedButton} onClick={(this.handleCategoriesSubmit)}>Done
+                    <Button type="submit" style={RedButton} onClick={(this.handleCategoriesSubmit)}>Done
                         </Button>
-                   
-                      
-                        
-                   
+
                 </Box>
             </StyledModal>
-
         </React.Fragment>
 
         )

@@ -33,8 +33,8 @@ class BoardDetalis extends React.Component {
          { headers: { "Authorization": localStorage.getItem("Token") } })
           .then(response => {
             console.log(response)
-            this.setState({ pins: response.data })
-            console.log(this.pins)
+            this.setState({ pins: response.data[1] })
+            console.log(this.state.pins)
     
           })
         }
@@ -56,10 +56,11 @@ class BoardDetalis extends React.Component {
       }
     
       render() {
+        console.log(this.state.pins)
         return (
           <div>
             <Header />
-            <Link to='/new-pin'>
+            <Link to="/new-pin/">
               <Button variant="light" style={plusButton} >+</Button>
             </Link>
             <Link to='/profile'>
@@ -91,10 +92,10 @@ class BoardDetalis extends React.Component {
               {this.state.pins.map((pin) =>
                   
                 <Card style={{ borderStyle: 'hidden' }} Key={pin.id}>
-                  <Link className="my-masonry-grid_column" to="/pin-id" >
+                  <Link className="my-masonry-grid_column" to={"/pin-id/"+pin.id} >
                     <Card.Img style={{ borderRadius: '16px', cursor: 'zoom-in' }} 
                               variant="top" 
-                              src={"http://127.0.0.1:8000" + pin.attachment} />
+                              src={`http://127.0.0.1:8000${pin.attachment}`} />
                   </Link>
                   <Button variant="danger" 
                           style={saveButton} 
@@ -104,11 +105,18 @@ class BoardDetalis extends React.Component {
                     <Card.Title><h6 style={{ fontWeight: 'bold', display: 'inline' }}>{pin.title}</h6>
                     </Card.Title>
                     <Card.Text style={{ color: 'Grey' }}>
-                      <Image src={"http://127.0.0.1:8000" + pin.profile_image} 
+                    {pin.profile_image ? (
+                      <Image src={`http://127.0.0.1:8000${pin.profile_image}`} 
                             roundedCircle 
                             style={{ width: '30px', height: '30px', marginRight: '10px' }} />
-                      <Link to="/new-pin" style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
-                    </Card.Text>
+                      ):
+                      (
+                        <Image src={`https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png`} 
+                      roundedCircle 
+                      style={{ width: '30px', height: '30px', marginRight: '10px' }} />
+                      )}
+                            <Link to={`/user/${pin.user_id}`} style={{ color: "Grey", textDecoration: "none" }}> {pin.username} </Link>
+                      </Card.Text>
                   </Card.Body>
                 </Card>
     
