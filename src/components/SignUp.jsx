@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/core/ModalUnstyled';
 import Button from 'react-bootstrap/Button';
-import axios from "axios"
+import axios from "axios";
 import PersonIcon from '@mui/icons-material/Person';
 import { Col, Row, Container } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -60,7 +60,7 @@ export default class SignUp extends React.Component {
 
             //caategories
             holiday_id:'',
-            design_id:''
+            design_id:'',
 
         }
 
@@ -265,54 +265,8 @@ export default class SignUp extends React.Component {
                     }
                 })
         }
-
-
-       
-
-
-
-    handleCheckboxChecked = event =>{
-        console.log(event.target.value) 
-        console.log(event.target.checked)
-        if (event.target.checked )
-           this.list_new.push(event.target.value)
-           console.log("list : "+this.list_new) 
-        if (!(event.target.checked))
-           this.list_new.splice(this.list_new.indexOf(event.target.value),1)
-           console.log("list after remove : "+this.list_new) 
-    
-        console.log("final list : "+this.list_new)  
-    } 
-
-
-    handleCategoriesSubmit = event =>{
-        
-       this.setState({categories:this.list_new},
-        ()=>{console.log(this.state.categories)}) 
-
-         axios.get("http://localhost:8000/users/user-details/", 
-              { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
-                console.log(resp.data.data.id)
-                let userData = resp.data.data
-                this.setState({
-                    newUser_id: resp.data.data['id'],
-                },()=>{console.log("uaser id : "+ this.state.newUser_id)
-
-                let send_data = {
-                    categories: this.state.categories
-                }
-                axios.patch(`http://localhost:8000/users/users/${this.state.newUser_id}/`,
-                send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then(()=>{
-
-                    this.setState({redirect_flag:true},()=>console.log(this.state.redirect_flag))
-
-                })
-            })
-        }) 
     }
 
-
-    }
   
     handleCheckboxChecked = event =>{
         console.log(event.target.value) 

@@ -192,7 +192,7 @@ class Profile extends React.Component {
                     
                     {this.state.boards.map((details, key)=>{
                 return <Link key={key} to={'/board-details/'+details.id} 
-                            className='col-xxl-3 .col-lg-3 col-md-4 col-sm-6 col-12  p-0 board ' 
+                            className='col-xxl-3 .col-lg-4 col-md-4 col-sm-8 col-12   board ' 
                             style={{textDecoration: 'none', color:'#000'}} >
                                 {this.renderPins(details.pins)}
                           <h6 >{details.name}</h6>

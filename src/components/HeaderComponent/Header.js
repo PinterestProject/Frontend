@@ -3,6 +3,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FaceIcon from '@mui/icons-material/Face'; 
 import './Header.css';
@@ -155,11 +156,11 @@ InputChange = event => {
     handleHome(){
      
         localStorage.removeItem('Item')
-   
+    
        }
 
 
-    }
+    
 async ChangePassword(event) {
     event.preventDefault();
     const errors = this.validate(this.state.Pass1, this.state.Pass2);
@@ -237,7 +238,7 @@ async ChangePassword(event) {
                             <NotificationsIcon/>
                         </IconButton>
                         <IconButton>
-                            <TextsmsIcon/>
+                            <Link to='/users' style={{color:"gray"}}><i class="fas fa-users"></i></Link>
                         </IconButton>
                         <IconButton>
                             <Link to='/profile' style={{color:'gray'}}><FaceIcon/></Link>
