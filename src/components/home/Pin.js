@@ -109,6 +109,7 @@ shuffle = (array) => {
               <Masonry breakpointCols={this.state.breakpointObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column" >
       {this.shuffle(this.state.pins).filter((pin)=>{
                         if (SearchItem == '' || !SearchItem){
+
                             return pin
                         }else if (pin.title.toLowerCase().includes(SearchItem.toLowerCase())){
                             return pin
@@ -128,6 +129,7 @@ shuffle = (array) => {
                             </Card.Title>
                             <Card.Text style={{color:'Grey'}}>
                               { pin.profile_image ? (
+
 
                                 <Image src={pin.profile_image} roundedCircle 
                                 style={{width:'40px', height:'40px',marginRight:'10px'}}/>
@@ -176,4 +178,3 @@ const saveButton = {
   right: "3px", top: '5px', 
   fontWeight: 'bold'
 }
-

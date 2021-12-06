@@ -17,6 +17,7 @@ export default class SignUp extends React.Component {
 
     list_new=[]
 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -60,6 +61,7 @@ export default class SignUp extends React.Component {
             //caategories
             holiday_id:'',
             design_id:''
+
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -75,6 +77,28 @@ export default class SignUp extends React.Component {
         this.CategoryhandleOpen = this.CategoryhandleOpen.bind(this);
         this.CategoryhandleClose = this.CategoryhandleClose.bind(this);
     }
+
+
+   // componentWillMount() { 
+
+     //   let data = {
+       //     name : "Holiday1",
+         //  description : "summer"
+        //}
+
+        //axios.post('http://127.0.0.1:8000/categories/create', data ).then((res)=>{
+
+          // this.setState({holiday_id:res.data.id}) 
+        //})
+
+
+
+    //}
+      
+    
+
+
+
     handleOpen() {
         this.setState({
             setOpen: true,
@@ -133,7 +157,10 @@ export default class SignUp extends React.Component {
             username: '',
             password: '',
             password_conf: '',
-        };
+        }; 
+
+
+   
 
         if (this.state.touched.email && !email.match(
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
@@ -146,6 +173,7 @@ export default class SignUp extends React.Component {
             errors.last_name = 'You must wirte your Last name.';
 
         if (this.state.touched.username && username.length === '')
+
 
             errors.username = 'You must wirte your account name.';
 
@@ -164,7 +192,6 @@ export default class SignUp extends React.Component {
     }
 
 
-
     async handleSubmit(event) {
         event.preventDefault();
         const errors = this.validate(
@@ -176,14 +203,14 @@ export default class SignUp extends React.Component {
             this.state.password_conf,
         );
 
-        await this.setState({
+          await this.setState({
             errors: {
                 email: errors.email,
-                email: errors.first_name,
-                email: errors.last_name,
-                email: errors.username,
-                email: errors.password,
-                password: errors.password_conf
+                first_name: errors.first_name,
+                last_name: errors.last_name,
+                username: errors.username,
+                password: errors.password,
+                password_conf: errors.password_conf
             }
         });
         // alert(JSON.stringify(this.state.errors));
@@ -193,6 +220,7 @@ export default class SignUp extends React.Component {
         else
             this.setState({ signupFlag: true });
             console.log('flag before send', this.state.signupFlag);
+
 
         var userInfObj = {
             email: this.state.email,
@@ -226,6 +254,9 @@ export default class SignUp extends React.Component {
                         WelcomesetOpen: true,
                         Welcomeopen: true
                     })
+                 //get id of this user 
+                 
+
                 }).catch(error => {
                     console.log(error)
                     if (error) {
@@ -234,7 +265,11 @@ export default class SignUp extends React.Component {
                     }
                 })
         }
-    }
+
+
+       
+
+
 
     handleCheckboxChecked = event =>{
         console.log(event.target.value) 
@@ -276,6 +311,52 @@ export default class SignUp extends React.Component {
         }) 
     }
 
+
+    }
+  
+    handleCheckboxChecked = event =>{
+        console.log(event.target.value) 
+        console.log(event.target.checked)
+        if (event.target.checked )
+           this.list_new.push(event.target.value)
+           console.log("list : "+this.list_new) 
+        if (!(event.target.checked))
+           this.list_new.splice(this.list_new.indexOf(event.target.value),1)
+           console.log("list after remove : "+this.list_new) 
+    
+    console.log("final list : "+this.list_new)  
+    } 
+
+
+    handleCategoriesSubmit = event =>{
+        
+       this.setState({categories:this.list_new},
+        ()=>{console.log(this.state.categories)}) 
+
+         axios.get("http://localhost:8000/users/user-details/", 
+              { headers: { "Authorization": localStorage.getItem("Token") } }).then((resp) => {
+                console.log(resp.data.data.id)
+                let userData = resp.data.data
+                this.setState({
+                    newUser_id: resp.data.data['id'],
+                },()=>{console.log("uaser id : "+ this.state.newUser_id)
+
+                let send_data = {
+                    categories: this.state.categories
+                }
+                axios.patch(`http://localhost:8000/users/users/${this.state.newUser_id}/`,
+                send_data, { headers: { "Authorization": localStorage.getItem("Token") } }).then(()=>{
+
+                    this.setState({redirect_flag:true},()=>console.log(this.state.redirect_flag))
+
+                })
+            
+            
+            })
+              }) 
+              
+
+    }
     render() {
         const redirect_flag  = this.state.redirect_flag
         
@@ -481,6 +562,7 @@ export default class SignUp extends React.Component {
                                                         <Card.Title style={{fontSize:'15px'}}>Beauty</Card.Title>
                                                 </Card.ImgOverlay>
                                         </Card>
+
                                   </Col>
                                   <Col>
                                      
@@ -500,6 +582,7 @@ export default class SignUp extends React.Component {
                                     <Form.Check type="checkbox"  id="defaultCheck7" onChange={(this.handleCheckboxChecked)}  value='7'/>
                                    <Card.Img src="https://i.pinimg.com/736x/f6/f6/ca/f6f6ca6bb50be348b0f8fdb87ea3b89b.jpg" alt="Card image" style={{width:'100px',height:'100px',borderStyle: 'hidden',borderRadius:'16px',filter: 'brightness(70%)'}} />
                                    <Card.ImgOverlay>
+
                                         <Card.Title style={{fontSize:'15px'}}>Event Planning</Card.Title>
                                         </Card.ImgOverlay>
                                   </Card>
@@ -516,12 +599,14 @@ export default class SignUp extends React.Component {
                                   </Card>
                                   </Col>
                                 </Row> 
+
                                
                            </Form>
                         </Container>
                     </p>
                     <Button type="submit" style={RedButton} onClick={(this.handleCategoriesSubmit)}>Done
                         </Button>
+
                 </Box>
             </StyledModal>
         </React.Fragment>
@@ -538,7 +623,6 @@ export default class SignUp extends React.Component {
 //   };
 
 const SignupButton = {
-
     backgroundColor: 'lightgrey',
     display: 'flex',
     alignItems: 'center',
@@ -597,7 +681,6 @@ const Backdrop = styled('div')`
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-tap-highlight-color: transparent;
 `;
-
 
 const style = {
     display: 'in-line',
