@@ -85,7 +85,7 @@ class Profile extends React.Component {
                               
                           </div>
             )
-        }else
+        }else 
         {
             return(
                 <div className='parent' >
